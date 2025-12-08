@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard gérant - Carburant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .message { padding: 10px 14px; background: #dcfce7; border: 1px solid #16a34a; border-radius: 6px; margin-bottom: 15px; }
+    .error { background: #fee2e2; border-color: #b91c1c; }
+    .station-select { margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #e5e7eb; padding: 6px 8px; font-size: 14px; }
+    th { background: #f3f4f6; text-align: left; }
+    .form-row { margin-bottom: 8px; }
+    label { display: block; font-weight: 600; margin-bottom: 2px; }
+    select { width: 100%; padding: 4px 6px; border-radius: 4px; border: 1px solid #d1d5db; }
+    button { padding: 6px 12px; border-radius: 999px; border: none; background: #1e3a8a; color: white; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Dashboard gérant</h1>
+
+  {% if message %}
+    <div class="message">{{ message }}</div>
+  {% endif %}
+
+  {% if is_super %}
+    <div class="station-select">
+      <form method="get">
+        <label for="id_station_select">Station :</label>
+        <select id="id_station_select" name="station" onchange="this.form.submit()">
+          {% for s in stations_list %}
+            <option value="{{ s.id }}" {% if s.id == station.id %}selected{% endif %}>
+              {{ s.nom }} – {{ s.commune }}
+            </option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+  {% else %}
+    <p><strong>Station :</strong> {{ station.nom }} ({{ station.commune }})</p>
+  {% endif %}
+
+  <h2>Mise à jour du stock – {{ station.nom }}</h2>
+
+  <form method="post" action="?station={{ station.id }}">
+    {% csrf_token %}
+
+    <div class="form-row">
+      <label for="id_produit">Produit</label>
+      {{ form.produit }}
+    </div>
+
+    <div class="form-row">
+      <label for="id_niveau">Niveau</label>
+      {{ form.niveau }}
+    </div>
+
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <h2>Stocks actuels</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Niveau</th>
+        <th>Dernière mise à jour</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stock in stocks %}
+        <tr>
+          <td>{{ stock.produit }}</td>
+          <td>{{ stock.niveau }}</td>
+          <td>{{ stock.date_maj|date:"d/m/Y H:i" }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="3"><em>Aucun stock encore enregistré pour cette station.</em></td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p style="margin-top: 20px;">
+    🔁 <a href="/carte/">Retour à la carte</a>
+  </p>
+
+</div>
+</body>
+</html>
