@@ -2,134 +2,116 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Carte des stations - Carburant Mali</title>
+  <title>Carte carburant Mali</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
   <style>
     html, body {
       height: 100%;
       margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Arial, sans-serif;
     }
+
     #map {
       height: 100vh;
       width: 100%;
     }
+
     .top-bar {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.92);
-      padding: 8px 16px;
+      background: white;
+      padding: 10px 14px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
+
     .filters {
       position: absolute;
-      top: 60px;
+      top: 70px;
       left: 10px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 8px 10px;
+      background: white;
+      padding: 10px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      font-size: 13px;
-      min-width: 210px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      width: 220px;
+      font-size: 14px;
     }
-    .filters label {
-      display: block;
-      margin-bottom: 2px;
-      font-weight: 500;
-    }
-    .filters select {
-      width: 100%;
-      margin-bottom: 6px;
-      padding: 4px 6px;
-      border-radius: 6px;
-      border: 1px solid #d1d5db;
-      font-size: 13px;
-    }
+
+    .filters label { font-weight: bold; }
+    .filters select { width: 100%; margin: 4px 0 8px 0; }
+
     .filters button {
       width: 100%;
-      padding: 6px 8px;
-      border-radius: 999px;
-      border: none;
       background: #1e3a8a;
       color: white;
-      font-size: 13px;
-      font-weight: 600;
+      border: none;
+      padding: 6px;
+      border-radius: 4px;
+      font-weight: bold;
       cursor: pointer;
     }
+
     .legend {
       position: absolute;
       bottom: 10px;
       left: 10px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.92);
-      padding: 8px 12px;
+      background: white;
+      padding: 10px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       font-size: 13px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-    .legend-color {
-      width: 14px;
-      height: 14px;
-      margin-right: 6px;
+
+    .legend span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
+      margin-right: 5px;
     }
   </style>
 </head>
+
 <body>
 
 <div class="top-bar">
-  🛢️ <strong>Disponibilité du carburant</strong> – Bamako & Régions
+  🛢️ Disponibilité du carburant — Bamako & Régions
 </div>
 
 <div class="filters">
-  <form method="get" action="">
-    <label for="id_region">Région</label>
-    <select name="region" id="id_region">
-      <option value="">Toutes les régions</option>
-      {% for region in regions %}
-        <option value="{{ region.id }}"
-          {% if selected_region_id == region.id %}selected{% endif %}>
-          {{ region.nom }}
-        </option>
+  <form method="get">
+    <label>Région</label>
+    <select name="region">
+      <option value="">Toutes</option>
+      {% for r in regions %}
+      <option value="{{ r.id }}">{{ r.nom }}</option>
       {% endfor %}
     </select>
 
-    <label for="id_commune">Commune</label>
-    <select name="commune" id="id_commune">
-      <option value="">Toutes les communes</option>
-      {% for commune in communes %}
-        <option value="{{ commune.id }}"
-          {% if selected_commune_id == commune.id %}selected{% endif %}>
-          {{ commune.nom }}
-        </option>
+    <label>Commune</label>
+    <select name="commune">
+      <option value="">Toutes</option>
+      {% for c in communes %}
+      <option value="{{ c.id }}">{{ c.nom }}</option>
       {% endfor %}
     </select>
 
-    <label for="id_statut">Statut du stock</label>
-    <select name="statut" id="id_statut">
-      <option value="">Tous les statuts</option>
-      <option value="dispo" {% if selected_statut == "dispo" %}selected{% endif %}>Disponible</option>
-      <option value="faible" {% if selected_statut == "faible" %}selected{% endif %}>Faible</option>
-      <option value="rupture" {% if selected_statut == "rupture" %}selected{% endif %}>Rupture</option>
+    <label>Statut</label>
+    <select name="statut">
+      <option value="">Tous</option>
+      <option value="dispo">Disponible</option>
+      <option value="faible">Faible</option>
+      <option value="rupture">Rupture</option>
     </select>
 
     <button type="submit">Appliquer</button>
@@ -139,100 +121,66 @@
 <div id="map"></div>
 
 <div class="legend">
-  <div class="legend-item">
-    <span class="legend-color" style="background: green;"></span> Disponible
-  </div>
-  <div class="legend-item">
-    <span class="legend-color" style="background: orange;"></span> Faible
-  </div>
-  <div class="legend-item">
-    <span class="legend-color" style="background: red;"></span> Rupture
-  </div>
-  <div class="legend-item">
-    <span class="legend-color" style="background: gray;"></span> Inconnu / pas de données
-  </div>
+  <div><span style="background:green"></span>Disponible</div>
+  <div><span style="background:orange"></span>Faible</div>
+  <div><span style="background:red"></span>Rupture</div>
+  <div><span style="background:gray"></span>Inconnu</div>
 </div>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-  // Initialisation MAP (toujours exécuté)
-  console.log("Init map…");
-  var map = L.map('map').setView([12.65, -8.0], 11);
 
-  // Tuiles OSM
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
+// INIT MAP
+var map = L.map('map').setView([12.65, -8.0], 11);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+// DATA Django vers JS
+var stations = JSON.parse('{{ stations_json|escapejs }}');
+
+function getColor(essence, gasoil) {
+  if (essence === 'rupture' || gasoil === 'rupture') return 'red';
+  if (essence === 'faible' || gasoil === 'faible') return 'orange';
+  if (essence === 'dispo' || gasoil === 'dispo') return 'green';
+  return 'gray';
+}
+
+var bounds = [];
+
+stations.forEach(function(s) {
+  if (!s.lat || !s.lng) return;
+
+  var color = getColor(s.super_statut, s.gasoil_statut);
+
+  var marker = L.circleMarker([s.lat, s.lng], {
+    radius: 7,
+    color: color,
+    fillColor: color,
+    fillOpacity: 0.9
   }).addTo(map);
 
-  var stationBounds = [];
+  marker.bindPopup(`
+    <b>${s.nom}</b><br>
+    Région: ${s.region}<br>
+    Cercle: ${s.cercle}<br>
+    Commune: ${s.commune}<br><br>
+    Super: ${s.super_statut || "-"}<br>
+    Gasoil: ${s.gasoil_statut || "-"}<br><br>
+    <a href="/manager/">🔐 Gérant</a>
+  `);
 
-  function getColor(essence, gasoil) {
-    var niveaux = [essence, gasoil];
+  bounds.push([s.lat, s.lng]);
+});
 
-    if (niveaux.includes('rupture')) {
-      return 'red';
-    }
-    if (niveaux.includes('faible')) {
-      return 'orange';
-    }
-    if (niveaux.includes('dispo')) {
-      return 'green';
-    }
-    return 'gray';
-  }
+if (bounds.length > 0) {
+  map.fitBounds(bounds, {padding:[30,30]});
+}
 
-  {% for station in stations %}
-    (function() {
-      var lat = {{ station.latitude|default:"0" }};
-      var lng = {{ station.longitude|default:"0" }};
-
-      if (!lat || !lng) {
-        return;
-      }
-
-      var essence = "{{ station.super_statut|default_if_none:'' }}";
-      var gasoil = "{{ station.gasoil_statut|default_if_none:'' }}";
-
-      var color = getColor(essence, gasoil);
-
-      var marker = L.circleMarker([lat, lng], {
-        radius: 8,
-        color: color,
-        fillColor: color,
-        fillOpacity: 0.9
-      }).addTo(map);
-
-      stationBounds.push([lat, lng]);
-
-      var popupContent = `
-        <strong>{{ station.nom|escapejs }}</strong><br/>
-        Région : {{ station.commune.cercle.region.nom|escapejs }}<br/>
-        Cercle : {{ station.commune.cercle.nom|escapejs }}<br/>
-        Commune : {{ station.commune.nom|escapejs }}<br/>
-        {% if station.super_statut or station.gasoil_statut %}
-          Super : {{ station.super_statut|default:"-" }}<br/>
-          Gasoil : {{ station.gasoil_statut|default:"-" }}<br/>
-          {% if station.last_update %}
-            Dernière mise à jour : {{ station.last_update|date:"d/m/Y H:i" }}<br/>
-          {% endif %}
-        {% else %}
-          <em>Pas encore de données de stock</em><br/>
-        {% endif %}
-        <br/>
-        <a href="/manager/">🔐 Mettre à jour (gérant)</a>
-      `;
-
-      marker.bindPopup(popupContent);
-    })();
-  {% endfor %}
-
-  if (stationBounds.length > 0) {
-    var bounds = L.latLngBounds(stationBounds);
-    map.fitBounds(bounds, { padding: [40, 40] });
-  }
 </script>
 
 </body>

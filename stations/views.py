@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Region, Commune, Station, Stock, StockHistory
 from .forms import StockForm
+import json
 
 
 # -------------------------------------------------------------------
@@ -119,6 +120,9 @@ def manager_dashboard(request):
 # -------------------------------------------------------------------
 # Carte publique des stations
 # -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# Carte publique des stations
+# -------------------------------------------------------------------
 def carte_stations(request):
     """
     Carte publique avec filtres Région / Commune / Statut.
@@ -198,8 +202,24 @@ def carte_stations(request):
     regions = Region.objects.all().order_by("nom")
     communes = Commune.objects.all().order_by("nom")
 
+    # 4) Conversion des stations en JSON pour le JS
+    stations_data = []
+    for st in stations:
+        stations_data.append({
+            "nom": st.nom,
+            "lat": float(st.latitude) if st.latitude is not None else None,
+            "lng": float(st.longitude) if st.longitude is not None else None,
+            "region": st.commune.cercle.region.nom if st.commune else "",
+            "cercle": st.commune.cercle.nom if st.commune else "",
+            "commune": st.commune.nom if st.commune else "",
+            "super_statut": st.super_statut,
+            "gasoil_statut": st.gasoil_statut,
+        })
+
+    stations_json = json.dumps(stations_data, ensure_ascii=False)
+
     context = {
-        "stations": stations,
+        "stations_json": stations_json,  # <--- utilisé par le JS dans carte.html
         "regions": regions,
         "communes": communes,
         "selected_region_id": int(region_id) if region_id else None,
@@ -207,5 +227,4 @@ def carte_stations(request):
         "selected_statut": statut,
     }
 
-    # Le template est : stations/templates/stations/carte.html
     return render(request, "stations/carte.html", context)
