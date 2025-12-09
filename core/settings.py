@@ -27,9 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 
+    "malitadji.onrender.com",
+    "malitadji.com",
+    "www.malitadji.com",
     "127.0.0.1",
     "localhost",
-    "10.0.2.2",
 
 ]
 
