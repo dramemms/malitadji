@@ -92,9 +92,9 @@ class Stock(models.Model):
     ]
 
     PRODUITS = [
-        ('Super', 'Super'),
+        ('Super', 'Essence'),
         ('Gasoil', 'Gasoil'),
-        ('Pétrole', 'Pétrole'),
+       
     ]
 
     station = models.ForeignKey(

@@ -42,7 +42,7 @@
       padding: 10px;
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
-      width: 220px;
+      width: 240px;
       font-size: 14px;
     }
 
@@ -91,27 +91,44 @@
 <div class="filters">
   <form method="get">
     <label>Région</label>
-    <select name="region">
-      <option value="">Toutes</option>
+    <select name="region" id="id_region" data-selected="{{ region_selected }}">
+      <option value="" {% if not region_selected %}selected{% endif %}>Toutes</option>
       {% for r in regions %}
-      <option value="{{ r.id }}">{{ r.nom }}</option>
+      <option value="{{ r.id }}"
+        {% if r.id|stringformat:"s" == region_selected %}selected{% endif %}>
+        {{ r.nom }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <label>Cercle</label>
+    <select name="cercle" id="id_cercle" data-selected="{{ cercle_selected }}">
+      <option value="" {% if not cercle_selected %}selected{% endif %}>Tous</option>
+      {% for ce in cercles %}
+      <option value="{{ ce.id }}"
+        {% if ce.id|stringformat:"s" == cercle_selected %}selected{% endif %}>
+        {{ ce.nom }}
+      </option>
       {% endfor %}
     </select>
 
     <label>Commune</label>
-    <select name="commune">
-      <option value="">Toutes</option>
+    <select name="commune" id="id_commune" data-selected="{{ commune_selected }}">
+      <option value="" {% if not commune_selected %}selected{% endif %}>Toutes</option>
       {% for c in communes %}
-      <option value="{{ c.id }}">{{ c.nom }}</option>
+      <option value="{{ c.id }}"
+        {% if c.id|stringformat:"s" == commune_selected %}selected{% endif %}>
+        {{ c.nom }}
+      </option>
       {% endfor %}
     </select>
 
     <label>Statut</label>
     <select name="statut">
-      <option value="">Tous</option>
-      <option value="dispo">Disponible</option>
-      <option value="faible">Faible</option>
-      <option value="rupture">Rupture</option>
+      <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
+      <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
+      <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
+      <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
     </select>
 
     <button type="submit">Appliquer</button>
@@ -131,9 +148,10 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-
-// INIT MAP
-var map = L.map('map').setView([12.65, -8.0], 11);
+// ===================
+// CARTE LEAFLET
+// ===================
+var map = L.map('map').setView([12.65, -8.0], 6);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -145,8 +163,8 @@ var stations = JSON.parse('{{ stations_json|escapejs }}');
 
 function getColor(essence, gasoil) {
   if (essence === 'rupture' || gasoil === 'rupture') return 'red';
-  if (essence === 'faible' || gasoil === 'faible') return 'orange';
-  if (essence === 'dispo' || gasoil === 'dispo') return 'green';
+  if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
+  if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
   return 'gray';
 }
 
@@ -166,12 +184,12 @@ stations.forEach(function(s) {
 
   marker.bindPopup(`
     <b>${s.nom}</b><br>
-    Région: ${s.region}<br>
-    Cercle: ${s.cercle}<br>
-    Commune: ${s.commune}<br><br>
-    Super: ${s.super_statut || "-"}<br>
+    Région: ${s.region || "-"}<br>
+    Cercle: ${s.cercle || "-"}<br>
+    Commune: ${s.commune || "-"}<br><br>
+    Essence: ${s.super_statut || "-"}<br>
     Gasoil: ${s.gasoil_statut || "-"}<br><br>
-    <a href="/manager/">🔐 Gérant</a>
+    <a href="/manager/">🔐 Espace gérant</a>
   `);
 
   bounds.push([s.lat, s.lng]);
@@ -180,7 +198,105 @@ stations.forEach(function(s) {
 if (bounds.length > 0) {
   map.fitBounds(bounds, {padding:[30,30]});
 }
+</script>
 
+<script>
+// ===================
+// FILTRES DYNAMIQUES
+// ===================
+const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
+const communesData = JSON.parse('{{ communes_json|escapejs }}');
+
+const regionSelect  = document.getElementById('id_region');
+const cercleSelect  = document.getElementById('id_cercle');
+const communeSelect = document.getElementById('id_commune');
+
+// Valeurs sélectionnées initiales
+const selectedRegion  = regionSelect.dataset.selected || "";
+const selectedCercle  = cercleSelect.dataset.selected || "";
+const selectedCommune = communeSelect.dataset.selected || "";
+
+// Remplit le select "Cercle" en fonction de la région
+function populateCercles(regionId, keepSelected = true) {
+  const currentSelected = keepSelected ? selectedCercle : "";
+
+  cercleSelect.innerHTML = "";
+  const optAll = document.createElement("option");
+  optAll.value = "";
+  optAll.textContent = "Tous";
+  cercleSelect.appendChild(optAll);
+
+  cerclesData.forEach(function(ce) {
+    if (regionId && String(ce.region_id) !== String(regionId)) {
+      return;
+    }
+    const opt = document.createElement("option");
+    opt.value = ce.id;
+    opt.textContent = ce.nom;
+
+    if (currentSelected && String(ce.id) === String(currentSelected)) {
+      opt.selected = true;
+    }
+
+    cercleSelect.appendChild(opt);
+  });
+}
+
+// Remplit le select "Commune" en fonction de la région + cercle
+function populateCommunes(regionId, cercleId, keepSelected = true) {
+  const currentSelected = keepSelected ? selectedCommune : "";
+
+  communeSelect.innerHTML = "";
+  const optAll = document.createElement("option");
+  optAll.value = "";
+  optAll.textContent = "Toutes";
+  communeSelect.appendChild(optAll);
+
+  communesData.forEach(function(c) {
+    // Filtre par cercle en priorité
+    if (cercleId && String(c.cercle_id) !== String(cercleId)) {
+      return;
+    }
+
+    // Si pas de cercle mais région sélectionnée, filtrer via cercle -> region
+    if (!cercleId && regionId) {
+      const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
+      if (!cercle || String(cercle.region_id) !== String(regionId)) {
+        return;
+      }
+    }
+
+    const opt = document.createElement("option");
+    opt.value = c.id;
+    opt.textContent = c.nom;
+
+    if (currentSelected && String(c.id) === String(currentSelected)) {
+      opt.selected = true;
+    }
+
+    communeSelect.appendChild(opt);
+  });
+}
+
+// Quand la région change -> on met à jour cercle + commune
+regionSelect.addEventListener('change', function() {
+  const regionId = this.value || "";
+  populateCercles(regionId, false);
+  populateCommunes(regionId, cercleSelect.value, false);
+});
+
+// Quand le cercle change -> on met à jour les communes
+cercleSelect.addEventListener('change', function() {
+  const cercleId = this.value || "";
+  const regionId = regionSelect.value || "";
+  populateCommunes(regionId, cercleId, false);
+});
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+  populateCercles(selectedRegion, true);
+  populateCommunes(selectedRegion, selectedCercle, true);
+});
 </script>
 
 </body>

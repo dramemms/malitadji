@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Malitadji – Suivi du carburant au Mali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Chart.js pour le petit graphique -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-card: #0b1220;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.1);
+      --danger: #f97373;
+      --warning: #f97316;
+      --info: #38bdf8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617, #020617 40%, #020617);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.95);
+      background: linear-gradient(to right, #020617, #020617f0);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a, #15803d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #022c22;
+    }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .nav-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+    }
+
+    .nav-link.active {
+      border-color: var(--border-subtle);
+      background: rgba(15,23,42,0.8);
+      color: var(--text);
+    }
+
+    .nav-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--accent);
+      color: #022c22;
+    }
+
+    /* HERO + CONTENT */
+    .hero {
+      padding: 28px 18px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--info);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .badge span {
+      color: #bae6fd;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #022c22;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero-right {
+      background: radial-gradient(circle at top left, #1d4ed8, #020617);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-right h2 {
+      font-size: 15px;
+      margin: 0 0 6px;
+    }
+
+    .hero-right p {
+      font-size: 12px;
+      color: #dbeafe;
+      margin: 0 0 8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .stat-unit {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .stat-tag {
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .stat-tag.green { color: #4ade80; }
+    .stat-tag.orange { color: #fb923c; }
+    .stat-tag.red { color: var(--danger); }
+    .stat-tag.gray { color: var(--muted); }
+
+    .chart-card {
+      margin-top: 10px;
+      background: rgba(15,23,42,0.8);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .chart-title {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .footer {
+      padding: 12px 18px 18px;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid rgba(31,41,55,0.9);
+      margin-top: 12px;
+    }
+
+    .footer span {
+      color: #cbd5f5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="nav">
+  <div class="nav-left">
+    <div class="nav-logo">M</div>
+    <div>
+      <div class="nav-title">Malitadji</div>
+      <div class="nav-sub">Suivi du carburant · Bamako & régions</div>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="{% url 'home' %}" class="nav-link active">Accueil</a>
+    <a href="{% url 'carte' %}" class="nav-link">Carte</a>
+    <a href="{% url 'manager_login' %}" class="nav-link">Espace gérant</a>
+    <a href="{% url 'manager_login' %}">
+      <button class="nav-btn">Se connecter</button>
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <!-- Colonne gauche : présentation -->
+  <div>
+    <div class="badge">
+      🛢️ Projet Malitadji
+      <span>Visualiser l'état du carburant en temps quasi réel</span>
+    </div>
+
+    <h1 class="title">Savoir où trouver de l’essence et du gasoil, en un coup d’œil.</h1>
+
+    <p class="subtitle">
+      Malitadji est une plateforme qui permet de suivre la disponibilité
+      de l'essence et du gasoil station par station au Mali. Les gérants
+      mettent à jour leurs stocks, et le public consulte la carte pour
+      éviter les déplacements inutiles.
+    </p>
+
+    <p class="subtitle">
+      L’objectif est simple&nbsp;: plus de transparence, moins de stress,
+      et une meilleure information pour les citoyens, les transporteurs et
+      les décideurs.
+    </p>
+
+    <div class="btn-row">
+      <a href="{% url 'carte' %}" class="btn-primary">
+        📍 Voir la carte des stations
+      </a>
+      <a href="{% url 'manager_login' %}" class="btn-secondary">
+        🔐 Espace gérant
+      </a>
+    </div>
+  </div>
+
+  <!-- Colonne droite : stats + graphique -->
+  <div class="hero-right">
+    <h2>Vue d'ensemble</h2>
+    <p>
+      Indicateurs calculés à partir des dernières mises à jour des stations
+      enregistrées dans le système.
+      {% if last_update %}
+        <br><span style="font-size:11px;color:#bfdbfe;">
+          Dernière mise à jour : {{ last_update|date:"d/m/Y H:i" }}
+        </span>
+      {% endif %}
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Stations enregistrées</div>
+        <div class="stat-value">
+          {{ total_stations }}
+          <span class="stat-unit">stations</span>
+        </div>
+        <div class="stat-tag gray">
+          {{ stations_avec_stock }} avec un stock renseigné
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Stations avec carburant</div>
+        <div class="stat-value">
+          {{ dispo_count }}
+          <span class="stat-unit">{{ dispo_pct }}%</span>
+        </div>
+        <div class="stat-tag green">
+          Essence ou gasoil disponible
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Stock faible</div>
+        <div class="stat-value">
+          {{ faible_count }}
+          <span class="stat-unit">{{ faible_pct }}%</span>
+        </div>
+        <div class="stat-tag orange">
+          Niveau signalé comme faible
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Ruptures & inconnus</div>
+        <div class="stat-value">
+          {{ rupture_count|add:inconnu_count }}
+          <span class="stat-unit">{{ rupture_pct|add:inconnu_pct }}%</span>
+        </div>
+        <div class="stat-tag red">
+          {{ rupture_count }} en rupture, {{ inconnu_count }} sans info
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">
+        Répartition des stations selon l'état du stock
+      </div>
+      <canvas id="statusChart" height="140"></canvas>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>Malitadji</span> · Prototype de plateforme de suivi du carburant au Mali ·
+  <span>Version bêta</span>
+</footer>
+
+<script>
+  // Données passées par Django
+  const dispo = {{ dispo_count|default:0 }};
+  const faible = {{ faible_count|default:0 }};
+  const rupture = {{ rupture_count|default:0 }};
+  const inconnu = {{ inconnu_count|default:0 }};
+
+  const ctx = document.getElementById('statusChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Disponible', 'Faible', 'Rupture', 'Inconnu'],
+      datasets: [{
+        data: [dispo, faible, rupture, inconnu],
+        backgroundColor: ['#22c55e', '#f97316', '#f97373', '#6b7280'],
+        borderColor: '#020617',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e5e7eb',
+            font: { size: 11 }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -28,6 +28,7 @@ urlpatterns = [
 
     # Django admin
     path("admin/", admin.site.urls),
+    
 
     # --- AUTHENTIFICATION WEB ---
     path(
