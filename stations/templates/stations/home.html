@@ -281,6 +281,64 @@
     .footer span {
       color: #cbd5f5;
     }
+
+.section {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.section-container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.apropos-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card,
+.contact-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.bg-dark {
+  background: #0f172a;
+  color: #fff;
+}
+
+.bg-dark .card,
+.bg-dark .contact-card {
+  background: #1e293b;
+}
+
+.bg-dark h2,
+.bg-dark p {
+  color: white;
+}
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -408,6 +466,9 @@
 <footer class="footer">
   <span>Malitadji</span> · Prototype de plateforme de suivi du carburant au Mali ·
   <span>Version bêta</span>
+  <a href="#apropos">À propos</a>
+  <a href="#contact">Contact</a>
+
 </footer>
 
 <script>
