@@ -282,63 +282,120 @@
       color: #cbd5f5;
     }
 
-.section {
-  padding: 80px 20px;
-  background: #f8f9fa;
-}
+    /* SECTION "À PROPOS" */
+    .section {
+      padding: 50px 20px;
+      background: #f3f4f6;
+    }
 
-.section-container {
-  max-width: 1100px;
-  margin: auto;
-  text-align: center;
-}
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-.section h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
+    .section h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
 
-.subtitle {
-  color: #555;
-  margin-bottom: 40px;
-}
+    .section-subtitle {
+      color: #4b5563;
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
 
-.apropos-grid,
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
+    .apropos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
 
-.card,
-.contact-card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+    .card {
+      background: #ffffff;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+      text-align: left;
+      color: #111827;
+    }
 
-.bg-dark {
-  background: #0f172a;
-  color: #fff;
-}
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #0f172a;
+    }
 
-.bg-dark .card,
-.bg-dark .contact-card {
-  background: #1e293b;
-}
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4b5563;
+    }
 
-.bg-dark h2,
-.bg-dark p {
-  color: white;
-}
+    /* SECTION CONTACT CENTRÉE */
+    .contact-section {
+      padding: 40px 20px 60px;
+      background: #020617;
+      text-align: center;
+    }
 
+    .contact-title {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: #f9fafb;
+    }
 
+    .contact-subtitle {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 26px;
+    }
 
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
+    .contact-card {
+      background: rgba(15,23,42,0.95);
+      border-radius: 16px;
+      padding: 16px 24px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      width: 260px;           /* 🔹 taille réduite */
+      text-align: left;
+    }
 
+    .contact-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
 
+    .contact-card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: #e5e7eb;
+    }
 
+    .contact-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      .contact-card {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -464,11 +521,8 @@
 </section>
 
 <footer class="footer">
-  <span>Malitadji</span> · Prototype de plateforme de suivi du carburant au Mali ·
+  <span>Malitadji</span> · Plateforme de suivi du carburant au Mali ·
   <span>Version bêta</span>
-  <a href="#apropos">À propos</a>
-  <a href="#contact">Contact</a>
-
 </footer>
 
 <script>
@@ -502,10 +556,11 @@
     }
   });
 </script>
+
 <section id="apropos" class="section">
   <div class="section-container">
     <h2>À propos de Malitadji</h2>
-    <p class="subtitle">
+    <p class="section-subtitle">
       Malitadji est une plateforme numérique dédiée au suivi de la disponibilité du carburant au Mali.
     </p>
 
@@ -537,33 +592,29 @@
   </div>
 </section>
 
-<section id="contact" class="section bg-dark">
-  <div class="section-container">
-    <h2>Contact</h2>
-    <p class="subtitle">Une question, un partenariat, une suggestion ? Contactez-nous.</p>
+<section class="contact-section">
+  <h2 class="contact-title">Contact</h2>
+  <p class="contact-subtitle">
+    Une question, un partenariat, une suggestion ? Contactez-nous.
+  </p>
 
-    <div class="contact-grid">
+  <div class="contact-cards">
+    <!-- EMAIL -->
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h3>Email</h3>
+      <p>contact@malitadji.com</p>
+    </div>
 
-      <div class="contact-card">
-        <h3>📧 Email</h3>
-        <p>contact@malitadji.com</p>
-      </div>
-
-      <div class="contact-card">
-        <h3>📞 Téléphone</h3>
-        <p>+223 75 99 27 86</p>
-      </div>
-
-      <div class="contact-card">
-        <h3>📍 Localisation</h3>
-        <p>Bamako, Mali</p>
-      </div>
-
+    <!-- TÉLÉPHONE -->
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <h3>Téléphone</h3>
+      <p>+223 75 99 27 86 </p>
+      <p>+223 66 07 12 03</p>
     </div>
   </div>
 </section>
-
-
 
 </body>
 </html>

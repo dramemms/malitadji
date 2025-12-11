@@ -22,7 +22,7 @@ def home(request):
     # Statistiques globales
     total_stations = Station.objects.count()
 
-    # Station avec au moins un stock
+    # Stations avec au moins un stock renseigné
     stations_avec_stock = (
         Station.objects.filter(stocks__isnull=False).distinct().count()
     )
@@ -36,7 +36,12 @@ def home(request):
             return "rupture"
         if "faible" in n or "low" in n:
             return "faible"
-        if "dispo" in n or "plein" in n or "full" in n:
+        if (
+            "dispo" in n
+            or "disponible" in n
+            or "plein" in n
+            or "full" in n
+        ):
             return "dispo"
         return ""
 
@@ -50,27 +55,30 @@ def home(request):
         Stock.objects.order_by("-date_maj").values_list("date_maj", flat=True).first()
     )
 
-    # Statut global par station
+    # Statut global par station (Essence + Gasoil)
     for s in Station.objects.all():
-        super_stock = (
-            Stock.objects.filter(station=s, produit="super")
+        # Dernier stock ESSENCE
+        essence_stock = (
+            Stock.objects.filter(station=s, produit__iexact="Essence")
             .order_by("-date_maj")
             .first()
         )
+        # Dernier stock GASOIL
         gasoil_stock = (
-            Stock.objects.filter(station=s, produit="gasoil")
+            Stock.objects.filter(station=s, produit__iexact="Gasoil")
             .order_by("-date_maj")
             .first()
         )
 
-        super_statut = niveau_to_code(super_stock.niveau if super_stock else "")
+        essence_statut = niveau_to_code(essence_stock.niveau if essence_stock else "")
         gasoil_statut = niveau_to_code(gasoil_stock.niveau if gasoil_stock else "")
 
-        if "rupture" in (super_statut, gasoil_statut):
+        # Logique globale : si au moins un produit est en rupture/faible/dispo
+        if "rupture" in (essence_statut, gasoil_statut):
             rupture_count += 1
-        elif "faible" in (super_statut, gasoil_statut):
+        elif "faible" in (essence_statut, gasoil_statut):
             faible_count += 1
-        elif "dispo" in (super_statut, gasoil_statut):
+        elif "dispo" in (essence_statut, gasoil_statut):
             dispo_count += 1
         else:
             inconnu_count += 1
@@ -96,8 +104,6 @@ def home(request):
     return render(request, "stations/home.html", context)
 
 
-
-
 # ========================
 # CARTE PUBLIQUE
 # ========================
@@ -106,7 +112,7 @@ def carte(request):
     Alimente la carte Leaflet.
 
     - Filtres : région / cercle / commune / statut
-    - Couleurs : calculées à partir du stock (SUPER/Essence et Gasoil)
+    - Couleurs : calculées à partir du stock (Essence et Gasoil)
     """
 
     # Récupération des filtres GET
@@ -144,38 +150,38 @@ def carte(request):
     data = []
 
     for s in stations_qs:
-        # Coordonnées (adapte les noms si besoin)
+        # Coordonnées
         lat = getattr(s, "latitude", None)
         lng = getattr(s, "longitude", None)
 
-        # Dernier stock ESSENCE (super)
-        super_stock = (
-            Stock.objects.filter(station=s, produit__iexact="super")
+        # Dernier stock ESSENCE
+        essence_stock = (
+            Stock.objects.filter(station=s, produit__iexact="Essence")
             .order_by("-date_maj")
             .first()
         )
         # Dernier stock GASOIL
         gasoil_stock = (
-            Stock.objects.filter(station=s, produit__iexact="gasoil")
+            Stock.objects.filter(station=s, produit__iexact="Gasoil")
             .order_by("-date_maj")
             .first()
         )
 
-        super_statut = niveau_to_code(super_stock.niveau) if super_stock else ""
+        essence_statut = niveau_to_code(essence_stock.niveau) if essence_stock else ""
         gasoil_statut = niveau_to_code(gasoil_stock.niveau) if gasoil_stock else ""
 
         # Filtre supplémentaire sur le statut côté Python
         if statut:
             if statut == "rupture" and not (
-                super_statut == "rupture" or gasoil_statut == "rupture"
+                essence_statut == "rupture" or gasoil_statut == "rupture"
             ):
                 continue
             if statut == "faible" and not (
-                super_statut == "faible" or gasoil_statut == "faible"
+                essence_statut == "faible" or gasoil_statut == "faible"
             ):
                 continue
             if statut == "dispo" and not (
-                super_statut == "dispo" or gasoil_statut == "dispo"
+                essence_statut == "dispo" or gasoil_statut == "dispo"
             ):
                 continue
 
@@ -199,8 +205,9 @@ def carte(request):
                 "region": region_name,
                 "cercle": cercle_name,
                 "commune": commune_name,
-                "super_statut": super_statut,
-                "gasoil_statut": gasoil_statut,
+                # on garde les clés attendues par le JS
+                "super_statut": essence_statut,   # Essence
+                "gasoil_statut": gasoil_statut,   # Gasoil
             }
         )
 
