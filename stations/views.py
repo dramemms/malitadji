@@ -65,7 +65,7 @@ def home(request):
         )
         # Dernier stock GASOIL
         gasoil_stock = (
-            Stock.objects.filter(station=s, produit__iexact="Gasoil")
+            Stock.objects.filter(station=s, produit__iexact="gasoil")
             .order_by("-date_maj")
             .first()
         )
@@ -380,7 +380,7 @@ def manager_dashboard(request):
         request,
         "stations/manager_dashboard.html",
         {
-            "is_essence": is_essence,
+            "is_super": is_super,
             "stations_list": stations_list,
             "station": station,
             "form": form,

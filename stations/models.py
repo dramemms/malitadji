@@ -92,8 +92,8 @@ class Stock(models.Model):
     ]
 
     PRODUITS = [
-        ('Super', 'Essence'),
-        ('Gasoil', 'Gasoil'),
+        ('essence', 'Essence'),
+        ('gasoil', 'Gasoil'),
        
     ]
 
