@@ -59,7 +59,7 @@ def home(request):
     for s in Station.objects.all():
         # Dernier stock ESSENCE
         essence_stock = (
-            Stock.objects.filter(station=s, produit__iexact="Essence")
+            Stock.objects.filter(station=s, produit__iexact="essence")
             .order_by("-date_maj")
             .first()
         )
@@ -156,13 +156,13 @@ def carte(request):
 
         # Dernier stock ESSENCE
         essence_stock = (
-            Stock.objects.filter(station=s, produit__iexact="Essence")
+            Stock.objects.filter(station=s, produit__iexact="essence")
             .order_by("-date_maj")
             .first()
         )
         # Dernier stock GASOIL
         gasoil_stock = (
-            Stock.objects.filter(station=s, produit__iexact="Gasoil")
+            Stock.objects.filter(station=s, produit__iexact="gasoil")
             .order_by("-date_maj")
             .first()
         )
@@ -206,7 +206,7 @@ def carte(request):
                 "cercle": cercle_name,
                 "commune": commune_name,
                 # on garde les clés attendues par le JS
-                "super_statut": essence_statut,   # Essence
+                "essence_statut": essence_statut,   # Essence
                 "gasoil_statut": gasoil_statut,   # Gasoil
             }
         )
@@ -380,7 +380,7 @@ def manager_dashboard(request):
         request,
         "stations/manager_dashboard.html",
         {
-            "is_super": is_super,
+            "is_essence": is_essence,
             "stations_list": stations_list,
             "station": station,
             "form": form,

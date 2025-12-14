@@ -173,7 +173,7 @@ var bounds = [];
 stations.forEach(function(s) {
   if (!s.lat || !s.lng) return;
 
-  var color = getColor(s.super_statut, s.gasoil_statut);
+  var color = getColor(s.essence_statut, s.gasoil_statut);
 
   var marker = L.circleMarker([s.lat, s.lng], {
     radius: 7,
@@ -187,7 +187,7 @@ stations.forEach(function(s) {
     Région: ${s.region || "-"}<br>
     Cercle: ${s.cercle || "-"}<br>
     Commune: ${s.commune || "-"}<br><br>
-    Essence: ${s.super_statut || "-"}<br>
+    Essence: ${s.essence_statut || "-"}<br>
     Gasoil: ${s.gasoil_statut || "-"}<br><br>
     <a href="/manager/">🔐 Espace gérant</a>
   `);
