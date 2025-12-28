@@ -1,0 +1,1150 @@
+[
+  {
+    "model": "stations.region",
+    "pk": 1,
+    "fields": {
+      "nom": "Bamako"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 2,
+    "fields": {
+      "nom": "Segou"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 3,
+    "fields": {
+      "nom": "Kayes"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 4,
+    "fields": {
+      "nom": "Badiangara"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 5,
+    "fields": {
+      "nom": "Tombouctou"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 6,
+    "fields": {
+      "nom": "Koulikoro"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 7,
+    "fields": {
+      "nom": "Sikasso"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 8,
+    "fields": {
+      "nom": "Gao"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 9,
+    "fields": {
+      "nom": "Mopti"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 10,
+    "fields": {
+      "nom": "SÚgou"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 11,
+    "fields": {
+      "nom": "Menaka"
+    }
+  },
+  {
+    "model": "stations.region",
+    "pk": 12,
+    "fields": {
+      "nom": "Kidal"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 1,
+    "fields": {
+      "region": 1,
+      "nom": "Bamako"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 2,
+    "fields": {
+      "region": 2,
+      "nom": "Segou"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 3,
+    "fields": {
+      "region": 3,
+      "nom": "Kayes"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 4,
+    "fields": {
+      "region": 4,
+      "nom": "Badiangara"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 5,
+    "fields": {
+      "region": 5,
+      "nom": "Rahous"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 6,
+    "fields": {
+      "region": 6,
+      "nom": "Kati"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 7,
+    "fields": {
+      "region": 7,
+      "nom": "Bougouni"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 8,
+    "fields": {
+      "region": 3,
+      "nom": "Nioro"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 9,
+    "fields": {
+      "region": 8,
+      "nom": "Gao"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 10,
+    "fields": {
+      "region": 9,
+      "nom": "Mopti"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 11,
+    "fields": {
+      "region": 3,
+      "nom": "Kita"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 12,
+    "fields": {
+      "region": 3,
+      "nom": "YÚlimanÚ"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 13,
+    "fields": {
+      "region": 9,
+      "nom": "Koro"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 14,
+    "fields": {
+      "region": 6,
+      "nom": "Koulikoro"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 15,
+    "fields": {
+      "region": 7,
+      "nom": "Sikasso"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 16,
+    "fields": {
+      "region": 10,
+      "nom": "Niono"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 17,
+    "fields": {
+      "region": 10,
+      "nom": "SÚgou"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 18,
+    "fields": {
+      "region": 9,
+      "nom": "DjennÚ"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 19,
+    "fields": {
+      "region": 11,
+      "nom": "MÚnaka"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 20,
+    "fields": {
+      "region": 7,
+      "nom": "Koutiala"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 21,
+    "fields": {
+      "region": 7,
+      "nom": "Yanfolila"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 22,
+    "fields": {
+      "region": 10,
+      "nom": "Bla"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 23,
+    "fields": {
+      "region": 7,
+      "nom": "Yorosso"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 24,
+    "fields": {
+      "region": 6,
+      "nom": "Nara"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 25,
+    "fields": {
+      "region": 3,
+      "nom": "KÚniÚba"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 26,
+    "fields": {
+      "region": 10,
+      "nom": "BaraouÚli"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 27,
+    "fields": {
+      "region": 6,
+      "nom": "Dioila"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 28,
+    "fields": {
+      "region": 6,
+      "nom": "Kolokani"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 29,
+    "fields": {
+      "region": 10,
+      "nom": "San"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 30,
+    "fields": {
+      "region": 9,
+      "nom": "Douentza"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 31,
+    "fields": {
+      "region": 9,
+      "nom": "Bandiagara"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 32,
+    "fields": {
+      "region": 3,
+      "nom": "DiÚma"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 33,
+    "fields": {
+      "region": 3,
+      "nom": "Bafoulabe"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 34,
+    "fields": {
+      "region": 5,
+      "nom": "DirÚ"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 35,
+    "fields": {
+      "region": 10,
+      "nom": "Tominian"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 36,
+    "fields": {
+      "region": 5,
+      "nom": "Tombouctou"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 37,
+    "fields": {
+      "region": 9,
+      "nom": "Bankass"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 38,
+    "fields": {
+      "region": 12,
+      "nom": "Kidal"
+    }
+  },
+  {
+    "model": "stations.cercle",
+    "pk": 39,
+    "fields": {
+      "region": 6,
+      "nom": "Kangaba"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 7,
+    "fields": {
+      "cercle": 2,
+      "nom": "Segou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 8,
+    "fields": {
+      "cercle": 3,
+      "nom": "Kayes"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 9,
+    "fields": {
+      "cercle": 4,
+      "nom": "Badiangara"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 10,
+    "fields": {
+      "cercle": 5,
+      "nom": "Intikate"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 11,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 5"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 12,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 1"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 13,
+    "fields": {
+      "cercle": 6,
+      "nom": "Kati"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 14,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 2"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 15,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 3"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 16,
+    "fields": {
+      "cercle": 7,
+      "nom": "Bougouni"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 17,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 4"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 18,
+    "fields": {
+      "cercle": 6,
+      "nom": "Kalabancoro"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 19,
+    "fields": {
+      "cercle": 6,
+      "nom": "Sanankoroba"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 20,
+    "fields": {
+      "cercle": 8,
+      "nom": "Nioro"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 21,
+    "fields": {
+      "cercle": 9,
+      "nom": "Gao"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 22,
+    "fields": {
+      "cercle": 1,
+      "nom": "Commune 6"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 23,
+    "fields": {
+      "cercle": 10,
+      "nom": "Mopti"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 24,
+    "fields": {
+      "cercle": 11,
+      "nom": "Kita"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 25,
+    "fields": {
+      "cercle": 12,
+      "nom": "Tringa"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 26,
+    "fields": {
+      "cercle": 6,
+      "nom": "MandÚ"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 27,
+    "fields": {
+      "cercle": 6,
+      "nom": "Kambila"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 28,
+    "fields": {
+      "cercle": 13,
+      "nom": "Koro"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 29,
+    "fields": {
+      "cercle": 14,
+      "nom": "MÚguÚtan"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 30,
+    "fields": {
+      "cercle": 15,
+      "nom": "Sikasso"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 31,
+    "fields": {
+      "cercle": 16,
+      "nom": "Sirifila Boundy"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 32,
+    "fields": {
+      "cercle": 17,
+      "nom": "SÚgou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 33,
+    "fields": {
+      "cercle": 18,
+      "nom": "DjennÚ"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 34,
+    "fields": {
+      "cercle": 19,
+      "nom": "MÚnaka"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 35,
+    "fields": {
+      "cercle": 17,
+      "nom": "Markala"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 36,
+    "fields": {
+      "cercle": 3,
+      "nom": "FalÚmÚ"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 37,
+    "fields": {
+      "cercle": 20,
+      "nom": "Koutiala"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 38,
+    "fields": {
+      "cercle": 6,
+      "nom": "BaguinÚda Camp"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 39,
+    "fields": {
+      "cercle": 21,
+      "nom": "Tagandougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 40,
+    "fields": {
+      "cercle": 21,
+      "nom": "Baya"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 41,
+    "fields": {
+      "cercle": 7,
+      "nom": "Garalo"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 42,
+    "fields": {
+      "cercle": 22,
+      "nom": "Touna"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 43,
+    "fields": {
+      "cercle": 6,
+      "nom": "Moribabougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 44,
+    "fields": {
+      "cercle": 23,
+      "nom": "Yorosso"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 45,
+    "fields": {
+      "cercle": 24,
+      "nom": "Nara"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 46,
+    "fields": {
+      "cercle": 6,
+      "nom": "OuÚlessÚbougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 47,
+    "fields": {
+      "cercle": 17,
+      "nom": "Pelengana"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 48,
+    "fields": {
+      "cercle": 25,
+      "nom": "KÚniÚba"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 49,
+    "fields": {
+      "cercle": 25,
+      "nom": "Dabia"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 50,
+    "fields": {
+      "cercle": 26,
+      "nom": "Konobougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 51,
+    "fields": {
+      "cercle": 17,
+      "nom": "SÚbougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 52,
+    "fields": {
+      "cercle": 22,
+      "nom": "Bla"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 53,
+    "fields": {
+      "cercle": 6,
+      "nom": "Dialakorodji"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 54,
+    "fields": {
+      "cercle": 6,
+      "nom": "SangarÚbougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 55,
+    "fields": {
+      "cercle": 16,
+      "nom": "Niono"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 56,
+    "fields": {
+      "cercle": 27,
+      "nom": "Zan Coulibaly"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 57,
+    "fields": {
+      "cercle": 27,
+      "nom": "GuÚgnÚka"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 58,
+    "fields": {
+      "cercle": 28,
+      "nom": "DidiÚni"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 59,
+    "fields": {
+      "cercle": 6,
+      "nom": "Dogodouman"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 60,
+    "fields": {
+      "cercle": 6,
+      "nom": "Mountougoula"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 61,
+    "fields": {
+      "cercle": 29,
+      "nom": "San"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 62,
+    "fields": {
+      "cercle": 28,
+      "nom": "Kolokani"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 63,
+    "fields": {
+      "cercle": 10,
+      "nom": "Sio"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 64,
+    "fields": {
+      "cercle": 22,
+      "nom": "Yangasso"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 65,
+    "fields": {
+      "cercle": 16,
+      "nom": "Siribala"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 66,
+    "fields": {
+      "cercle": 30,
+      "nom": "Douentza"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 67,
+    "fields": {
+      "cercle": 10,
+      "nom": "Konna"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 68,
+    "fields": {
+      "cercle": 31,
+      "nom": "Bandiagara"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 69,
+    "fields": {
+      "cercle": 10,
+      "nom": "Socoura"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 70,
+    "fields": {
+      "cercle": 32,
+      "nom": "Dioumara Koussata"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 71,
+    "fields": {
+      "cercle": 32,
+      "nom": "Diema"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 72,
+    "fields": {
+      "cercle": 20,
+      "nom": "Sincina"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 73,
+    "fields": {
+      "cercle": 11,
+      "nom": "Toukoto"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 74,
+    "fields": {
+      "cercle": 32,
+      "nom": "DianguirdÚ"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 75,
+    "fields": {
+      "cercle": 12,
+      "nom": "Toya"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 76,
+    "fields": {
+      "cercle": 15,
+      "nom": "NiÚna"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 77,
+    "fields": {
+      "cercle": 23,
+      "nom": "Koury"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 78,
+    "fields": {
+      "cercle": 3,
+      "nom": "Khouloum"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 79,
+    "fields": {
+      "cercle": 6,
+      "nom": "Siby"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 80,
+    "fields": {
+      "cercle": 33,
+      "nom": "Mahina"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 81,
+    "fields": {
+      "cercle": 3,
+      "nom": "Sahel"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 82,
+    "fields": {
+      "cercle": 3,
+      "nom": "SÚro Siamanou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 83,
+    "fields": {
+      "cercle": 3,
+      "nom": "Karakoro"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 84,
+    "fields": {
+      "cercle": 3,
+      "nom": "DjÚlÚbou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 85,
+    "fields": {
+      "cercle": 14,
+      "nom": "Koulikoro"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 86,
+    "fields": {
+      "cercle": 11,
+      "nom": "Bendougouba"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 87,
+    "fields": {
+      "cercle": 34,
+      "nom": "DirÚ"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 88,
+    "fields": {
+      "cercle": 31,
+      "nom": "Dandoli"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 89,
+    "fields": {
+      "cercle": 35,
+      "nom": "Mandiakuy"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 90,
+    "fields": {
+      "cercle": 7,
+      "nom": "Koumantou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 91,
+    "fields": {
+      "cercle": 32,
+      "nom": "BÚma"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 92,
+    "fields": {
+      "cercle": 36,
+      "nom": "Tombouctou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 93,
+    "fields": {
+      "cercle": 17,
+      "nom": "Dougabougou"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 94,
+    "fields": {
+      "cercle": 37,
+      "nom": "Bankass"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 95,
+    "fields": {
+      "cercle": 16,
+      "nom": "Diabaly"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 96,
+    "fields": {
+      "cercle": 21,
+      "nom": "Wassoulou Balle"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 97,
+    "fields": {
+      "cercle": 3,
+      "nom": "LibertÚ Dembaya"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 98,
+    "fields": {
+      "cercle": 6,
+      "nom": "Dialakoroba"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 99,
+    "fields": {
+      "cercle": 38,
+      "nom": "Kidal"
+    }
+  },
+  {
+    "model": "stations.commune",
+    "pk": 100,
+    "fields": {
+      "cercle": 39,
+      "nom": "Benkadi"
+    }
+  }
+]
