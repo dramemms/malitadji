@@ -1,0 +1,7119 @@
+[
+{
+  "model": "stations.region",
+  "pk": 1,
+  "fields": {
+    "nom": "Bamako"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 2,
+  "fields": {
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 3,
+  "fields": {
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 4,
+  "fields": {
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 5,
+  "fields": {
+    "nom": "Tombouctou"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 6,
+  "fields": {
+    "nom": "Koulikoro"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 7,
+  "fields": {
+    "nom": "Sikasso"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 8,
+  "fields": {
+    "nom": "Gao"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 9,
+  "fields": {
+    "nom": "Mopti"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 10,
+  "fields": {
+    "nom": "SÚgou"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 11,
+  "fields": {
+    "nom": "Menaka"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 12,
+  "fields": {
+    "nom": "Kidal"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 1,
+  "fields": {
+    "region": 1,
+    "nom": "Bamako"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 2,
+  "fields": {
+    "region": 2,
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 3,
+  "fields": {
+    "region": 3,
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 4,
+  "fields": {
+    "region": 4,
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 5,
+  "fields": {
+    "region": 5,
+    "nom": "Rahous"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 6,
+  "fields": {
+    "region": 6,
+    "nom": "Kati"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 7,
+  "fields": {
+    "region": 7,
+    "nom": "Bougouni"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 8,
+  "fields": {
+    "region": 3,
+    "nom": "Nioro"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 9,
+  "fields": {
+    "region": 8,
+    "nom": "Gao"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 10,
+  "fields": {
+    "region": 9,
+    "nom": "Mopti"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 11,
+  "fields": {
+    "region": 3,
+    "nom": "Kita"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 12,
+  "fields": {
+    "region": 3,
+    "nom": "YÚlimanÚ"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 13,
+  "fields": {
+    "region": 9,
+    "nom": "Koro"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 14,
+  "fields": {
+    "region": 6,
+    "nom": "Koulikoro"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 15,
+  "fields": {
+    "region": 7,
+    "nom": "Sikasso"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 16,
+  "fields": {
+    "region": 10,
+    "nom": "Niono"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 17,
+  "fields": {
+    "region": 10,
+    "nom": "SÚgou"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 18,
+  "fields": {
+    "region": 9,
+    "nom": "DjennÚ"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 19,
+  "fields": {
+    "region": 11,
+    "nom": "MÚnaka"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 20,
+  "fields": {
+    "region": 7,
+    "nom": "Koutiala"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 21,
+  "fields": {
+    "region": 7,
+    "nom": "Yanfolila"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 22,
+  "fields": {
+    "region": 10,
+    "nom": "Bla"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 23,
+  "fields": {
+    "region": 7,
+    "nom": "Yorosso"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 24,
+  "fields": {
+    "region": 6,
+    "nom": "Nara"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 25,
+  "fields": {
+    "region": 3,
+    "nom": "KÚniÚba"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 26,
+  "fields": {
+    "region": 10,
+    "nom": "BaraouÚli"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 27,
+  "fields": {
+    "region": 6,
+    "nom": "Dioila"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 28,
+  "fields": {
+    "region": 6,
+    "nom": "Kolokani"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 29,
+  "fields": {
+    "region": 10,
+    "nom": "San"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 30,
+  "fields": {
+    "region": 9,
+    "nom": "Douentza"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 31,
+  "fields": {
+    "region": 9,
+    "nom": "Bandiagara"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 32,
+  "fields": {
+    "region": 3,
+    "nom": "DiÚma"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 33,
+  "fields": {
+    "region": 3,
+    "nom": "Bafoulabe"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 34,
+  "fields": {
+    "region": 5,
+    "nom": "DirÚ"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 35,
+  "fields": {
+    "region": 10,
+    "nom": "Tominian"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 36,
+  "fields": {
+    "region": 5,
+    "nom": "Tombouctou"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 37,
+  "fields": {
+    "region": 9,
+    "nom": "Bankass"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 38,
+  "fields": {
+    "region": 12,
+    "nom": "Kidal"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 39,
+  "fields": {
+    "region": 6,
+    "nom": "Kangaba"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 7,
+  "fields": {
+    "cercle": 2,
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 8,
+  "fields": {
+    "cercle": 3,
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 9,
+  "fields": {
+    "cercle": 4,
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 10,
+  "fields": {
+    "cercle": 5,
+    "nom": "Intikate"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 11,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 5"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 12,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 1"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 13,
+  "fields": {
+    "cercle": 6,
+    "nom": "Kati"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 14,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 2"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 15,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 3"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 16,
+  "fields": {
+    "cercle": 7,
+    "nom": "Bougouni"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 17,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 4"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 18,
+  "fields": {
+    "cercle": 6,
+    "nom": "Kalabancoro"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 19,
+  "fields": {
+    "cercle": 6,
+    "nom": "Sanankoroba"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 20,
+  "fields": {
+    "cercle": 8,
+    "nom": "Nioro"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 21,
+  "fields": {
+    "cercle": 9,
+    "nom": "Gao"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 22,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 6"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 23,
+  "fields": {
+    "cercle": 10,
+    "nom": "Mopti"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 24,
+  "fields": {
+    "cercle": 11,
+    "nom": "Kita"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 25,
+  "fields": {
+    "cercle": 12,
+    "nom": "Tringa"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 26,
+  "fields": {
+    "cercle": 6,
+    "nom": "MandÚ"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 27,
+  "fields": {
+    "cercle": 6,
+    "nom": "Kambila"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 28,
+  "fields": {
+    "cercle": 13,
+    "nom": "Koro"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 29,
+  "fields": {
+    "cercle": 14,
+    "nom": "MÚguÚtan"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 30,
+  "fields": {
+    "cercle": 15,
+    "nom": "Sikasso"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 31,
+  "fields": {
+    "cercle": 16,
+    "nom": "Sirifila Boundy"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 32,
+  "fields": {
+    "cercle": 17,
+    "nom": "SÚgou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 33,
+  "fields": {
+    "cercle": 18,
+    "nom": "DjennÚ"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 34,
+  "fields": {
+    "cercle": 19,
+    "nom": "MÚnaka"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 35,
+  "fields": {
+    "cercle": 17,
+    "nom": "Markala"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 36,
+  "fields": {
+    "cercle": 3,
+    "nom": "FalÚmÚ"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 37,
+  "fields": {
+    "cercle": 20,
+    "nom": "Koutiala"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 38,
+  "fields": {
+    "cercle": 6,
+    "nom": "BaguinÚda Camp"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 39,
+  "fields": {
+    "cercle": 21,
+    "nom": "Tagandougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 40,
+  "fields": {
+    "cercle": 21,
+    "nom": "Baya"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 41,
+  "fields": {
+    "cercle": 7,
+    "nom": "Garalo"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 42,
+  "fields": {
+    "cercle": 22,
+    "nom": "Touna"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 43,
+  "fields": {
+    "cercle": 6,
+    "nom": "Moribabougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 44,
+  "fields": {
+    "cercle": 23,
+    "nom": "Yorosso"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 45,
+  "fields": {
+    "cercle": 24,
+    "nom": "Nara"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 46,
+  "fields": {
+    "cercle": 6,
+    "nom": "OuÚlessÚbougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 47,
+  "fields": {
+    "cercle": 17,
+    "nom": "Pelengana"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 48,
+  "fields": {
+    "cercle": 25,
+    "nom": "KÚniÚba"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 49,
+  "fields": {
+    "cercle": 25,
+    "nom": "Dabia"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 50,
+  "fields": {
+    "cercle": 26,
+    "nom": "Konobougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 51,
+  "fields": {
+    "cercle": 17,
+    "nom": "SÚbougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 52,
+  "fields": {
+    "cercle": 22,
+    "nom": "Bla"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 53,
+  "fields": {
+    "cercle": 6,
+    "nom": "Dialakorodji"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 54,
+  "fields": {
+    "cercle": 6,
+    "nom": "SangarÚbougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 55,
+  "fields": {
+    "cercle": 16,
+    "nom": "Niono"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 56,
+  "fields": {
+    "cercle": 27,
+    "nom": "Zan Coulibaly"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 57,
+  "fields": {
+    "cercle": 27,
+    "nom": "GuÚgnÚka"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 58,
+  "fields": {
+    "cercle": 28,
+    "nom": "DidiÚni"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 59,
+  "fields": {
+    "cercle": 6,
+    "nom": "Dogodouman"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 60,
+  "fields": {
+    "cercle": 6,
+    "nom": "Mountougoula"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 61,
+  "fields": {
+    "cercle": 29,
+    "nom": "San"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 62,
+  "fields": {
+    "cercle": 28,
+    "nom": "Kolokani"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 63,
+  "fields": {
+    "cercle": 10,
+    "nom": "Sio"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 64,
+  "fields": {
+    "cercle": 22,
+    "nom": "Yangasso"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 65,
+  "fields": {
+    "cercle": 16,
+    "nom": "Siribala"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 66,
+  "fields": {
+    "cercle": 30,
+    "nom": "Douentza"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 67,
+  "fields": {
+    "cercle": 10,
+    "nom": "Konna"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 68,
+  "fields": {
+    "cercle": 31,
+    "nom": "Bandiagara"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 69,
+  "fields": {
+    "cercle": 10,
+    "nom": "Socoura"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 70,
+  "fields": {
+    "cercle": 32,
+    "nom": "Dioumara Koussata"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 71,
+  "fields": {
+    "cercle": 32,
+    "nom": "Diema"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 72,
+  "fields": {
+    "cercle": 20,
+    "nom": "Sincina"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 73,
+  "fields": {
+    "cercle": 11,
+    "nom": "Toukoto"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 74,
+  "fields": {
+    "cercle": 32,
+    "nom": "DianguirdÚ"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 75,
+  "fields": {
+    "cercle": 12,
+    "nom": "Toya"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 76,
+  "fields": {
+    "cercle": 15,
+    "nom": "NiÚna"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 77,
+  "fields": {
+    "cercle": 23,
+    "nom": "Koury"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 78,
+  "fields": {
+    "cercle": 3,
+    "nom": "Khouloum"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 79,
+  "fields": {
+    "cercle": 6,
+    "nom": "Siby"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 80,
+  "fields": {
+    "cercle": 33,
+    "nom": "Mahina"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 81,
+  "fields": {
+    "cercle": 3,
+    "nom": "Sahel"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 82,
+  "fields": {
+    "cercle": 3,
+    "nom": "SÚro Siamanou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 83,
+  "fields": {
+    "cercle": 3,
+    "nom": "Karakoro"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 84,
+  "fields": {
+    "cercle": 3,
+    "nom": "DjÚlÚbou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 85,
+  "fields": {
+    "cercle": 14,
+    "nom": "Koulikoro"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 86,
+  "fields": {
+    "cercle": 11,
+    "nom": "Bendougouba"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 87,
+  "fields": {
+    "cercle": 34,
+    "nom": "DirÚ"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 88,
+  "fields": {
+    "cercle": 31,
+    "nom": "Dandoli"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 89,
+  "fields": {
+    "cercle": 35,
+    "nom": "Mandiakuy"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 90,
+  "fields": {
+    "cercle": 7,
+    "nom": "Koumantou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 91,
+  "fields": {
+    "cercle": 32,
+    "nom": "BÚma"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 92,
+  "fields": {
+    "cercle": 36,
+    "nom": "Tombouctou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 93,
+  "fields": {
+    "cercle": 17,
+    "nom": "Dougabougou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 94,
+  "fields": {
+    "cercle": 37,
+    "nom": "Bankass"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 95,
+  "fields": {
+    "cercle": 16,
+    "nom": "Diabaly"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 96,
+  "fields": {
+    "cercle": 21,
+    "nom": "Wassoulou Balle"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 97,
+  "fields": {
+    "cercle": 3,
+    "nom": "LibertÚ Dembaya"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 98,
+  "fields": {
+    "cercle": 6,
+    "nom": "Dialakoroba"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 99,
+  "fields": {
+    "cercle": 38,
+    "nom": "Kidal"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 100,
+  "fields": {
+    "cercle": 39,
+    "nom": "Benkadi"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 10,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 7,
+    "adresse": "Darsalam",
+    "latitude": 13.43634,
+    "longitude": -6.237186,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 11,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "Kasso",
+    "latitude": 14.473021,
+    "longitude": -11.51324,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 13,
+  "fields": {
+    "nom": "Tombouctou",
+    "region": null,
+    "cercle": null,
+    "commune": 10,
+    "adresse": "",
+    "latitude": 16.771567,
+    "longitude": -3.003323,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 14,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5964582,
+    "longitude": -8.0156243,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 15,
+  "fields": {
+    "nom": "soyatt",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6727751,
+    "longitude": -7.9354891,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 16,
+  "fields": {
+    "nom": "Station Macina",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7408124,
+    "longitude": -8.0698686,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 17,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7410085,
+    "longitude": -8.0672386,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 18,
+  "fields": {
+    "nom": "Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6514824,
+    "longitude": -7.9900581,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 19,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6512966,
+    "longitude": -7.9909641,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 20,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.651735,
+    "longitude": -7.9888744,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 21,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6826529,
+    "longitude": -7.9354039,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 22,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6377617,
+    "longitude": -7.9965025,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 23,
+  "fields": {
+    "nom": "Station Service SGS",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6668462,
+    "longitude": -7.9695043,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 24,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4357902,
+    "longitude": -11.4421826,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 25,
+  "fields": {
+    "nom": "Station BPS",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4535484,
+    "longitude": -11.4689971,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 26,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 16,
+    "adresse": "",
+    "latitude": 11.4213252,
+    "longitude": -7.4916493,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 27,
+  "fields": {
+    "nom": "Station shell",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6389069,
+    "longitude": -8.0342781,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 28,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6449911,
+    "longitude": -8.0095639,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 29,
+  "fields": {
+    "nom": "SOYAT",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.4959593,
+    "longitude": -7.9358554,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 30,
+  "fields": {
+    "nom": "Somayaff",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.4954162,
+    "longitude": -7.9359331,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 31,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 19,
+    "adresse": "",
+    "latitude": 12.4607154,
+    "longitude": -7.936939,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 32,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 20,
+    "adresse": "",
+    "latitude": 15.2356048,
+    "longitude": -9.5652433,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 33,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 21,
+    "adresse": "",
+    "latitude": 16.2750129,
+    "longitude": -0.0493133,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 34,
+  "fields": {
+    "nom": "Station essence Oryx",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6092296,
+    "longitude": -8.0464173,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 35,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5784164,
+    "longitude": -7.9481221,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 36,
+  "fields": {
+    "nom": "T13",
+    "region": null,
+    "cercle": null,
+    "commune": 23,
+    "adresse": "",
+    "latitude": 14.4994001,
+    "longitude": -4.1899138,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 37,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 23,
+    "adresse": "",
+    "latitude": 14.5320479,
+    "longitude": -4.0848331,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 38,
+  "fields": {
+    "nom": "Star",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6547626,
+    "longitude": -7.9757077,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 39,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6387216,
+    "longitude": -8.0341005,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 40,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6585823,
+    "longitude": -7.9882853,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 41,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0411377,
+    "longitude": -9.4826284,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 42,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 25,
+    "adresse": "",
+    "latitude": 14.6415068,
+    "longitude": -10.692926,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 43,
+  "fields": {
+    "nom": "Station Petro National",
+    "region": null,
+    "cercle": null,
+    "commune": 26,
+    "adresse": "",
+    "latitude": 12.5478311,
+    "longitude": -8.1139525,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 44,
+  "fields": {
+    "nom": "TOTAL",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6579426,
+    "longitude": -7.9670769,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 45,
+  "fields": {
+    "nom": "Station kasse et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7631228,
+    "longitude": -8.1088711,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 46,
+  "fields": {
+    "nom": "Station Saif",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.763111,
+    "longitude": -8.1083953,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 47,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7889192,
+    "longitude": -8.1063988,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 48,
+  "fields": {
+    "nom": "Station SGS",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7726636,
+    "longitude": -8.1136185,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 49,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 28,
+    "adresse": "",
+    "latitude": 14.0638656,
+    "longitude": -3.0787771,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 50,
+  "fields": {
+    "nom": "Petro Nientao",
+    "region": null,
+    "cercle": null,
+    "commune": 29,
+    "adresse": "",
+    "latitude": 12.8261011,
+    "longitude": -7.6222464,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 51,
+  "fields": {
+    "nom": "Total EspÚrance",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3140214,
+    "longitude": -5.6695599,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 52,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.611563,
+    "longitude": -7.9937789,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 53,
+  "fields": {
+    "nom": "PETRO BAMA",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6237098,
+    "longitude": -7.9549325,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 54,
+  "fields": {
+    "nom": "ORIX",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.661053,
+    "longitude": -7.9726293,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 55,
+  "fields": {
+    "nom": "Triangle",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6739849,
+    "longitude": -7.9243179,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 56,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5767693,
+    "longitude": -8.0262394,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 57,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 31,
+    "adresse": "",
+    "latitude": 14.4342912,
+    "longitude": -5.9803603,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 58,
+  "fields": {
+    "nom": "Soleil Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3030745,
+    "longitude": -5.6569617,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 59,
+  "fields": {
+    "nom": "Sika-Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3025064,
+    "longitude": -5.6563878,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 60,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4468723,
+    "longitude": -6.2589875,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 61,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 33,
+    "adresse": "",
+    "latitude": 13.9019994,
+    "longitude": -4.5411989,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 62,
+  "fields": {
+    "nom": "songho",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.675948,
+    "longitude": -7.9623175,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 63,
+  "fields": {
+    "nom": "Station Service Ben & Co.",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6573655,
+    "longitude": -7.9667479,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 64,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 34,
+    "adresse": "",
+    "latitude": 15.9116292,
+    "longitude": 2.3985591,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 65,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.6152544,
+    "longitude": -7.9778555,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 66,
+  "fields": {
+    "nom": "S.I.YA.F",
+    "region": null,
+    "cercle": null,
+    "commune": 35,
+    "adresse": "",
+    "latitude": 13.6760697,
+    "longitude": -6.0710249,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 67,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 35,
+    "adresse": "",
+    "latitude": 13.6769531,
+    "longitude": -6.0721394,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 68,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 36,
+    "adresse": "",
+    "latitude": 14.4579276,
+    "longitude": -12.1963947,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 69,
+  "fields": {
+    "nom": "SMC",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6091755,
+    "longitude": -7.9585692,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 70,
+  "fields": {
+    "nom": "Shell Sogoniko",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6073746,
+    "longitude": -7.9602751,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 71,
+  "fields": {
+    "nom": "Total Niamakoro",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5998546,
+    "longitude": -7.9725375,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 72,
+  "fields": {
+    "nom": "SMC Faso Kanu",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6105554,
+    "longitude": -7.9729272,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 73,
+  "fields": {
+    "nom": "SODIEZ",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.3906287,
+    "longitude": -5.4649092,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 74,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.3892659,
+    "longitude": -5.4638207,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 75,
+  "fields": {
+    "nom": "Station Oil Lybiya",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5714719,
+    "longitude": -7.9404355,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 76,
+  "fields": {
+    "nom": "Viva",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6213014,
+    "longitude": -7.9552155,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 77,
+  "fields": {
+    "nom": "Titi Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.6188173,
+    "longitude": -7.9903194,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 78,
+  "fields": {
+    "nom": "Station Total",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6244515,
+    "longitude": -8.0248869,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 79,
+  "fields": {
+    "nom": "Soleil",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6128605,
+    "longitude": -8.0448272,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 80,
+  "fields": {
+    "nom": "SOMAYAF",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6141393,
+    "longitude": -8.0417408,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 81,
+  "fields": {
+    "nom": "Station SGS",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6147761,
+    "longitude": -8.0406587,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 82,
+  "fields": {
+    "nom": "Golfa Services",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3212406,
+    "longitude": -5.6868238,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 83,
+  "fields": {
+    "nom": "SODIES",
+    "region": null,
+    "cercle": null,
+    "commune": 16,
+    "adresse": "",
+    "latitude": 11.4227776,
+    "longitude": -7.4721413,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 84,
+  "fields": {
+    "nom": "Station PetroMali",
+    "region": null,
+    "cercle": null,
+    "commune": 16,
+    "adresse": "",
+    "latitude": 11.4226422,
+    "longitude": -7.4708267,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 85,
+  "fields": {
+    "nom": "Station YARA",
+    "region": null,
+    "cercle": null,
+    "commune": 16,
+    "adresse": "",
+    "latitude": 11.4235233,
+    "longitude": -7.4753039,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 86,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3400495,
+    "longitude": -5.6634131,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 87,
+  "fields": {
+    "nom": "Soyat",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.5846531,
+    "longitude": -8.0690226,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 88,
+  "fields": {
+    "nom": "TotalEnergies",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6277943,
+    "longitude": -8.035464,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 89,
+  "fields": {
+    "nom": "station Dia negos",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6304315,
+    "longitude": -7.9217118,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 90,
+  "fields": {
+    "nom": "Station Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6076821,
+    "longitude": -8.0469572,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 91,
+  "fields": {
+    "nom": "Station TOTAL",
+    "region": null,
+    "cercle": null,
+    "commune": 23,
+    "adresse": "",
+    "latitude": 14.5262579,
+    "longitude": -4.0918318,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 92,
+  "fields": {
+    "nom": "Station Somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5812826,
+    "longitude": -8.0239526,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 93,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.4031839,
+    "longitude": -5.4684521,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 94,
+  "fields": {
+    "nom": "Station Soleil",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.364631,
+    "longitude": -5.4560564,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 95,
+  "fields": {
+    "nom": "Station Pedro Services",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.3686279,
+    "longitude": -5.4581171,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 96,
+  "fields": {
+    "nom": "Station SNF",
+    "region": null,
+    "cercle": null,
+    "commune": 37,
+    "adresse": "",
+    "latitude": 12.3630624,
+    "longitude": -5.4560675,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 97,
+  "fields": {
+    "nom": "Station Somayaf SA",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6062154,
+    "longitude": -7.9252141,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 98,
+  "fields": {
+    "nom": "Station Petro Kondo",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.6097869,
+    "longitude": -7.9116851,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 99,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 39,
+    "adresse": "",
+    "latitude": 11.6401229,
+    "longitude": -8.2378167,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 100,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 40,
+    "adresse": "",
+    "latitude": 11.6426936,
+    "longitude": -8.1924322,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 101,
+  "fields": {
+    "nom": "Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5003185,
+    "longitude": -7.9348966,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 102,
+  "fields": {
+    "nom": "ODH",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5157352,
+    "longitude": -7.9314858,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 103,
+  "fields": {
+    "nom": "Shell Senou",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5244232,
+    "longitude": -7.9318341,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 104,
+  "fields": {
+    "nom": "Station Nientao",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5985735,
+    "longitude": -8.0133991,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 105,
+  "fields": {
+    "nom": "SHELL de kalaban coura",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5905373,
+    "longitude": -7.9918001,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 106,
+  "fields": {
+    "nom": "yara",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5820802,
+    "longitude": -7.9946578,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 107,
+  "fields": {
+    "nom": "Dia-Negoce",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6260131,
+    "longitude": -8.0182549,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 108,
+  "fields": {
+    "nom": "Station Total de kalaban coura",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5795823,
+    "longitude": -7.9883711,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 109,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6447512,
+    "longitude": -8.0002384,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 110,
+  "fields": {
+    "nom": "Station TiÚkoura",
+    "region": null,
+    "cercle": null,
+    "commune": 41,
+    "adresse": "",
+    "latitude": 10.9792945,
+    "longitude": -7.4386912,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 111,
+  "fields": {
+    "nom": "Station Service Sonef",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4236052,
+    "longitude": -6.2862531,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 112,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4231535,
+    "longitude": -6.2901684,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 113,
+  "fields": {
+    "nom": "Soniaf Petroleum",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4227713,
+    "longitude": -6.2896108,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 114,
+  "fields": {
+    "nom": "Station SANKE",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4296503,
+    "longitude": -6.3013846,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 115,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.5799,
+    "longitude": -8.07365,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 116,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.5787,
+    "longitude": -8.07472,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 117,
+  "fields": {
+    "nom": "Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.5789,
+    "longitude": -8.0745,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 118,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 26,
+    "adresse": "",
+    "latitude": 12.5737,
+    "longitude": -8.07972,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 119,
+  "fields": {
+    "nom": "Station Tangara et Frere",
+    "region": null,
+    "cercle": null,
+    "commune": 42,
+    "adresse": "",
+    "latitude": 13.1168793,
+    "longitude": -5.8369808,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 120,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 43,
+    "adresse": "",
+    "latitude": 12.6919135,
+    "longitude": -7.8589744,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 121,
+  "fields": {
+    "nom": "Oryx",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.631,
+    "longitude": -8.0404,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 122,
+  "fields": {
+    "nom": "Station OYetaM",
+    "region": null,
+    "cercle": null,
+    "commune": 44,
+    "adresse": "",
+    "latitude": 12.3389489,
+    "longitude": -4.7879875,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 123,
+  "fields": {
+    "nom": "Station Sad Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4478377,
+    "longitude": -11.44378,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 124,
+  "fields": {
+    "nom": "Total de Banankabougou",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5975009,
+    "longitude": -7.9377103,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 125,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.641828,
+    "longitude": -8.0224772,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 126,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4384046,
+    "longitude": -11.4300545,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 127,
+  "fields": {
+    "nom": "Station Service Tamba keita",
+    "region": null,
+    "cercle": null,
+    "commune": 45,
+    "adresse": "",
+    "latitude": 15.1656654,
+    "longitude": -7.2890225,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 128,
+  "fields": {
+    "nom": "Station de service-Kati Malibougou",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7507744,
+    "longitude": -8.0874141,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 129,
+  "fields": {
+    "nom": "Global MÚdical Compagnie",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6621079,
+    "longitude": -7.9316944,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 130,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 46,
+    "adresse": "",
+    "latitude": 11.9908861,
+    "longitude": -7.9099626,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 131,
+  "fields": {
+    "nom": "N'Dour Service",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6035342,
+    "longitude": -8.049863,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 132,
+  "fields": {
+    "nom": "SONEF",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4389519,
+    "longitude": -6.2404444,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 133,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 47,
+    "adresse": "",
+    "latitude": 13.4205051,
+    "longitude": -6.2124389,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 134,
+  "fields": {
+    "nom": "Station d'essence Benkadi",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5222709,
+    "longitude": -8.0421133,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 135,
+  "fields": {
+    "nom": "Station d'essence Groupe OASIS",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5418259,
+    "longitude": -8.0348586,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 136,
+  "fields": {
+    "nom": "Station d'essence Kass et FrÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5316342,
+    "longitude": -8.0408206,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 137,
+  "fields": {
+    "nom": "Station Shell Helix",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5823111,
+    "longitude": -8.0236693,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 138,
+  "fields": {
+    "nom": "Station d'essence SOMAYAF",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.579376,
+    "longitude": -8.025312,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 139,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.5865358,
+    "longitude": -7.7674263,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 140,
+  "fields": {
+    "nom": "SAD-OIl",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4442915,
+    "longitude": -11.4378137,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 141,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 48,
+    "adresse": "",
+    "latitude": 12.8341047,
+    "longitude": -11.2136649,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 142,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 49,
+    "adresse": "",
+    "latitude": 12.6714811,
+    "longitude": -11.1336663,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 143,
+  "fields": {
+    "nom": "Station d'essence 3PS",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6550198,
+    "longitude": -8.0231863,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 144,
+  "fields": {
+    "nom": "Station d'essence Etoile",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6551009,
+    "longitude": -8.0234094,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 145,
+  "fields": {
+    "nom": "Baraka",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5737653,
+    "longitude": -7.9641161,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 146,
+  "fields": {
+    "nom": "Total Faladie",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5863457,
+    "longitude": -7.9426466,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 147,
+  "fields": {
+    "nom": "Station Batio TraorÚ",
+    "region": null,
+    "cercle": null,
+    "commune": 50,
+    "adresse": "",
+    "latitude": 12.9233686,
+    "longitude": -6.7521274,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 148,
+  "fields": {
+    "nom": "chez KADER",
+    "region": null,
+    "cercle": null,
+    "commune": 29,
+    "adresse": "",
+    "latitude": 12.8984863,
+    "longitude": -7.5393278,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 149,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 47,
+    "adresse": "",
+    "latitude": 13.4187309,
+    "longitude": -6.2103502,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 150,
+  "fields": {
+    "nom": "Petro Mondial",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3095225,
+    "longitude": -5.656457,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 151,
+  "fields": {
+    "nom": "Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3299474,
+    "longitude": -5.665816,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 152,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3137451,
+    "longitude": -5.6669508,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 153,
+  "fields": {
+    "nom": "point de vente AB",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5719234,
+    "longitude": -8.0324126,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 154,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6042363,
+    "longitude": -7.9696312,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 155,
+  "fields": {
+    "nom": "Station SOS",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6056567,
+    "longitude": -7.9495801,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 156,
+  "fields": {
+    "nom": "STATION ORYX",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5759021,
+    "longitude": -7.9559981,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 157,
+  "fields": {
+    "nom": "Station Baraka Petroleum",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5737906,
+    "longitude": -7.9642172,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 158,
+  "fields": {
+    "nom": "Station Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 51,
+    "adresse": "",
+    "latitude": 13.396602,
+    "longitude": -6.3412221,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 159,
+  "fields": {
+    "nom": "Station chÚrif lÓ service",
+    "region": null,
+    "cercle": null,
+    "commune": 52,
+    "adresse": "",
+    "latitude": 12.954559,
+    "longitude": -5.7265388,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 160,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5930717,
+    "longitude": -7.963434,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 161,
+  "fields": {
+    "nom": "Station Total",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.432312,
+    "longitude": -6.2561392,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 162,
+  "fields": {
+    "nom": "Station Gyf",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5730443,
+    "longitude": -8.005497,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 163,
+  "fields": {
+    "nom": "STATION BARAKA PETROLEUM",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5732538,
+    "longitude": -8.0025353,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 164,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 53,
+    "adresse": "",
+    "latitude": 12.719255,
+    "longitude": -7.9679791,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 165,
+  "fields": {
+    "nom": "Station EDS",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6647769,
+    "longitude": -7.9376226,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 166,
+  "fields": {
+    "nom": "Station service",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6825349,
+    "longitude": -7.9680724,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 167,
+  "fields": {
+    "nom": "Station PÚrou et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 54,
+    "adresse": "",
+    "latitude": 12.693919,
+    "longitude": -7.9669443,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 168,
+  "fields": {
+    "nom": "Station Sankeba",
+    "region": null,
+    "cercle": null,
+    "commune": 54,
+    "adresse": "",
+    "latitude": 12.6965803,
+    "longitude": -7.966639,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 169,
+  "fields": {
+    "nom": "Somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4274327,
+    "longitude": -6.2210249,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 170,
+  "fields": {
+    "nom": "Station Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4371035,
+    "longitude": -6.2388694,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 171,
+  "fields": {
+    "nom": "Station total",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4322619,
+    "longitude": -6.2560258,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 172,
+  "fields": {
+    "nom": "Station Mali sadio",
+    "region": null,
+    "cercle": null,
+    "commune": 54,
+    "adresse": "",
+    "latitude": 12.6923915,
+    "longitude": -7.9671569,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 173,
+  "fields": {
+    "nom": "Station Diarra et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 53,
+    "adresse": "",
+    "latitude": 12.7145518,
+    "longitude": -7.9706604,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 174,
+  "fields": {
+    "nom": "Station Essence SSH",
+    "region": null,
+    "cercle": null,
+    "commune": 52,
+    "adresse": "",
+    "latitude": 12.9557308,
+    "longitude": -5.7607736,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 175,
+  "fields": {
+    "nom": "Station Essence GYF",
+    "region": null,
+    "cercle": null,
+    "commune": 52,
+    "adresse": "",
+    "latitude": 12.9906504,
+    "longitude": -5.764745,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 176,
+  "fields": {
+    "nom": "Station Soyaff",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2498804,
+    "longitude": -5.9876367,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 177,
+  "fields": {
+    "nom": "Station StÚ Bah et Fils",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2272038,
+    "longitude": -5.9804516,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 178,
+  "fields": {
+    "nom": "Station Samake service",
+    "region": null,
+    "cercle": null,
+    "commune": 56,
+    "adresse": "",
+    "latitude": 12.7362091,
+    "longitude": -7.2959987,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 179,
+  "fields": {
+    "nom": "Station Nientao",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.759096,
+    "longitude": -8.1034067,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 180,
+  "fields": {
+    "nom": "Station BCF",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4254287,
+    "longitude": -6.2813772,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 181,
+  "fields": {
+    "nom": "Station karata",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7580415,
+    "longitude": -8.1014362,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 182,
+  "fields": {
+    "nom": "Station somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.764038,
+    "longitude": -8.1092818,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 183,
+  "fields": {
+    "nom": "Station petro Cheick",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7705552,
+    "longitude": -8.1129773,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 184,
+  "fields": {
+    "nom": "Station Sotraka",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.77718,
+    "longitude": -8.1125656,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 185,
+  "fields": {
+    "nom": "Station Fane Fana",
+    "region": null,
+    "cercle": null,
+    "commune": 57,
+    "adresse": "",
+    "latitude": 12.7964687,
+    "longitude": -6.9365261,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 186,
+  "fields": {
+    "nom": "Station soleil",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.765654,
+    "longitude": -8.1113852,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 187,
+  "fields": {
+    "nom": "Station Service Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 57,
+    "adresse": "",
+    "latitude": 12.7815779,
+    "longitude": -6.9586428,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 188,
+  "fields": {
+    "nom": "Station somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7425404,
+    "longitude": -8.0730643,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 189,
+  "fields": {
+    "nom": "Station Songo",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.759871,
+    "longitude": -8.1046918,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 190,
+  "fields": {
+    "nom": "Station Ngalafouga",
+    "region": null,
+    "cercle": null,
+    "commune": 58,
+    "adresse": "",
+    "latitude": 13.8763447,
+    "longitude": -8.0860762,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 191,
+  "fields": {
+    "nom": "Station service EDS",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7077883,
+    "longitude": -8.0536108,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 192,
+  "fields": {
+    "nom": "Station service HM",
+    "region": null,
+    "cercle": null,
+    "commune": 59,
+    "adresse": "",
+    "latitude": 12.6986963,
+    "longitude": -8.0517111,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 193,
+  "fields": {
+    "nom": "Station Kondo",
+    "region": null,
+    "cercle": null,
+    "commune": 53,
+    "adresse": "",
+    "latitude": 12.7214784,
+    "longitude": -7.9650369,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 194,
+  "fields": {
+    "nom": "Station Yara Service",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6615901,
+    "longitude": -8.0355094,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 195,
+  "fields": {
+    "nom": "Station Kasse et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6723026,
+    "longitude": -8.039991,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 196,
+  "fields": {
+    "nom": "Binkadinaka",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6592874,
+    "longitude": -8.0321966,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 197,
+  "fields": {
+    "nom": "Station petro Nientoa",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6284218,
+    "longitude": -7.9217048,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 198,
+  "fields": {
+    "nom": "Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6510719,
+    "longitude": -7.9547138,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 199,
+  "fields": {
+    "nom": "Station Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 57,
+    "adresse": "",
+    "latitude": 12.7939676,
+    "longitude": -6.9389095,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 200,
+  "fields": {
+    "nom": "Station Tapo",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.5879106,
+    "longitude": -7.764213,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 201,
+  "fields": {
+    "nom": "Station Petro NiÞta",
+    "region": null,
+    "cercle": null,
+    "commune": 60,
+    "adresse": "",
+    "latitude": 12.5871668,
+    "longitude": -7.8344737,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 202,
+  "fields": {
+    "nom": "Station Coulibaly et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.5854876,
+    "longitude": -7.8280099,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 203,
+  "fields": {
+    "nom": "Station Tapo",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5931647,
+    "longitude": -7.8704578,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 204,
+  "fields": {
+    "nom": "Station Tata",
+    "region": null,
+    "cercle": null,
+    "commune": 61,
+    "adresse": "",
+    "latitude": 13.2844135,
+    "longitude": -4.8911117,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 205,
+  "fields": {
+    "nom": "Station ADC",
+    "region": null,
+    "cercle": null,
+    "commune": 61,
+    "adresse": "",
+    "latitude": 13.2955398,
+    "longitude": -4.9055393,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 206,
+  "fields": {
+    "nom": "Station Petro Djire",
+    "region": null,
+    "cercle": null,
+    "commune": 61,
+    "adresse": "",
+    "latitude": 13.2878648,
+    "longitude": -4.8924663,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 207,
+  "fields": {
+    "nom": "Station service",
+    "region": null,
+    "cercle": null,
+    "commune": 62,
+    "adresse": "",
+    "latitude": 13.5707333,
+    "longitude": -8.033655,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 208,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 57,
+    "adresse": "",
+    "latitude": 12.7755402,
+    "longitude": -6.9728624,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 209,
+  "fields": {
+    "nom": "Station Barou",
+    "region": null,
+    "cercle": null,
+    "commune": 52,
+    "adresse": "",
+    "latitude": 12.9503286,
+    "longitude": -5.7551681,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 210,
+  "fields": {
+    "nom": "Station Biliko",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5972923,
+    "longitude": -7.8806705,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 211,
+  "fields": {
+    "nom": "Station TraorÚ et frÞres",
+    "region": null,
+    "cercle": null,
+    "commune": 63,
+    "adresse": "",
+    "latitude": 14.2781369,
+    "longitude": -4.0626413,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 212,
+  "fields": {
+    "nom": "RenÚ Alphonse station",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5747532,
+    "longitude": -7.9214821,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 213,
+  "fields": {
+    "nom": "Petro nientao",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5874512,
+    "longitude": -7.9424408,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 214,
+  "fields": {
+    "nom": "Station Totale",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4519733,
+    "longitude": -11.4582883,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 215,
+  "fields": {
+    "nom": "Essence dÚtails",
+    "region": null,
+    "cercle": null,
+    "commune": 31,
+    "adresse": "",
+    "latitude": 14.4349768,
+    "longitude": -5.9801229,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 216,
+  "fields": {
+    "nom": "Station Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5786088,
+    "longitude": -7.986916,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 217,
+  "fields": {
+    "nom": "Station service",
+    "region": null,
+    "cercle": null,
+    "commune": 64,
+    "adresse": "",
+    "latitude": 13.0758441,
+    "longitude": -5.3163632,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 218,
+  "fields": {
+    "nom": "Station Kondo",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.6100772,
+    "longitude": -7.9105286,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 219,
+  "fields": {
+    "nom": "Station Total",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.589885,
+    "longitude": -7.991683,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 220,
+  "fields": {
+    "nom": "Station Essence SS",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5888083,
+    "longitude": -7.988555,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 221,
+  "fields": {
+    "nom": "ORYX Energies",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.583144,
+    "longitude": -7.9979628,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 222,
+  "fields": {
+    "nom": "Station Beledougou",
+    "region": null,
+    "cercle": null,
+    "commune": 62,
+    "adresse": "",
+    "latitude": 13.5654647,
+    "longitude": -8.0343477,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 223,
+  "fields": {
+    "nom": "Baraka Petroleum",
+    "region": 6,
+    "cercle": 6,
+    "commune": 13,
+    "adresse": "",
+    "latitude": 12.7168678,
+    "longitude": -8.0447657,
+    "essence_niveau": "plein",
+    "gasoil_niveau": "plein",
+    "updated_at": "2025-12-12T20:08:15.279Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 224,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 65,
+    "adresse": "",
+    "latitude": 14.0522805,
+    "longitude": -6.0604861,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 225,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2566104,
+    "longitude": -5.9959173,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 226,
+  "fields": {
+    "nom": "SOTRAKA SA",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5788966,
+    "longitude": -7.98738,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 227,
+  "fields": {
+    "nom": "MS",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5779261,
+    "longitude": -7.9877548,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 228,
+  "fields": {
+    "nom": "M'BAYE OIL",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5774074,
+    "longitude": -7.988304,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 229,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 23,
+    "adresse": "",
+    "latitude": 14.5331363,
+    "longitude": -4.0901093,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 230,
+  "fields": {
+    "nom": "Station,service Ouologem",
+    "region": null,
+    "cercle": null,
+    "commune": 66,
+    "adresse": "",
+    "latitude": 15.0092471,
+    "longitude": -2.9469921,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 231,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 67,
+    "adresse": "",
+    "latitude": 14.9330847,
+    "longitude": -3.8885567,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 232,
+  "fields": {
+    "nom": "Station Plateau Dogon",
+    "region": null,
+    "cercle": null,
+    "commune": 68,
+    "adresse": "",
+    "latitude": 14.3492291,
+    "longitude": -3.6082709,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 233,
+  "fields": {
+    "nom": "Station total",
+    "region": null,
+    "cercle": null,
+    "commune": 61,
+    "adresse": "",
+    "latitude": 13.3041951,
+    "longitude": -4.8954454,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 234,
+  "fields": {
+    "nom": "OLA ╔NERGIE",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5732572,
+    "longitude": -8.0057569,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 235,
+  "fields": {
+    "nom": "Station Totale",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6349501,
+    "longitude": -8.0181849,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 236,
+  "fields": {
+    "nom": "Station Yatt service",
+    "region": null,
+    "cercle": null,
+    "commune": 69,
+    "adresse": "",
+    "latitude": 14.5508291,
+    "longitude": -4.0807034,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 237,
+  "fields": {
+    "nom": "Pompe service Cheval",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5892173,
+    "longitude": -7.9424219,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 238,
+  "fields": {
+    "nom": "Station 30m",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5742573,
+    "longitude": -7.9636985,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 239,
+  "fields": {
+    "nom": "Station Somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 28,
+    "adresse": "",
+    "latitude": 14.061615,
+    "longitude": -3.0777817,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 240,
+  "fields": {
+    "nom": "Station d'Essence Petro",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5197757,
+    "longitude": -7.995804,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 241,
+  "fields": {
+    "nom": "Station d'Essence Agai",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.538811,
+    "longitude": -7.9943311,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 242,
+  "fields": {
+    "nom": "Petro Salam",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5485867,
+    "longitude": -7.9950291,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 243,
+  "fields": {
+    "nom": "Station d'Essence Petit Kida",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5368329,
+    "longitude": -7.9941521,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 244,
+  "fields": {
+    "nom": "Station TOTAL Sogolon",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5894038,
+    "longitude": -7.9917371,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 245,
+  "fields": {
+    "nom": "Station Sonex",
+    "region": null,
+    "cercle": null,
+    "commune": 70,
+    "adresse": "",
+    "latitude": 14.5332168,
+    "longitude": -8.5598323,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 246,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 71,
+    "adresse": "",
+    "latitude": 14.5548356,
+    "longitude": -9.1863857,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 247,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7132317,
+    "longitude": -8.0434985,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 248,
+  "fields": {
+    "nom": "Dia-Negos",
+    "region": null,
+    "cercle": null,
+    "commune": 27,
+    "adresse": "",
+    "latitude": 12.7153653,
+    "longitude": -8.0441762,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 249,
+  "fields": {
+    "nom": "SOYATT",
+    "region": null,
+    "cercle": null,
+    "commune": 72,
+    "adresse": "",
+    "latitude": 12.3542407,
+    "longitude": -5.4566983,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 250,
+  "fields": {
+    "nom": "Somayaf",
+    "region": null,
+    "cercle": null,
+    "commune": 72,
+    "adresse": "",
+    "latitude": 12.3543278,
+    "longitude": -5.4571825,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 251,
+  "fields": {
+    "nom": "Total Daoudabougou",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5986741,
+    "longitude": -7.9803991,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 252,
+  "fields": {
+    "nom": "Station SAD",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.559228,
+    "longitude": -8.0023371,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 253,
+  "fields": {
+    "nom": "Station Kaou Siga de Toukoto",
+    "region": null,
+    "cercle": null,
+    "commune": 73,
+    "adresse": "",
+    "latitude": 13.4430817,
+    "longitude": -9.8708517,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 254,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 74,
+    "adresse": "",
+    "latitude": 14.5095924,
+    "longitude": -8.9020748,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 255,
+  "fields": {
+    "nom": "ORiX",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6058966,
+    "longitude": -7.972675,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 256,
+  "fields": {
+    "nom": "Station PÚtro Momo",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5624628,
+    "longitude": -8.0020222,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 257,
+  "fields": {
+    "nom": "Total Fadiga",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.6938387,
+    "longitude": -7.9502097,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 258,
+  "fields": {
+    "nom": "Station Kasse",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5852979,
+    "longitude": -7.9591428,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 259,
+  "fields": {
+    "nom": "Station Sobaco",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.585023,
+    "longitude": -7.960107,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 260,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 12,
+    "adresse": "",
+    "latitude": 12.652245,
+    "longitude": -7.9438334,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 261,
+  "fields": {
+    "nom": "Station Halimatou Services",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6533451,
+    "longitude": -8.0245255,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 262,
+  "fields": {
+    "nom": "SANKE",
+    "region": null,
+    "cercle": null,
+    "commune": 72,
+    "adresse": "",
+    "latitude": 12.3569717,
+    "longitude": -5.4562369,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 263,
+  "fields": {
+    "nom": "BCF",
+    "region": 2,
+    "cercle": 16,
+    "commune": 65,
+    "adresse": "",
+    "latitude": 13.906421,
+    "longitude": -6.0905431,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T18:54:03.266Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 264,
+  "fields": {
+    "nom": "Skd",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2410879,
+    "longitude": -5.9888718,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 265,
+  "fields": {
+    "nom": "Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6431854,
+    "longitude": -8.016709,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 266,
+  "fields": {
+    "nom": "Somayef S. A 2",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4449695,
+    "longitude": -6.2319092,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 267,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 75,
+    "adresse": "",
+    "latitude": 15.1215196,
+    "longitude": -10.7258615,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 268,
+  "fields": {
+    "nom": "SOCI╔T╔ YATASSAYE ET COMPAGNIE FALADI╚",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5892663,
+    "longitude": -7.9486926,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 269,
+  "fields": {
+    "nom": "Station dÚtaillant Essence",
+    "region": null,
+    "cercle": null,
+    "commune": 8,
+    "adresse": "",
+    "latitude": 14.4497422,
+    "longitude": -11.4414547,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 270,
+  "fields": {
+    "nom": "SOMAP",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.446641,
+    "longitude": -6.2596264,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 271,
+  "fields": {
+    "nom": "Station SO-CO-F",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4215649,
+    "longitude": -6.2934564,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 272,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 76,
+    "adresse": "",
+    "latitude": 11.4241204,
+    "longitude": -6.3537669,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 273,
+  "fields": {
+    "nom": "Medinacoura",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.6520251,
+    "longitude": -7.9875393,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 274,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 77,
+    "adresse": "",
+    "latitude": 12.1818067,
+    "longitude": -4.8022871,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 275,
+  "fields": {
+    "nom": "Station Total du Fleuve",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.620187,
+    "longitude": -7.9836421,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 276,
+  "fields": {
+    "nom": "TOTAL 2eme Pont",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.6115486,
+    "longitude": -7.9938341,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 277,
+  "fields": {
+    "nom": "Petro Diabasso",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.5803505,
+    "longitude": -7.8145711,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 278,
+  "fields": {
+    "nom": "Baraka",
+    "region": 6,
+    "cercle": 6,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.5856779,
+    "longitude": -7.7272099,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T18:51:05.306Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 279,
+  "fields": {
+    "nom": "Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5914483,
+    "longitude": -7.9922935,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 280,
+  "fields": {
+    "nom": "Station AGG",
+    "region": null,
+    "cercle": null,
+    "commune": 14,
+    "adresse": "",
+    "latitude": 12.652985,
+    "longitude": -7.9831433,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 281,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 78,
+    "adresse": "",
+    "latitude": 14.4595555,
+    "longitude": -11.4040232,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 282,
+  "fields": {
+    "nom": "Total 30m",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5715545,
+    "longitude": -7.985409,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 283,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 59,
+    "adresse": "",
+    "latitude": 12.6999309,
+    "longitude": -8.0521705,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 284,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 79,
+    "adresse": "",
+    "latitude": 12.3770966,
+    "longitude": -8.3431104,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 285,
+  "fields": {
+    "nom": "Shel",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6220888,
+    "longitude": -7.9202106,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 286,
+  "fields": {
+    "nom": "Petro MoMo",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6110517,
+    "longitude": -7.915785,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 287,
+  "fields": {
+    "nom": "Yara Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.6380233,
+    "longitude": -8.0189867,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 288,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 60,
+    "adresse": "",
+    "latitude": 12.5366317,
+    "longitude": -7.8250712,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 289,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 80,
+    "adresse": "",
+    "latitude": 13.771673,
+    "longitude": -10.8445989,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 290,
+  "fields": {
+    "nom": "Station S.K",
+    "region": null,
+    "cercle": null,
+    "commune": 26,
+    "adresse": "",
+    "latitude": 12.5600051,
+    "longitude": -8.1009264,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 291,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 81,
+    "adresse": "",
+    "latitude": 15.3766272,
+    "longitude": -11.4730572,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 292,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 82,
+    "adresse": "",
+    "latitude": 14.8137359,
+    "longitude": -11.0631892,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 293,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 83,
+    "adresse": "",
+    "latitude": 15.1506553,
+    "longitude": -11.6507592,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 294,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 84,
+    "adresse": "",
+    "latitude": 14.9150333,
+    "longitude": -11.7269859,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 295,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 73,
+    "adresse": "",
+    "latitude": 13.4442114,
+    "longitude": -9.8718943,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 296,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 85,
+    "adresse": "",
+    "latitude": 12.8618437,
+    "longitude": -7.55766,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 297,
+  "fields": {
+    "nom": "STATION-SERVICE SOYATT",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.450903,
+    "longitude": -6.226598,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 298,
+  "fields": {
+    "nom": "Soleil service",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4202517,
+    "longitude": -6.2997055,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 299,
+  "fields": {
+    "nom": "Station Oilibya",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.6047411,
+    "longitude": -7.9704116,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 300,
+  "fields": {
+    "nom": "Station Total SÚbÚnicoro",
+    "region": null,
+    "cercle": null,
+    "commune": 17,
+    "adresse": "",
+    "latitude": 12.5900897,
+    "longitude": -8.0631173,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 301,
+  "fields": {
+    "nom": "Bps",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6552258,
+    "longitude": -8.0238135,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 302,
+  "fields": {
+    "nom": "Massa Trading sarl",
+    "region": null,
+    "cercle": null,
+    "commune": 15,
+    "adresse": "",
+    "latitude": 12.6573266,
+    "longitude": -8.0291712,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 303,
+  "fields": {
+    "nom": "STATION TOTAL",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5725079,
+    "longitude": -7.9947573,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 304,
+  "fields": {
+    "nom": "STATION LA COLINE DU PETROLE",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0323557,
+    "longitude": -9.4991103,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 305,
+  "fields": {
+    "nom": "Statiopn SOTRAKA",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0397828,
+    "longitude": -9.474674,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 306,
+  "fields": {
+    "nom": "STATION SOMAPP",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0401669,
+    "longitude": -9.4771289,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 307,
+  "fields": {
+    "nom": "Station MandÚ",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0312994,
+    "longitude": -9.500277,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 308,
+  "fields": {
+    "nom": "Station",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0310557,
+    "longitude": -9.5005392,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 309,
+  "fields": {
+    "nom": "Statiopn SODIES",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0270131,
+    "longitude": -9.5058265,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 310,
+  "fields": {
+    "nom": "STATION SAID OIL",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0407712,
+    "longitude": -9.4849469,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 311,
+  "fields": {
+    "nom": "STATION SGS",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0406555,
+    "longitude": -9.4796462,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 312,
+  "fields": {
+    "nom": "STATION SODIES",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0407973,
+    "longitude": -9.4805696,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 313,
+  "fields": {
+    "nom": "Vendeur d'essence",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0366517,
+    "longitude": -9.4867476,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 314,
+  "fields": {
+    "nom": "Station la Coline du PÚreole",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0442086,
+    "longitude": -9.4904997,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 315,
+  "fields": {
+    "nom": "Essence",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0494683,
+    "longitude": -9.4934934,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 316,
+  "fields": {
+    "nom": "Station Sodies Kita poste Ouest",
+    "region": null,
+    "cercle": null,
+    "commune": 24,
+    "adresse": "",
+    "latitude": 13.0224806,
+    "longitude": -9.5148488,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 317,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 86,
+    "adresse": "",
+    "latitude": 13.0260169,
+    "longitude": -9.4572075,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 318,
+  "fields": {
+    "nom": "PETRO-BÈLO",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.593653,
+    "longitude": -7.6729053,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 319,
+  "fields": {
+    "nom": "Station TOTAL",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5535935,
+    "longitude": -8.0007713,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 320,
+  "fields": {
+    "nom": "Banan Oil",
+    "region": 1,
+    "cercle": 1,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5313153,
+    "longitude": -7.9327807,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T18:49:52.217Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 321,
+  "fields": {
+    "nom": "Station-Service",
+    "region": null,
+    "cercle": null,
+    "commune": 21,
+    "adresse": "",
+    "latitude": 16.276922,
+    "longitude": -0.05051,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 322,
+  "fields": {
+    "nom": "Station Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5860479,
+    "longitude": -7.943138,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 323,
+  "fields": {
+    "nom": "Station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5892219,
+    "longitude": -7.9920763,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 324,
+  "fields": {
+    "nom": "Station Essence SAD",
+    "region": null,
+    "cercle": null,
+    "commune": 11,
+    "adresse": "",
+    "latitude": 12.5602859,
+    "longitude": -7.9900935,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 325,
+  "fields": {
+    "nom": "Petro Golf",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5881626,
+    "longitude": -7.9679214,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 326,
+  "fields": {
+    "nom": "Le fleuve Somono",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4283692,
+    "longitude": -6.2874522,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 327,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4364798,
+    "longitude": -6.2369426,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 328,
+  "fields": {
+    "nom": "station Yara",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4369101,
+    "longitude": -6.2362188,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 329,
+  "fields": {
+    "nom": "TGF",
+    "region": null,
+    "cercle": null,
+    "commune": 51,
+    "adresse": "",
+    "latitude": 13.4144497,
+    "longitude": -6.3199389,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 330,
+  "fields": {
+    "nom": "Hydro mali",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4272041,
+    "longitude": -6.2738256,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 331,
+  "fields": {
+    "nom": "Station BKT",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.427418,
+    "longitude": -6.2730029,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 332,
+  "fields": {
+    "nom": "HGF Sebougou",
+    "region": null,
+    "cercle": null,
+    "commune": 51,
+    "adresse": "",
+    "latitude": 13.4181845,
+    "longitude": -6.3068283,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 333,
+  "fields": {
+    "nom": "SSDF",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4326483,
+    "longitude": -6.2706976,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 334,
+  "fields": {
+    "nom": "Station EDS",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4245612,
+    "longitude": -6.2847566,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 335,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 87,
+    "adresse": "",
+    "latitude": 16.2634036,
+    "longitude": -3.3917971,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 336,
+  "fields": {
+    "nom": "Station Service E.Leclerc",
+    "region": null,
+    "cercle": null,
+    "commune": 21,
+    "adresse": "",
+    "latitude": 16.2825445,
+    "longitude": -0.0376274,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 337,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 88,
+    "adresse": "",
+    "latitude": 14.3530896,
+    "longitude": -3.6183107,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 338,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.447061,
+    "longitude": -6.2599044,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 339,
+  "fields": {
+    "nom": "Station Essence",
+    "region": null,
+    "cercle": null,
+    "commune": 89,
+    "adresse": "",
+    "latitude": 13.0249278,
+    "longitude": -4.4546786,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 340,
+  "fields": {
+    "nom": "Station pgs",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4334848,
+    "longitude": -6.2519587,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 341,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 90,
+    "adresse": "",
+    "latitude": 11.4067759,
+    "longitude": -6.8541786,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 342,
+  "fields": {
+    "nom": "Total",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5967692,
+    "longitude": -7.8791882,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 343,
+  "fields": {
+    "nom": "Shell",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5962496,
+    "longitude": -7.8779786,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 344,
+  "fields": {
+    "nom": "STATION SERVICE",
+    "region": null,
+    "cercle": null,
+    "commune": 91,
+    "adresse": "",
+    "latitude": 15.0344267,
+    "longitude": -9.3650672,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 345,
+  "fields": {
+    "nom": "station taodani",
+    "region": null,
+    "cercle": null,
+    "commune": 92,
+    "adresse": "",
+    "latitude": 16.7519068,
+    "longitude": -2.9999287,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 346,
+  "fields": {
+    "nom": "Station",
+    "region": null,
+    "cercle": null,
+    "commune": 35,
+    "adresse": "",
+    "latitude": 13.6772575,
+    "longitude": -6.0725024,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 347,
+  "fields": {
+    "nom": "Station Service",
+    "region": null,
+    "cercle": null,
+    "commune": 93,
+    "adresse": "",
+    "latitude": 13.8169342,
+    "longitude": -6.1209887,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 348,
+  "fields": {
+    "nom": "station Batraka",
+    "region": null,
+    "cercle": null,
+    "commune": 22,
+    "adresse": "",
+    "latitude": 12.5940498,
+    "longitude": -7.9335939,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 349,
+  "fields": {
+    "nom": "Yara Oil",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4246863,
+    "longitude": -6.2843883,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 350,
+  "fields": {
+    "nom": "Point de vente IDF",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4337494,
+    "longitude": -6.2638807,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 351,
+  "fields": {
+    "nom": "Station SOMAYAF",
+    "region": null,
+    "cercle": null,
+    "commune": 94,
+    "adresse": "",
+    "latitude": 14.0766203,
+    "longitude": -3.5234115,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 352,
+  "fields": {
+    "nom": "Station SBS",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.435311,
+    "longitude": -6.2468748,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 353,
+  "fields": {
+    "nom": "Station DJIMDE",
+    "region": null,
+    "cercle": null,
+    "commune": 94,
+    "adresse": "",
+    "latitude": 14.0826977,
+    "longitude": -3.5119665,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 354,
+  "fields": {
+    "nom": "Corridor",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4367015,
+    "longitude": -6.2404836,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 355,
+  "fields": {
+    "nom": "Yara Service",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.592517,
+    "longitude": -7.8660315,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 356,
+  "fields": {
+    "nom": "KONDO",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5924423,
+    "longitude": -7.8656958,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 357,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 95,
+    "adresse": "",
+    "latitude": 14.6677541,
+    "longitude": -6.005124,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 358,
+  "fields": {
+    "nom": "Station Essence",
+    "region": null,
+    "cercle": null,
+    "commune": 93,
+    "adresse": "",
+    "latitude": 13.9016124,
+    "longitude": -6.091345,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 359,
+  "fields": {
+    "nom": "Station Barikoro",
+    "region": null,
+    "cercle": null,
+    "commune": 31,
+    "adresse": "",
+    "latitude": 14.4342958,
+    "longitude": -5.9803618,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 360,
+  "fields": {
+    "nom": "Station Yaraoil",
+    "region": null,
+    "cercle": null,
+    "commune": 38,
+    "adresse": "",
+    "latitude": 12.6040487,
+    "longitude": -7.894552,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 361,
+  "fields": {
+    "nom": "BCF",
+    "region": 6,
+    "cercle": 6,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5933909,
+    "longitude": -7.8710146,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T18:53:51.579Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 362,
+  "fields": {
+    "nom": "Total Auto-Gare",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3035585,
+    "longitude": -5.6573051,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 363,
+  "fields": {
+    "nom": "Sodies",
+    "region": null,
+    "cercle": null,
+    "commune": 30,
+    "adresse": "",
+    "latitude": 11.3020382,
+    "longitude": -5.6561759,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 364,
+  "fields": {
+    "nom": "Station Kanta et FrÞre",
+    "region": null,
+    "cercle": null,
+    "commune": 18,
+    "adresse": "",
+    "latitude": 12.5909393,
+    "longitude": -7.8582114,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 365,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 96,
+    "adresse": "",
+    "latitude": 11.1803077,
+    "longitude": -8.1502193,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 366,
+  "fields": {
+    "nom": "Petro National",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4594248,
+    "longitude": -11.4919962,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 367,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4578798,
+    "longitude": -11.4864075,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 368,
+  "fields": {
+    "nom": "Baraka Petroleum",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4579584,
+    "longitude": -11.4867571,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 369,
+  "fields": {
+    "nom": "Sotraka SARL",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4585536,
+    "longitude": -11.4887634,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 370,
+  "fields": {
+    "nom": "Total ╔nergie",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4604422,
+    "longitude": -11.4937499,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 371,
+  "fields": {
+    "nom": "Sniaf",
+    "region": null,
+    "cercle": null,
+    "commune": 97,
+    "adresse": "",
+    "latitude": 14.4564225,
+    "longitude": -11.4806272,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 372,
+  "fields": {
+    "nom": "Sotaraka SA",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4209891,
+    "longitude": -6.2950322,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 373,
+  "fields": {
+    "nom": "PTS",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4224405,
+    "longitude": -6.289914,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 374,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 98,
+    "adresse": "",
+    "latitude": 12.2715099,
+    "longitude": -7.9245303,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 375,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 99,
+    "adresse": "",
+    "latitude": 18.4326509,
+    "longitude": 1.4090785,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 376,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 100,
+    "adresse": "",
+    "latitude": 11.9603528,
+    "longitude": -8.7744385,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 377,
+  "fields": {
+    "nom": "Station OSM",
+    "region": null,
+    "cercle": null,
+    "commune": 51,
+    "adresse": "",
+    "latitude": 13.4187643,
+    "longitude": -6.3035686,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 378,
+  "fields": {
+    "nom": "NA",
+    "region": null,
+    "cercle": null,
+    "commune": 51,
+    "adresse": "",
+    "latitude": 13.4199102,
+    "longitude": -6.3008155,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 379,
+  "fields": {
+    "nom": "Malian global service",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2563252,
+    "longitude": -5.9959342,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 380,
+  "fields": {
+    "nom": "station service",
+    "region": null,
+    "cercle": null,
+    "commune": 55,
+    "adresse": "",
+    "latitude": 14.2533959,
+    "longitude": -5.9931879,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 381,
+  "fields": {
+    "nom": "SDH",
+    "region": null,
+    "cercle": null,
+    "commune": 47,
+    "adresse": "",
+    "latitude": 13.5053448,
+    "longitude": -6.1467365,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 382,
+  "fields": {
+    "nom": "soyatt",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.4516509,
+    "longitude": -6.2257541,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 383,
+  "fields": {
+    "nom": "Petro Bama",
+    "region": null,
+    "cercle": null,
+    "commune": 32,
+    "adresse": "",
+    "latitude": 13.429495,
+    "longitude": -6.2674457,
+    "essence_niveau": "inconnu",
+    "gasoil_niveau": "inconnu",
+    "updated_at": "2025-12-12T10:29:48.904Z"
+  }
+}
+]
+

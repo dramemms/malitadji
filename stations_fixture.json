@@ -1,0 +1,313 @@
+[
+{
+  "model": "stations.region",
+  "pk": 1,
+  "fields": {
+    "nom": "Bamako"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 2,
+  "fields": {
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 3,
+  "fields": {
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 4,
+  "fields": {
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.region",
+  "pk": 5,
+  "fields": {
+    "nom": "Tombouctou"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 1,
+  "fields": {
+    "region": 1,
+    "nom": "Bamako"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 2,
+  "fields": {
+    "region": 2,
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 3,
+  "fields": {
+    "region": 3,
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 4,
+  "fields": {
+    "region": 4,
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.cercle",
+  "pk": 5,
+  "fields": {
+    "region": 5,
+    "nom": "Rahous"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 1,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 1"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 2,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 2"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 3,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 3"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 4,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 4"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 5,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 5"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 6,
+  "fields": {
+    "cercle": 1,
+    "nom": "Commune 6"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 7,
+  "fields": {
+    "cercle": 2,
+    "nom": "Segou"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 8,
+  "fields": {
+    "cercle": 3,
+    "nom": "Kayes"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 9,
+  "fields": {
+    "cercle": 4,
+    "nom": "Badiangara"
+  }
+},
+{
+  "model": "stations.commune",
+  "pk": 10,
+  "fields": {
+    "cercle": 5,
+    "nom": "Intikate"
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 1,
+  "fields": {
+    "nom": "Sygim Energie",
+    "commune": 1,
+    "adresse": "Boulkassoumbougou",
+    "latitude": 12.67,
+    "longitude": -7.95,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 2,
+  "fields": {
+    "nom": "Sygim Energie",
+    "commune": 1,
+    "adresse": "Sotuba",
+    "latitude": 12.662977,
+    "longitude": -7.917248,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 3,
+  "fields": {
+    "nom": "Petromali",
+    "commune": 2,
+    "adresse": "Hippodrome Photocola",
+    "latitude": 12.664967,
+    "longitude": -7.973482,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 4,
+  "fields": {
+    "nom": "Yara Service",
+    "commune": 2,
+    "adresse": "Hippodrome",
+    "latitude": 12.665735,
+    "longitude": -7.975606,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 5,
+  "fields": {
+    "nom": "Shell Base A",
+    "commune": 3,
+    "adresse": "Djicoroni",
+    "latitude": 12.635683,
+    "longitude": -8.006945,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 6,
+  "fields": {
+    "nom": "Yara Service",
+    "commune": 3,
+    "adresse": "Samè",
+    "latitude": 12.666049,
+    "longitude": -8.037841,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 7,
+  "fields": {
+    "nom": "2H Holding",
+    "commune": 6,
+    "adresse": "Sogoniko",
+    "latitude": 12.606727,
+    "longitude": -7.971798,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 8,
+  "fields": {
+    "nom": "Soyatt",
+    "commune": 6,
+    "adresse": "Faladie",
+    "latitude": 12.589097,
+    "longitude": -7.948323,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 9,
+  "fields": {
+    "nom": "Corridor",
+    "commune": 4,
+    "adresse": "Lafiabougou",
+    "latitude": 12.616337,
+    "longitude": -8.042698,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 10,
+  "fields": {
+    "nom": "Shell",
+    "commune": 7,
+    "adresse": "Darsalam",
+    "latitude": 13.43634,
+    "longitude": -6.237186,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 11,
+  "fields": {
+    "nom": "Shell",
+    "commune": 8,
+    "adresse": "Kasso",
+    "latitude": 14.473021,
+    "longitude": -11.51324,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 12,
+  "fields": {
+    "nom": "Plateau Dogon",
+    "commune": 9,
+    "adresse": "Premier quartier",
+    "latitude": 14.352963,
+    "longitude": -3.618433,
+    "gerant": null
+  }
+},
+{
+  "model": "stations.station",
+  "pk": 13,
+  "fields": {
+    "nom": "Tombouctou",
+    "commune": 10,
+    "adresse": "",
+    "latitude": 16.771567,
+    "longitude": -3.003323,
+    "gerant": null
+  }
+}
+]

@@ -86,7 +86,7 @@ class Station(models.Model):
 class Stock(models.Model):
     NIVEAUX = [
         ('Bas', 'Bas'),
-        ('Moyen', 'Moyen'),
+        ('Faible', 'Faible'),
         ('Plein', 'Plein'),
         ('Rupture', 'Rupture'),
     ]
