@@ -14,10 +14,13 @@ ALLOWED_HOSTS = [
     "www.malitadji.com",
     "127.0.0.1",
     "localhost",
+    "192.168.88.206",   # ✅ ajout pour tests mobile
 ]
 
 # APPLICATIONS
 INSTALLED_APPS = [
+
+     "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -31,15 +34,36 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
+ "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",  # <= important que CommonMiddleware reste après
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:50827",
+    "http://127.0.0.1:50827",
+    "http://localhost:8000",
+    "http://192.168.88.206:8000",
+]
+
+# Optionnel si tu utilises session/csrf
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:50827",
+    "http://127.0.0.1:50827",
+]
+
+# DEV web
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_PRIVATE_NETWORK = True
+
 
 ROOT_URLCONF = "core.urls"
 

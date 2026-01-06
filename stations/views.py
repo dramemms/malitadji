@@ -1,3 +1,4 @@
+# stations/views.py
 import json
 
 from django.core.serializers.json import DjangoJSONEncoder
@@ -7,6 +8,15 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Station, Stock, Region, Commune, Cercle
 from .forms import StockForm
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
+
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from .serializers import StationSerializer
+
+# ✅ AJOUT (pour formater la date en ISO local)
+from django.utils.timezone import localtime
 
 
 # ========================
@@ -113,6 +123,7 @@ def carte(request):
 
     - Filtres : région / cercle / commune / statut
     - Couleurs : calculées à partir du stock (Essence et Gasoil)
+    - ✅ Ajout: dernière mise à jour par station (max essence/gasoil)
     """
 
     # Récupération des filtres GET
@@ -138,7 +149,7 @@ def carte(request):
     def niveau_to_code(niveau: str | None) -> str:
         if not niveau:
             return ""
-        n = niveau.lower()
+        n = str(niveau).lower()
         if "rupture" in n or "out" in n:
             return "rupture"
         if "faible" in n or "low" in n:
@@ -196,6 +207,15 @@ def carte(request):
                 if getattr(s.commune.cercle, "region", None):
                     region_name = s.commune.cercle.region.nom
 
+        # ✅ Dernière mise à jour : max(date_maj essence, date_maj gasoil)
+        dates = []
+        if essence_stock and essence_stock.date_maj:
+            dates.append(essence_stock.date_maj)
+        if gasoil_stock and gasoil_stock.date_maj:
+            dates.append(gasoil_stock.date_maj)
+
+        last_update_iso = localtime(max(dates)).isoformat() if dates else None
+
         data.append(
             {
                 "id": s.id,
@@ -205,9 +225,11 @@ def carte(request):
                 "region": region_name,
                 "cercle": cercle_name,
                 "commune": commune_name,
-                # on garde les clés attendues par le JS
-                "essence_statut": essence_statut,   # Essence
-                "gasoil_statut": gasoil_statut,   # Gasoil
+                "essence_statut": essence_statut,  # Essence
+                "gasoil_statut": gasoil_statut,    # Gasoil
+
+                # ✅ AJOUT pour le popup Leaflet
+                "last_update": last_update_iso,
             }
         )
 
@@ -226,23 +248,17 @@ def carte(request):
     else:
         communes = Commune.objects.all().order_by("nom")
 
-    # 🔹 Données complètes pour JS (filtres dynamiques côté client)
+    # Données complètes pour JS (filtres dynamiques côté client)
     all_cercles = Cercle.objects.all().order_by("nom")
     all_communes = Commune.objects.all().order_by("nom")
 
     cercles_json = json.dumps(
-        [
-            {"id": ce.id, "nom": ce.nom, "region_id": ce.region_id}
-            for ce in all_cercles
-        ],
+        [{"id": ce.id, "nom": ce.nom, "region_id": ce.region_id} for ce in all_cercles],
         cls=DjangoJSONEncoder,
     )
 
     communes_json = json.dumps(
-        [
-            {"id": c.id, "nom": c.nom, "cercle_id": c.cercle_id}
-            for c in all_communes
-        ],
+        [{"id": c.id, "nom": c.nom, "cercle_id": c.cercle_id} for c in all_communes],
         cls=DjangoJSONEncoder,
     )
 
@@ -355,25 +371,19 @@ def manager_dashboard(request):
             produit = form.cleaned_data["produit"]
             niveau = form.cleaned_data["niveau"]
 
-            # Met à jour ou crée un enregistrement unique (station, produit)
             stock, created = Stock.objects.update_or_create(
                 station=station,
                 produit=produit,
                 defaults={"niveau": niveau},
             )
 
-            if created:
-                message = "✅ Stock créé avec succès."
-            else:
-                message = "✅ Stock mis à jour avec succès."
-
+            message = "✅ Stock créé avec succès." if created else "✅ Stock mis à jour avec succès."
             form = StockForm()
         else:
             message = "❌ Erreur dans le formulaire."
     else:
         form = StockForm()
 
-    # --- STOCKS EXISTANTS POUR LA STATION ---
     stocks = Stock.objects.filter(station=station).order_by("-date_maj")
 
     return render(
@@ -388,3 +398,124 @@ def manager_dashboard(request):
             "message": message,
         },
     )
+
+
+# ========================
+# API (MOBILE / AJAX)
+# ========================
+
+@require_GET
+def api_regions(request):
+    regions = Region.objects.all().order_by("nom").values("id", "nom")
+    return JsonResponse(list(regions), safe=False)
+
+
+@require_GET
+def api_cercles(request):
+    region_id = request.GET.get("region_id") or request.GET.get("region")
+    qs = Cercle.objects.all().order_by("nom")
+    if region_id:
+        qs = qs.filter(region_id=region_id)
+    return JsonResponse(list(qs.values("id", "nom", "region_id")), safe=False)
+
+
+@require_GET
+def api_communes(request):
+    cercle_id = request.GET.get("cercle_id") or request.GET.get("cercle")
+    qs = Commune.objects.all().order_by("nom")
+    if cercle_id:
+        qs = qs.filter(cercle_id=cercle_id)
+    return JsonResponse(list(qs.values("id", "nom", "cercle_id")), safe=False)
+
+
+@require_GET
+def api_stations(request):
+    qs = Station.objects.all().select_related("commune", "commune__cercle__region", "gerant")
+
+    region_id = request.GET.get("region_id") or request.GET.get("region")
+    cercle_id = request.GET.get("cercle_id") or request.GET.get("cercle")
+    commune_id = request.GET.get("commune_id") or request.GET.get("commune")
+
+    if region_id:
+        qs = qs.filter(commune__cercle__region_id=region_id)
+    if cercle_id:
+        qs = qs.filter(commune__cercle_id=cercle_id)
+    if commune_id:
+        qs = qs.filter(commune_id=commune_id)
+
+    def niveau_to_code(niveau):
+        if not niveau:
+            return ""
+        n = str(niveau).lower()
+        if "rupture" in n or "out" in n:
+            return "rupture"
+        if "faible" in n or "low" in n:
+            return "faible"
+        if "dispo" in n or "disponible" in n or "plein" in n or "full" in n:
+            return "dispo"
+        return ""
+
+    data = []
+    for s in qs[:5000]:
+        essence_stock = (
+            Stock.objects.filter(station=s, produit__iexact="essence")
+            .order_by("-date_maj")
+            .first()
+        )
+        gasoil_stock = (
+            Stock.objects.filter(station=s, produit__iexact="gasoil")
+            .order_by("-date_maj")
+            .first()
+        )
+
+        essence_statut = niveau_to_code(essence_stock.niveau) if essence_stock else ""
+        gasoil_statut = niveau_to_code(gasoil_stock.niveau) if gasoil_stock else ""
+
+        # ✅ meilleure "dernière_maj" : max(essence, gasoil)
+        maj_dates = []
+        if essence_stock and essence_stock.date_maj:
+            maj_dates.append(essence_stock.date_maj)
+        if gasoil_stock and gasoil_stock.date_maj:
+            maj_dates.append(gasoil_stock.date_maj)
+        derniere_maj = max(maj_dates) if maj_dates else None
+
+        region_name = ""
+        cercle_name = ""
+        commune_name = ""
+
+        if getattr(s, "commune", None):
+            commune_name = s.commune.nom
+            if getattr(s.commune, "cercle", None):
+                cercle_name = s.commune.cercle.nom
+                if getattr(s.commune.cercle, "region", None):
+                    region_name = s.commune.cercle.region.nom
+
+        data.append(
+            {
+                "id": s.id,
+                "nom": s.nom,
+                "adresse": getattr(s, "adresse", "") or "",
+                "latitude": float(s.latitude) if s.latitude is not None else None,
+                "longitude": float(s.longitude) if s.longitude is not None else None,
+                "gerant": s.gerant_id,
+                "region": region_name,
+                "cercle": cercle_name,
+                "commune": commune_name,
+                "stock": {
+                    "essence": essence_statut,
+                    "gasoil": gasoil_statut,
+                    "derniere_maj": localtime(derniere_maj).isoformat() if derniere_maj else None,
+                },
+            }
+        )
+
+    return JsonResponse(data, safe=False, json_dumps_params={"ensure_ascii": False})
+
+
+class StationViewSet(ReadOnlyModelViewSet):
+    queryset = Station.objects.select_related(
+        "commune__cercle__region"
+    ).prefetch_related(
+        "stock"
+    )
+    serializer_class = StationSerializer

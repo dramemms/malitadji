@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+from django.views.generic import TemplateView
+
 # JWT pour l'app mobile
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -28,7 +30,6 @@ urlpatterns = [
 
     # Django admin
     path("admin/", admin.site.urls),
-    
 
     # --- AUTHENTIFICATION WEB ---
     path(
@@ -46,8 +47,17 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
+    # --- PRIVACY POLICY (Play Store) ---
+    path(
+    "privacy-policy/",
+    TemplateView.as_view(template_name="stations/privacy-policy.html"),
+    name="privacy_policy",
+),
+
+
     # --- APPLICATION STATIONS ---
     path("", include("stations.urls")),
 ]
+
 
 

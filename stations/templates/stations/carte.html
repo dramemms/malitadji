@@ -1,302 +1,484 @@
+<!-- stations/templates/stations/carte.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Carte carburant Mali</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malitadji – Carte carburant Mali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#020617" />
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
+    :root{
+      --bg:#020617;
+      --panel:#0b1220;
+      --line: rgba(148,163,184,.28);
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --safeTop: env(safe-area-inset-top);
+      --safeBottom: env(safe-area-inset-bottom);
     }
 
-    #map {
-      height: 100vh;
-      width: 100%;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .topbar{
+      position:relative;
+      z-index: 3000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: calc(10px + var(--safeTop)) 12px 10px;
+      background: linear-gradient(to right, rgba(2,6,23,.98), rgba(2,6,23,.78));
+      border-bottom: 1px solid rgba(15,23,42,.95);
+      backdrop-filter: blur(10px);
+    }
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .logo{
+      width:30px;height:30px;border-radius:10px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a, #15803d);
+      display:grid;place-items:center;
+      color:#022c22;font-weight:900;flex:0 0 auto;
+    }
+    .brand-title{min-width:0;display:flex;flex-direction:column;gap:2px}
+    .brand-title strong{
+      font-size:14px;font-weight:900;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .brand-title span{
+      font-size:11px;color:#9ca3af;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .top-actions{display:flex;gap:8px;flex:0 0 auto}
+    .icon-btn{
+      width:42px;height:42px;border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(15,23,42,.65);
+      color: var(--text);
+      display:grid;place-items:center;
+      cursor:pointer;font-weight:900;
+      user-select:none;-webkit-tap-highlight-color:transparent;
     }
 
-    .top-bar {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      background: white;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    .map-wrap{
+      position:relative;
+      height: calc(100vh - 64px);
+      width:100%;
+    }
+    #map{
+      position:absolute;
+      inset:0;
+      height:100%;
+      width:100%;
+      background: var(--panel);
+      z-index: 1;
     }
 
-    .filters {
-      position: absolute;
-      top: 70px;
-      left: 10px;
-      z-index: 1000;
-      background: white;
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-      width: 240px;
-      font-size: 14px;
+    .filters, .legend{
+      position:absolute;
+      z-index: 2500;
+      background: rgba(255,255,255,.98);
+      color: #111827;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      border: 1px solid rgba(148,163,184,.35);
     }
 
-    .filters label { font-weight: bold; }
-    .filters select { width: 100%; margin: 4px 0 8px 0; }
-
-    .filters button {
-      width: 100%;
-      background: #1e3a8a;
-      color: white;
-      border: none;
-      padding: 6px;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .legend {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      z-index: 1000;
-      background: white;
-      padding: 10px;
-      border-radius: 8px;
+    .legend{
+      top: 12px;
+      left: 12px;
+      padding: 10px 12px;
       font-size: 13px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      min-width: 160px;
+    }
+    .legend .row{display:flex;align-items:center;gap:8px;margin:5px 0}
+    .legend .dot{width:12px;height:12px;border-radius:999px;display:inline-block}
+    .dot.ok{background:green}
+    .dot.warn{background:orange}
+    .dot.bad{background:red}
+    .dot.unk{background:gray}
+
+    /* filtre compact */
+    .filters{
+      top: 10px;
+      right: 10px;
+      width: 240px;
+      padding: 8px;
+      font-size: 13px;
+    }
+    .filters label{
+      font-weight: 800;
+      font-size: 11px;
+      color:#374151;
+      display:block;
+      margin-top: 2px;
+    }
+    .filters select{
+      width:100%;
+      margin: 4px 0 8px;
+      padding: 8px 9px;
+      border-radius: 8px;
+      border:1px solid rgba(148,163,184,.55);
+      outline:none;
+      font-size: 13px;
+      min-height: 38px;
+      background:#fff;
+    }
+    .countbox{
+      margin: 4px 0 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #eef2ff;
+      border: 1px solid rgba(99,102,241,.25);
+      color: #111827;
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .filters .btnrow{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .filters button{
+      min-height: 38px;
+      border:none;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: 900;
+      cursor:pointer;
+      font-size: 13px;
+    }
+    .filters button.primary{background:#1e3a8a;color:#fff}
+    .filters button.ghost{
+      background:#1118270d;
+      color:#111827;
+      border: 1px solid rgba(148,163,184,.55);
     }
 
-    .legend span {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      margin-right: 5px;
+    @media (max-width: 768px){
+      .filters{
+        top:auto;
+        right: 10px;
+        left: 10px;
+        bottom: calc(10px + var(--safeBottom));
+        width:auto;
+        padding: 8px;
+      }
+      .legend{
+        top: 12px;
+        left: 12px;
+        font-size: 12px;
+        padding: 8px 10px;
+        min-width: auto;
+      }
     }
+
+    .leaflet-control-zoom a{
+      width:42px !important;
+      height:42px !important;
+      line-height:42px !important;
+      font-size:18px !important;
+    }
+    .leaflet-container{ touch-action: pan-x pan-y; }
   </style>
 </head>
 
 <body>
 
-<div class="top-bar">
-  🛢️ Disponibilité du carburant — Bamako & Régions
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">M</div>
+    <div class="brand-title">
+      <strong>Disponibilité du carburant</strong>
+      <span>Bamako & Régions · Malitadji</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">⌖</button>
+    <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">⌂</a>
+  </div>
+</header>
+
+<div class="map-wrap">
+  <div id="map"></div>
+
+  <div class="legend">
+    <div class="row"><span class="dot ok"></span>Disponible</div>
+    <div class="row"><span class="dot warn"></span>Faible</div>
+    <div class="row"><span class="dot bad"></span>Rupture</div>
+    <div class="row"><span class="dot unk"></span>Inconnu</div>
+  </div>
+
+  <div class="filters">
+    <form method="get" id="filtersForm">
+      <label>Région</label>
+      <select name="region" id="id_region" data-selected="{{ region_selected }}">
+        <option value="" {% if not region_selected %}selected{% endif %}>Toutes</option>
+        {% for r in regions %}
+        <option value="{{ r.id }}" {% if r.id|stringformat:"s" == region_selected %}selected{% endif %}>
+          {{ r.nom }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <label>Cercle</label>
+      <select name="cercle" id="id_cercle" data-selected="{{ cercle_selected }}">
+        <option value="" {% if not cercle_selected %}selected{% endif %}>Tous</option>
+        {% for ce in cercles %}
+        <option value="{{ ce.id }}" {% if ce.id|stringformat:"s" == cercle_selected %}selected{% endif %}>
+          {{ ce.nom }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <label>Commune</label>
+      <select name="commune" id="id_commune" data-selected="{{ commune_selected }}">
+        <option value="" {% if not commune_selected %}selected{% endif %}>Toutes</option>
+        {% for c in communes %}
+        <option value="{{ c.id }}" {% if c.id|stringformat:"s" == commune_selected %}selected{% endif %}>
+          {{ c.nom }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <label>Statut</label>
+      <select name="statut" id="id_statut">
+        <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
+        <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
+        <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
+        <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
+      </select>
+
+      <div class="countbox">
+        Stations trouvées : <span id="stationCount">0</span>
+      </div>
+
+      <div class="btnrow">
+        <button type="button" class="ghost" id="resetBtn">Réinitialiser</button>
+        <button type="submit" class="primary">Appliquer</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<div class="filters">
-  <form method="get">
-    <label>Région</label>
-    <select name="region" id="id_region" data-selected="{{ region_selected }}">
-      <option value="" {% if not region_selected %}selected{% endif %}>Toutes</option>
-      {% for r in regions %}
-      <option value="{{ r.id }}"
-        {% if r.id|stringformat:"s" == region_selected %}selected{% endif %}>
-        {{ r.nom }}
-      </option>
-      {% endfor %}
-    </select>
-
-    <label>Cercle</label>
-    <select name="cercle" id="id_cercle" data-selected="{{ cercle_selected }}">
-      <option value="" {% if not cercle_selected %}selected{% endif %}>Tous</option>
-      {% for ce in cercles %}
-      <option value="{{ ce.id }}"
-        {% if ce.id|stringformat:"s" == cercle_selected %}selected{% endif %}>
-        {{ ce.nom }}
-      </option>
-      {% endfor %}
-    </select>
-
-    <label>Commune</label>
-    <select name="commune" id="id_commune" data-selected="{{ commune_selected }}">
-      <option value="" {% if not commune_selected %}selected{% endif %}>Toutes</option>
-      {% for c in communes %}
-      <option value="{{ c.id }}"
-        {% if c.id|stringformat:"s" == commune_selected %}selected{% endif %}>
-        {{ c.nom }}
-      </option>
-      {% endfor %}
-    </select>
-
-    <label>Statut</label>
-    <select name="statut">
-      <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
-      <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
-      <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
-      <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
-    </select>
-
-    <button type="submit">Appliquer</button>
-  </form>
-</div>
-
-<div id="map"></div>
-
-<div class="legend">
-  <div><span style="background:green"></span>Disponible</div>
-  <div><span style="background:orange"></span>Faible</div>
-  <div><span style="background:red"></span>Rupture</div>
-  <div><span style="background:gray"></span>Inconnu</div>
-</div>
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-// ===================
-// CARTE LEAFLET
-// ===================
-var map = L.map('map').setView([12.65, -8.0], 6);
+  function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+  function formatDateFR(value){
+    if(!value) return "-";
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return value;
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
 
-// DATA Django vers JS
-var stations = JSON.parse('{{ stations_json|escapejs }}');
+  function getColor(essence, gasoil) {
+    if (essence === 'rupture' || gasoil === 'rupture') return 'red';
+    if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
+    if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
+    return 'gray';
+  }
 
-function getColor(essence, gasoil) {
-  if (essence === 'rupture' || gasoil === 'rupture') return 'red';
-  if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
-  if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
-  return 'gray';
-}
+  var map = L.map('map').setView([12.65, -8.0], 6);
 
-var bounds = [];
-
-stations.forEach(function(s) {
-  if (!s.lat || !s.lng) return;
-
-  var color = getColor(s.essence_statut, s.gasoil_statut);
-
-  var marker = L.circleMarker([s.lat, s.lng], {
-    radius: 7,
-    color: color,
-    fillColor: color,
-    fillOpacity: 0.9
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  marker.bindPopup(`
-    <b>${s.nom}</b><br>
-    Région: ${s.region || "-"}<br>
-    Cercle: ${s.cercle || "-"}<br>
-    Commune: ${s.commune || "-"}<br><br>
-    Essence: ${s.essence_statut || "-"}<br>
-    Gasoil: ${s.gasoil_statut || "-"}<br><br>
-    <a href="/manager/">🔐 Espace gérant</a>
-  `);
+  var stations = JSON.parse('{{ stations_json|escapejs }}');
+  var bounds = [];
 
-  bounds.push([s.lat, s.lng]);
-});
+  stations.forEach(function(s) {
+    if (!s.lat || !s.lng) return;
 
-if (bounds.length > 0) {
-  map.fitBounds(bounds, {padding:[30,30]});
-}
-</script>
+    var color = getColor(s.essence_statut, s.gasoil_statut);
 
-<script>
-// ===================
-// FILTRES DYNAMIQUES
-// ===================
-const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
-const communesData = JSON.parse('{{ communes_json|escapejs }}');
+    var marker = L.circleMarker([s.lat, s.lng], {
+      radius: 7,
+      color: color,
+      fillColor: color,
+      fillOpacity: 0.9
+    }).addTo(map);
 
-const regionSelect  = document.getElementById('id_region');
-const cercleSelect  = document.getElementById('id_cercle');
-const communeSelect = document.getElementById('id_commune');
+    const lastUpdateText = formatDateFR(s.last_update);
 
-// Valeurs sélectionnées initiales
-const selectedRegion  = regionSelect.dataset.selected || "";
-const selectedCercle  = cercleSelect.dataset.selected || "";
-const selectedCommune = communeSelect.dataset.selected || "";
+    marker.bindPopup(`
+      <b>${s.nom}</b><br>
+      Région: ${s.region || "-"}<br>
+      Cercle: ${s.cercle || "-"}<br>
+      Commune: ${s.commune || "-"}<br><br>
 
-// Remplit le select "Cercle" en fonction de la région
-function populateCercles(regionId, keepSelected = true) {
-  const currentSelected = keepSelected ? selectedCercle : "";
+      Essence: ${s.essence_statut || "-"}<br>
+      Gasoil: ${s.gasoil_statut || "-"}<br><br>
 
-  cercleSelect.innerHTML = "";
-  const optAll = document.createElement("option");
-  optAll.value = "";
-  optAll.textContent = "Tous";
-  cercleSelect.appendChild(optAll);
+      <b>Dernière mise à jour :</b> ${lastUpdateText}<br><br>
 
-  cerclesData.forEach(function(ce) {
-    if (regionId && String(ce.region_id) !== String(regionId)) {
-      return;
-    }
-    const opt = document.createElement("option");
-    opt.value = ce.id;
-    opt.textContent = ce.nom;
+      <a href="/manager/">🔐 Espace gérant</a>
+    `);
 
-    if (currentSelected && String(ce.id) === String(currentSelected)) {
-      opt.selected = true;
-    }
-
-    cercleSelect.appendChild(opt);
+    bounds.push([s.lat, s.lng]);
   });
-}
 
-// Remplit le select "Commune" en fonction de la région + cercle
-function populateCommunes(regionId, cercleId, keepSelected = true) {
-  const currentSelected = keepSelected ? selectedCommune : "";
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, {padding:[30,30]});
+  }
+  setTimeout(() => map.invalidateSize(), 250);
 
-  communeSelect.innerHTML = "";
-  const optAll = document.createElement("option");
-  optAll.value = "";
-  optAll.textContent = "Toutes";
-  communeSelect.appendChild(optAll);
-
-  communesData.forEach(function(c) {
-    // Filtre par cercle en priorité
-    if (cercleId && String(c.cercle_id) !== String(cercleId)) {
+  document.getElementById('locBtn').addEventListener('click', () => {
+    if(!navigator.geolocation){
+      alert("Géolocalisation non disponible.");
       return;
     }
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { latitude, longitude } = pos.coords;
+      map.setView([latitude, longitude], 14, { animate: true });
+      L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map)
+        .bindPopup("Vous êtes ici").openPopup();
+    }, () => alert("Impossible d’obtenir la position."));
+  });
 
-    // Si pas de cercle mais région sélectionnée, filtrer via cercle -> region
-    if (!cercleId && regionId) {
-      const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
-      if (!cercle || String(cercle.region_id) !== String(regionId)) {
-        return;
+  // --- filtres dynamiques + compteur ---
+  const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
+  const communesData = JSON.parse('{{ communes_json|escapejs }}');
+
+  const regionSelect  = document.getElementById('id_region');
+  const cercleSelect  = document.getElementById('id_cercle');
+  const communeSelect = document.getElementById('id_commune');
+  const statutSelect  = document.getElementById('id_statut');
+  const stationCountEl = document.getElementById('stationCount');
+
+  const selectedRegion  = regionSelect.dataset.selected || "";
+  const selectedCercle  = cercleSelect.dataset.selected || "";
+  const selectedCommune = communeSelect.dataset.selected || "";
+
+  function getSelectedText(selectEl){
+    const opt = selectEl.options[selectEl.selectedIndex];
+    return opt ? opt.textContent.trim() : "";
+  }
+
+  function populateCercles(regionId, keepSelected = true) {
+    const currentSelected = keepSelected ? selectedCercle : "";
+    cercleSelect.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = "Tous";
+    cercleSelect.appendChild(optAll);
+
+    cerclesData.forEach(function(ce) {
+      if (regionId && String(ce.region_id) !== String(regionId)) return;
+      const opt = document.createElement("option");
+      opt.value = ce.id;
+      opt.textContent = ce.nom;
+      if (currentSelected && String(ce.id) === String(currentSelected)) opt.selected = true;
+      cercleSelect.appendChild(opt);
+    });
+  }
+
+  function populateCommunes(regionId, cercleId, keepSelected = true) {
+    const currentSelected = keepSelected ? selectedCommune : "";
+    communeSelect.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = "Toutes";
+    communeSelect.appendChild(optAll);
+
+    communesData.forEach(function(c) {
+      if (cercleId && String(c.cercle_id) !== String(cercleId)) return;
+      if (!cercleId && regionId) {
+        const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
+        if (!cercle || String(cercle.region_id) !== String(regionId)) return;
       }
+      const opt = document.createElement("option");
+      opt.value = c.id;
+      opt.textContent = c.nom;
+      if (currentSelected && String(c.id) === String(currentSelected)) opt.selected = true;
+      communeSelect.appendChild(opt);
+    });
+  }
+
+  function stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName){
+    if (regionId && normalize(s.region) !== normalize(regionName)) return false;
+    if (cercleId && normalize(s.cercle) !== normalize(cercleName)) return false;
+    if (communeId && normalize(s.commune) !== normalize(communeName)) return false;
+
+    if (statutVal) {
+      const e = normalize(s.essence_statut);
+      const g = normalize(s.gasoil_statut);
+      const st = normalize(statutVal);
+      if (st === "dispo" && !(e === "dispo" || g === "dispo")) return false;
+      if (st === "faible" && !(e === "faible" || g === "faible")) return false;
+      if (st === "rupture" && !(e === "rupture" || g === "rupture")) return false;
     }
+    return true;
+  }
 
-    const opt = document.createElement("option");
-    opt.value = c.id;
-    opt.textContent = c.nom;
+  function updateStationCount(){
+    const regionId  = regionSelect.value || "";
+    const cercleId  = cercleSelect.value || "";
+    const communeId = communeSelect.value || "";
+    const statutVal = statutSelect.value || "";
 
-    if (currentSelected && String(c.id) === String(currentSelected)) {
-      opt.selected = true;
+    const regionName  = getSelectedText(regionSelect);
+    const cercleName  = getSelectedText(cercleSelect);
+    const communeName = getSelectedText(communeSelect);
+
+    let count = 0;
+    for (const s of stations) {
+      if (stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName)) count++;
     }
+    stationCountEl.textContent = String(count);
+  }
 
-    communeSelect.appendChild(opt);
+  regionSelect.addEventListener('change', function() {
+    const regionId = this.value || "";
+    populateCercles(regionId, false);
+    populateCommunes(regionId, cercleSelect.value, false);
+    updateStationCount();
   });
-}
 
-// Quand la région change -> on met à jour cercle + commune
-regionSelect.addEventListener('change', function() {
-  const regionId = this.value || "";
-  populateCercles(regionId, false);
-  populateCommunes(regionId, cercleSelect.value, false);
-});
+  cercleSelect.addEventListener('change', function() {
+    const cercleId = this.value || "";
+    const regionId = regionSelect.value || "";
+    populateCommunes(regionId, cercleId, false);
+    updateStationCount();
+  });
 
-// Quand le cercle change -> on met à jour les communes
-cercleSelect.addEventListener('change', function() {
-  const cercleId = this.value || "";
-  const regionId = regionSelect.value || "";
-  populateCommunes(regionId, cercleId, false);
-});
+  communeSelect.addEventListener('change', updateStationCount);
+  statutSelect.addEventListener('change', updateStationCount);
 
-// Initialisation au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-  populateCercles(selectedRegion, true);
-  populateCommunes(selectedRegion, selectedCercle, true);
-});
+  document.addEventListener('DOMContentLoaded', function() {
+    populateCercles(selectedRegion, true);
+    populateCommunes(selectedRegion, selectedCercle, true);
+    setTimeout(updateStationCount, 0);
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    regionSelect.dataset.selected = "";
+    cercleSelect.dataset.selected = "";
+    communeSelect.dataset.selected = "";
+
+    regionSelect.value = "";
+    statutSelect.value = "";
+
+    populateCercles("", false);
+    populateCommunes("", "", false);
+
+    setTimeout(updateStationCount, 0);
+  });
 </script>
 
 </body>

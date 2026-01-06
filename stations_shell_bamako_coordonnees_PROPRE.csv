@@ -1,0 +1,35 @@
+﻿nom_station,region,cercle,commune,adresse,latitude,longitude,commune_originale,a_verifier
+SHELL BADALA,Bamako,Bamako,Commune 6,Badalabougou,12.61519,-7.97794,Badalabougou,OUI
+SHELL AVENUE DE L OUA,Bamako,Bamako,Commune 2,Avenue de l'OUA,12.63945,-8.01288,Commune 2,NON
+SHELL QUARTIER MALI,Bamako,Bamako,Commune 6,Quartier Mali,12.61419,-7.99381,Quartier Mali,OUI
+SHELL MAGNAMBOUGOU,Bamako,Bamako,Commune 6,Magnambougou Wereda,12.60744,-7.96044,Magnambougou,OUI
+SHELL FLEUVE,Bamako,Bamako,Commune 6,Quartier du Fleuve,12.64172,-7.98953,Quartier du Fleuve,OUI
+SHELL KALABANCOURA,Bamako,Bamako,Commune 6,Kalabancoura - Route de l'aéroport,12.59833,-8.01794,Kalabancoura,OUI
+SHELL NIAMAKORO,Bamako,Bamako,Commune 6,Niamakoro,12.60341,-8.06183,Niamakoro,OUI
+SHELL BANANKAMBOUGOU,Bamako,Bamako,Commune 6,Banankabougou,12.60277,-7.97562,Banankabougou,OUI
+SHELL KALABAN COURA 2,Bamako,Bamako,Commune 6,Kalabancoura - Rond-point Daoudabougou,12.60091,-8.01021,Kalabancoura,OUI
+SHELL PLACE DE L INDEPENDANCE,Bamako,Bamako,Commune 2,Avenue de l'indépendance,12.63984,-8.00143,Commune 2,NON
+SHELL SOTUBA,Bamako,Bamako,Commune 6,Sotuba - Quinzambougou,12.65028,-7.94118,Sotuba,OUI
+SHELL HALLES DE BAMAKO,Bamako,Bamako,Commune 6,Faladié Halles,12.59263,-7.96431,Faladié,OUI
+SHELL ACI 2000,Bamako,Bamako,Commune 6,ACI 2000 - Djicoroni Para,12.61273,-8.02349,ACI 2000,OUI
+SHELL ALQOODS,Bamako,Bamako,Commune 6,Médina Coura - Avenue Alqoods,12.63792,-8.01126,Médina Coura,OUI
+SHELL BACODJICORONI,Bamako,Bamako,Commune 6,Bacodjicoroni Marché,12.60694,-8.03817,Bacodjicoroni,OUI
+SHELL SANKE,Bamako,Bamako,Commune 6,Mairie Kalabancoura,12.60166,-8.00788,Kalabancoura,OUI
+SHELL KWAME KRUMA,Bamako,Bamako,Commune 6,ACI 2000 - Rond-point Kwame Nkrumah,12.61082,-8.02274,ACI 2000,OUI
+KWAME KRUMA 2,Bamako,Bamako,Commune 6,ACI 2000,12.61131,-8.02119,ACI 2000,OUI
+SHELL OMNISPORT,Bamako,Bamako,Commune 6,Marché Médina Coura,12.63601,-8.00982,Médina Coura,OUI
+SHELL NIAMAKORO 30 M,Bamako,Bamako,Commune 6,Niamakoro 30m,12.60198,-8.06711,Niamakoro,OUI
+SHELL SIMBO,Bamako,Bamako,Commune 6,Kalabancoura - Simbo,12.59944,-8.01533,Kalabancoura,OUI
+SHELL HAMDALLAYE,Bamako,Bamako,Commune 6,Hamdallaye,12.62391,-8.03871,Hamdallaye,OUI
+SHELL BANKONI,Bamako,Bamako,Commune 6,Banconi,12.66482,-8.01241,Banconi,OUI
+SHELL FALADIË,Bamako,Bamako,Commune 6,Faladié,12.59421,-7.95483,Faladié,OUI
+SHELL YIRIMADIO,Bamako,Bamako,Commune 6,Yirimadio,12.60882,-7.97233,Yirimadio,OUI
+SHELL PALCE CAN,Bamako,Bamako,Commune 6,ACI 2000 - Place CAN,12.61002,-8.02561,ACI 2000,OUI
+SHELL MISSABOUGOU CANAL,Bamako,Bamako,Commune 6,Missabougou Canal,12.62902,-7.92441,Missabougou,OUI
+SHELL DJICORONI PARA,Bamako,Bamako,Commune 6,Djicoroni Para,12.61361,-8.04118,Djicoroni Para,OUI
+SHELL LAFIABOUGOU,Bamako,Bamako,Commune 6,Lafiabougou,12.62172,-8.05281,Lafiabougou,OUI
+SHELL DJELIBOUGOU,Bamako,Bamako,Commune 6,Djelibougou,12.65311,-7.99972,Djelibougou,OUI
+SHELL MISSABOUGOU,Bamako,Bamako,Commune 6,Missabougou,12.62871,-7.92652,Missabougou,OUI
+SHELL SEBENIKORO,Bamako,Bamako,Commune 6,Sebenicoro - Wayowoyanko,12.62988,-8.06744,Sebenicoro,OUI
+SHELL BOULKASSOUMBOUGOU,Bamako,Bamako,Commune 6,Boulkassoumbougou,12.62673,-8.04522,Boulkassoumbougou,OUI
+SHELL SEBENICORO 2,Bamako,Bamako,Commune 6,Sebenicoro Marché,12.63102,-8.06481,Sebenicoro,OUI
