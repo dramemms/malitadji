@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#020617" />
 
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
@@ -16,6 +17,7 @@
       --line: rgba(148,163,184,.28);
       --text:#e5e7eb;
       --muted:#9ca3af;
+
       --safeTop: env(safe-area-inset-top);
       --safeBottom: env(safe-area-inset-bottom);
     }
@@ -31,6 +33,7 @@
     }
     a{color:inherit;text-decoration:none}
 
+    /* ===== Topbar ===== */
     .topbar{
       position:relative;
       z-index: 3000;
@@ -70,6 +73,7 @@
       user-select:none;-webkit-tap-highlight-color:transparent;
     }
 
+    /* ===== Map wrap ===== */
     .map-wrap{
       position:relative;
       height: calc(100vh - 64px);
@@ -84,6 +88,7 @@
       z-index: 1;
     }
 
+    /* ===== Overlays ===== */
     .filters, .legend{
       position:absolute;
       z-index: 2500;
@@ -94,6 +99,7 @@
       border: 1px solid rgba(148,163,184,.35);
     }
 
+    /* Legend */
     .legend{
       top: 12px;
       left: 12px;
@@ -108,7 +114,7 @@
     .dot.bad{background:red}
     .dot.unk{background:gray}
 
-    /* filtre compact */
+    /* ===== FILTRE COMPACT ===== */
     .filters{
       top: 10px;
       right: 10px;
@@ -144,36 +150,56 @@
       font-weight: 900;
       font-size: 12px;
     }
-    .filters .btnrow{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+
+    /* ✅ BOUTONS PLUS VISIBLES (desktop + mobile) */
+    .btnrow{
+      display:flex;
+      gap:10px;
+      margin-top: 8px;
     }
-    .filters button{
-      min-height: 38px;
-      border:none;
-      padding: 8px;
-      border-radius: 8px;
-      font-weight: 900;
+    .btn-apply,
+    .btn-reset{
+      flex:1;
+      min-height: 44px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
       cursor:pointer;
-      font-size: 13px;
+      border:none;
     }
-    .filters button.primary{background:#1e3a8a;color:#fff}
-    .filters button.ghost{
-      background:#1118270d;
+    .btn-apply{
+      background:#1e3a8a;
+      color:#fff;
+    }
+    .btn-reset{
+      background:#f3f4f6;
       color:#111827;
-      border: 1px solid rgba(148,163,184,.55);
+      border:1px solid #d1d5db;
     }
 
+    /* Mobile */
     @media (max-width: 768px){
+      /* filtre fixé en bas + safe area + boutons sticky */
       .filters{
-        top:auto;
-        right: 10px;
+        position: fixed;
         left: 10px;
+        right: 10px;
         bottom: calc(10px + var(--safeBottom));
+        top: auto;
         width:auto;
-        padding: 8px;
+
+        padding: 10px 10px calc(12px + var(--safeBottom));
+        z-index: 2600;
       }
+
+      .btnrow{
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        padding-top: 8px;
+        padding-bottom: 6px;
+      }
+
       .legend{
         top: 12px;
         left: 12px;
@@ -183,6 +209,7 @@
       }
     }
 
+    /* Leaflet controls bigger */
     .leaflet-control-zoom a{
       width:42px !important;
       height:42px !important;
@@ -213,6 +240,7 @@
 <div class="map-wrap">
   <div id="map"></div>
 
+  <!-- ✅ LÉGENDE -->
   <div class="legend">
     <div class="row"><span class="dot ok"></span>Disponible</div>
     <div class="row"><span class="dot warn"></span>Faible</div>
@@ -220,6 +248,7 @@
     <div class="row"><span class="dot unk"></span>Inconnu</div>
   </div>
 
+  <!-- ✅ FILTRES -->
   <div class="filters">
     <form method="get" id="filtersForm">
       <label>Région</label>
@@ -264,14 +293,16 @@
         Stations trouvées : <span id="stationCount">0</span>
       </div>
 
+      <!-- ✅ Boutons corrigés -->
       <div class="btnrow">
-        <button type="button" class="ghost" id="resetBtn">Réinitialiser</button>
-        <button type="submit" class="primary">Appliquer</button>
+        <button type="submit" class="btn-apply">Appliquer</button>
+        <button type="button" id="resetBtn" class="btn-reset">Réinitialiser</button>
       </div>
     </form>
   </div>
 </div>
 
+<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
