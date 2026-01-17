@@ -1,0 +1,74 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div style="max-width:1200px; margin: 0 auto; padding: 16px;">
+
+    <h1 style="margin:0 0 12px 0;">Tableau de bord Malitadji</h1>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px">
+      <div class="module" style="padding:14px">
+        <h2>Stations</h2>
+        <div style="font-size:28px;font-weight:700">{{ kpi.total_stations }}</div>
+        <div class="quiet">Total</div>
+      </div>
+
+      <div class="module" style="padding:14px">
+        <h2>Disponibles</h2>
+        <div style="font-size:28px;font-weight:700">{{ kpi.dispo_count }}</div>
+        <div class="quiet">{{ kpi.dispo_pct }}%</div>
+      </div>
+
+      <div class="module" style="padding:14px">
+        <h2>Faibles</h2>
+        <div style="font-size:28px;font-weight:700">{{ kpi.faible_count }}</div>
+        <div class="quiet">{{ kpi.faible_pct }}%</div>
+      </div>
+
+      <div class="module" style="padding:14px">
+        <h2>Ruptures</h2>
+        <div style="font-size:28px;font-weight:700">{{ kpi.rupture_count }}</div>
+        <div class="quiet">{{ kpi.rupture_pct }}%</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px">
+      <div class="module" style="padding:14px">
+        <h2>Stations avec stock</h2>
+        <div style="font-size:28px;font-weight:700">{{ kpi.stations_avec_stock }}</div>
+        <div class="quiet">Au moins une mise à jour</div>
+      </div>
+
+      <div class="module" style="padding:14px">
+        <h2>Dernière mise à jour</h2>
+        <div style="font-size:18px;font-weight:700">
+          {% if kpi.last_update %}{{ kpi.last_update }}{% else %}—{% endif %}
+        </div>
+        <div class="quiet">Global</div>
+      </div>
+    </div>
+
+    <div class="module" style="padding:14px">
+      <h2>Top communes (stations)</h2>
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th>Commune</th>
+            <th style="text-align:right">Stations</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in by_commune %}
+            <tr>
+              <td>{{ row.commune__nom|default:"(sans commune)" }}</td>
+              <td style="text-align:right">{{ row.n }}</td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="2">Aucune donnée.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+{% endblock %}

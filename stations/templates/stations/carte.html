@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
@@ -18,8 +17,20 @@
       --text:#e5e7eb;
       --muted:#9ca3af;
 
+      --card:#ffffff;
+      --cardText:#111827;
+
       --safeTop: env(safe-area-inset-top);
       --safeBottom: env(safe-area-inset-bottom);
+      --safeLeft: env(safe-area-inset-left);
+      --safeRight: env(safe-area-inset-right);
+
+      --topbarH: 64px;
+
+      --brandGreen1:#22c55e;
+      --brandGreen2:#16a34a;
+      --brandGreen3:#15803d;
+      --brandBlue:#1e3a8a;
     }
 
     *{box-sizing:border-box}
@@ -30,26 +41,39 @@
       background: var(--bg);
       color: var(--text);
       overflow:hidden;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior: none;
     }
     a{color:inherit;text-decoration:none}
 
+    .app{
+      position:fixed;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      padding-left: var(--safeLeft);
+      padding-right: var(--safeRight);
+    }
+
     /* ===== Topbar ===== */
     .topbar{
-      position:relative;
-      z-index: 3000;
+      position:sticky;
+      top:0;
+      z-index: 4000;
+      height: calc(var(--topbarH) + var(--safeTop));
+      padding: calc(10px + var(--safeTop)) 12px 10px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      padding: calc(10px + var(--safeTop)) 12px 10px;
-      background: linear-gradient(to right, rgba(2,6,23,.98), rgba(2,6,23,.78));
+      background: linear-gradient(to right, rgba(2,6,23,.98), rgba(2,6,23,.82));
       border-bottom: 1px solid rgba(15,23,42,.95);
       backdrop-filter: blur(10px);
     }
     .brand{display:flex;align-items:center;gap:10px;min-width:0}
     .logo{
-      width:30px;height:30px;border-radius:10px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a, #15803d);
+      width:32px;height:32px;border-radius:12px;
+      background: radial-gradient(circle at 30% 20%, var(--brandGreen1), var(--brandGreen2), var(--brandGreen3));
       display:grid;place-items:center;
       color:#022c22;font-weight:900;flex:0 0 auto;
     }
@@ -59,25 +83,25 @@
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .brand-title span{
-      font-size:11px;color:#9ca3af;
+      font-size:11px;color:var(--muted);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .top-actions{display:flex;gap:8px;flex:0 0 auto}
     .icon-btn{
-      width:42px;height:42px;border-radius:14px;
+      width:44px;height:44px;border-radius:14px;
       border:1px solid var(--line);
       background: rgba(15,23,42,.65);
       color: var(--text);
       display:grid;place-items:center;
       cursor:pointer;font-weight:900;
-      user-select:none;-webkit-tap-highlight-color:transparent;
+      user-select:none;
     }
 
-    /* ===== Map wrap ===== */
+    /* ===== Map ===== */
     .map-wrap{
       position:relative;
-      height: calc(100vh - 64px);
-      width:100%;
+      flex:1;
+      min-height:0;
     }
     #map{
       position:absolute;
@@ -88,25 +112,38 @@
       z-index: 1;
     }
 
-    /* ===== Overlays ===== */
-    .filters, .legend{
+    /* ===== Legend (compact + collapsible) ===== */
+    .legend{
       position:absolute;
       z-index: 2500;
-      background: rgba(255,255,255,.98);
+      left: 12px;
+      top: 12px;
+      background: rgba(255,255,255,.96);
       color: #111827;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 10px 25px rgba(0,0,0,.22);
       border: 1px solid rgba(148,163,184,.35);
-    }
-
-    /* Legend */
-    .legend{
-      top: 12px;
-      left: 12px;
       padding: 10px 12px;
       font-size: 13px;
-      min-width: 160px;
+      max-width: 220px;
+      user-select:none;
     }
+    .legend .head{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:10px;
+      font-weight:900;
+      margin-bottom:6px;
+    }
+    .legend .toggle{
+      width:30px;height:30px;border-radius:10px;
+      border:1px solid rgba(148,163,184,.45);
+      background:#fff;
+      display:grid;place-items:center;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .legend .rows{display:block}
+    .legend.collapsed .rows{display:none}
     .legend .row{display:flex;align-items:center;gap:8px;margin:5px 0}
     .legend .dot{width:12px;height:12px;border-radius:999px;display:inline-block}
     .dot.ok{background:green}
@@ -114,403 +151,613 @@
     .dot.bad{background:red}
     .dot.unk{background:gray}
 
-    /* ===== FILTRE COMPACT ===== */
-    .filters{
-      top: 10px;
-      right: 10px;
-      width: 240px;
-      padding: 8px;
-      font-size: 13px;
+    /* ===== Mini buttons (discrets) ===== */
+    .mini-fab{
+      position:absolute;
+      right: 12px;
+      bottom: calc(12px + var(--safeBottom));
+      z-index: 3600;
+      display:flex;
+      gap:10px;
+      align-items:center;
     }
-    .filters label{
-      font-weight: 800;
+    .mini-fab .mini-btn{
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,.35);
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      background: rgba(255,255,255,.96);
+      color:#0f172a;
+      font-weight: 900;
+      cursor:pointer;
+    }
+    .mini-fab .mini-btn.primary{
+      background: var(--brandBlue);
+      color:#fff;
+      border-color: rgba(255,255,255,.10);
+    }
+
+    /* ===== Mini panel (coin) ===== */
+    .mini-panel{
+      position:absolute;
+      right: 12px;
+      bottom: calc(68px + var(--safeBottom));
+      z-index: 3700;
+
+      width: min(320px, calc(100vw - 24px));
+      background: rgba(255,255,255,.98);
+      color:#111827;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.30);
+      border: 1px solid rgba(148,163,184,.35);
+
+      overflow:hidden;
+      display:none;
+    }
+    .mini-panel.open{ display:block; }
+
+    .mini-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      background:#fff;
+      border-bottom: 1px solid rgba(148,163,184,.28);
+    }
+    .mini-title{ font-weight:1000; font-size: 13px; }
+
+    .mini-close{
+      width:38px;height:38px;border-radius:14px;
+      border:1px solid rgba(148,163,184,.45);
+      background:#fff;
+      display:grid;place-items:center;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .mini-body{
+      padding: 10px 12px 12px;
+      max-height: min(56vh, 420px);
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mini-body label{
+      font-weight: 900;
       font-size: 11px;
       color:#374151;
       display:block;
-      margin-top: 2px;
+      margin-top: 10px;
     }
-    .filters select{
+    .mini-body select{
       width:100%;
-      margin: 4px 0 8px;
-      padding: 8px 9px;
-      border-radius: 8px;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-radius: 12px;
       border:1px solid rgba(148,163,184,.55);
       outline:none;
-      font-size: 13px;
-      min-height: 38px;
+      font-size: 14px;
+      min-height: 44px;
       background:#fff;
     }
-    .countbox{
-      margin: 4px 0 8px;
-      padding: 8px 10px;
-      border-radius: 8px;
+
+    .mini-count{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
       background: #eef2ff;
       border: 1px solid rgba(99,102,241,.25);
-      color: #111827;
-      font-weight: 900;
-      font-size: 12px;
+      font-weight: 1000;
+      font-size: 13px;
     }
 
-    /* ✅ BOUTONS PLUS VISIBLES (desktop + mobile) */
-    .btnrow{
+    .mini-actions{
       display:flex;
       gap:10px;
-      margin-top: 8px;
+      margin-top: 12px;
     }
-    .btn-apply,
-    .btn-reset{
+    .mini-actions .btn-apply,
+    .mini-actions .btn-reset{
       flex:1;
       min-height: 44px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 800;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 900;
       cursor:pointer;
       border:none;
     }
-    .btn-apply{
-      background:#1e3a8a;
-      color:#fff;
-    }
-    .btn-reset{
+    .mini-actions .btn-apply{ background: var(--brandBlue); color:#fff; }
+    .mini-actions .btn-reset{
       background:#f3f4f6;
       color:#111827;
       border:1px solid #d1d5db;
     }
 
-    /* Mobile */
-    @media (max-width: 768px){
-      /* filtre fixé en bas + safe area + boutons sticky */
-      .filters{
-        position: fixed;
-        left: 10px;
-        right: 10px;
-        bottom: calc(10px + var(--safeBottom));
-        top: auto;
-        width:auto;
-
-        padding: 10px 10px calc(12px + var(--safeBottom));
-        z-index: 2600;
-      }
-
-      .btnrow{
-        position: sticky;
-        bottom: 0;
-        background: #fff;
-        padding-top: 8px;
-        padding-bottom: 6px;
-      }
-
-      .legend{
-        top: 12px;
-        left: 12px;
-        font-size: 12px;
-        padding: 8px 10px;
-        min-width: auto;
-      }
-    }
-
-    /* Leaflet controls bigger */
+    /* Leaflet */
     .leaflet-control-zoom a{
-      width:42px !important;
-      height:42px !important;
-      line-height:42px !important;
+      width:44px !important;
+      height:44px !important;
+      line-height:44px !important;
       font-size:18px !important;
     }
     .leaflet-container{ touch-action: pan-x pan-y; }
+
+    /* ✅ Zoom en bas à gauche : marge safe-area */
+    .leaflet-bottom.leaflet-left{
+      margin-left: 8px;
+      margin-bottom: calc(12px + var(--safeBottom));
+    }
+
+    .leaflet-popup-content-wrapper{ border-radius: 14px !important; overflow:hidden; }
+    .leaflet-popup-content{ margin: 10px 12px !important; font-size: 14px !important; line-height: 1.35 !important; }
+    .leaflet-popup-close-button{ width:34px !important; height:34px !important; font-size:22px !important; }
+
+    /* ============================
+       ✅ Bouton 🔔 Suivi station
+       ============================ */
+    .follow-btn{
+      width:100%;
+      border:0;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+      background:#0f2b7a;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-top:10px;
+      user-select:none;
+    }
+    .follow-btn.is-followed{
+      background:#0b1220;
+      border:1px solid #e5e7eb;
+      color:#111;
+    }
+    .follow-btn:disabled{opacity:.6;cursor:not-allowed;}
+    .follow-note{
+      margin-top:6px;
+      font-size:12px;
+      color:#475569;
+      line-height:1.2;
+    }
   </style>
 </head>
 
 <body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">M</div>
+        <div class="brand-title">
+          <strong>Disponibilité du carburant</strong>
+          <span>Bamako & Régions · Malitadji</span>
+        </div>
+      </div>
 
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">M</div>
-    <div class="brand-title">
-      <strong>Disponibilité du carburant</strong>
-      <span>Bamako & Régions · Malitadji</span>
+      <div class="top-actions">
+        <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">⌖</button>
+        <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">⌂</a>
+      </div>
+    </header>
+
+    <div class="map-wrap">
+      <div id="map"></div>
+
+      <!-- Légende -->
+      <div class="legend" id="legendBox">
+        <div class="head">
+          <span>Légende</span>
+          <button class="toggle" id="legendToggle" type="button" aria-label="Réduire la légende">▾</button>
+        </div>
+        <div class="rows">
+          <div class="row"><span class="dot ok"></span>Disponible</div>
+          <div class="row"><span class="dot warn"></span>Faible</div>
+          <div class="row"><span class="dot bad"></span>Rupture</div>
+          <div class="row"><span class="dot unk"></span>Inconnu</div>
+        </div>
+      </div>
+
+      <!-- Boutons discrets -->
+      <div class="mini-fab">
+        <button class="mini-btn" id="recenterBtn" type="button" aria-label="Recentrer">◎</button>
+        <button class="mini-btn primary" id="toggleFiltersBtn" type="button" aria-label="Filtres">Filtres</button>
+      </div>
+
+      <!-- Panneau discret coin -->
+      <div class="mini-panel" id="miniFilters">
+        <div class="mini-head">
+          <div class="mini-title">Filtres</div>
+          <button class="mini-close" id="closeMiniBtn" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <div class="mini-body">
+          <form method="get" id="filtersForm">
+            <label>Région</label>
+            <select name="region" id="id_region" data-selected="{{ region_selected }}">
+              <option value="" {% if not region_selected %}selected{% endif %}>Toutes</option>
+              {% for r in regions %}
+              <option value="{{ r.id }}" {% if r.id|stringformat:"s" == region_selected %}selected{% endif %}>{{ r.nom }}</option>
+              {% endfor %}
+            </select>
+
+            <label>Cercle</label>
+            <select name="cercle" id="id_cercle" data-selected="{{ cercle_selected }}">
+              <option value="" {% if not cercle_selected %}selected{% endif %}>Tous</option>
+              {% for ce in cercles %}
+              <option value="{{ ce.id }}" {% if ce.id|stringformat:"s" == cercle_selected %}selected{% endif %}>{{ ce.nom }}</option>
+              {% endfor %}
+            </select>
+
+            <label>Commune</label>
+            <select name="commune" id="id_commune" data-selected="{{ commune_selected }}">
+              <option value="" {% if not commune_selected %}selected{% endif %}>Toutes</option>
+              {% for c in communes %}
+              <option value="{{ c.id }}" {% if c.id|stringformat:"s" == commune_selected %}selected{% endif %}>{{ c.nom }}</option>
+              {% endfor %}
+            </select>
+
+            <label>Statut</label>
+            <select name="statut" id="id_statut">
+              <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
+              <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
+              <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
+              <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
+            </select>
+
+            <div class="mini-count">
+              Stations : <span id="stationCount">0</span>
+            </div>
+
+            <div class="mini-actions">
+              <button type="submit" class="btn-apply">Appliquer</button>
+              <button type="button" id="resetBtn" class="btn-reset">Réinitialiser</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="top-actions">
-    <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">⌖</button>
-    <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">⌂</a>
-  </div>
-</header>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="map-wrap">
-  <div id="map"></div>
+  <script>
+    function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
 
-  <!-- ✅ LÉGENDE -->
-  <div class="legend">
-    <div class="row"><span class="dot ok"></span>Disponible</div>
-    <div class="row"><span class="dot warn"></span>Faible</div>
-    <div class="row"><span class="dot bad"></span>Rupture</div>
-    <div class="row"><span class="dot unk"></span>Inconnu</div>
-  </div>
+    function formatDateFR(value){
+      if(!value) return "-";
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return value;
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
 
-  <!-- ✅ FILTRES -->
-  <div class="filters">
-    <form method="get" id="filtersForm">
-      <label>Région</label>
-      <select name="region" id="id_region" data-selected="{{ region_selected }}">
-        <option value="" {% if not region_selected %}selected{% endif %}>Toutes</option>
-        {% for r in regions %}
-        <option value="{{ r.id }}" {% if r.id|stringformat:"s" == region_selected %}selected{% endif %}>
-          {{ r.nom }}
-        </option>
-        {% endfor %}
-      </select>
+    function getColor(essence, gasoil) {
+      if (essence === 'rupture' || gasoil === 'rupture') return 'red';
+      if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
+      if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
+      return 'gray';
+    }
 
-      <label>Cercle</label>
-      <select name="cercle" id="id_cercle" data-selected="{{ cercle_selected }}">
-        <option value="" {% if not cercle_selected %}selected{% endif %}>Tous</option>
-        {% for ce in cercles %}
-        <option value="{{ ce.id }}" {% if ce.id|stringformat:"s" == cercle_selected %}selected{% endif %}>
-          {{ ce.nom }}
-        </option>
-        {% endfor %}
-      </select>
+    // ✅ CSRF (pour POST Django)
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
 
-      <label>Commune</label>
-      <select name="commune" id="id_commune" data-selected="{{ commune_selected }}">
-        <option value="" {% if not commune_selected %}selected{% endif %}>Toutes</option>
-        {% for c in communes %}
-        <option value="{{ c.id }}" {% if c.id|stringformat:"s" == commune_selected %}selected{% endif %}>
-          {{ c.nom }}
-        </option>
-        {% endfor %}
-      </select>
+    function updateFollowBtn(btn, followed){
+      btn.dataset.followed = followed ? "1" : "0";
+      btn.classList.toggle("is-followed", followed);
+      btn.textContent = followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station";
+    }
 
-      <label>Statut</label>
-      <select name="statut" id="id_statut">
-        <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
-        <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
-        <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
-        <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
-      </select>
+    // ✅ click handler global (popup dynamique)
+    document.addEventListener("click", async function(e){
+      const btn = e.target.closest(".follow-btn");
+      if(!btn) return;
 
-      <div class="countbox">
-        Stations trouvées : <span id="stationCount">0</span>
-      </div>
+      const stationId = btn.dataset.stationId;
+      const produit = btn.dataset.produit || ""; // "" = tous produits
 
-      <!-- ✅ Boutons corrigés -->
-      <div class="btnrow">
-        <button type="submit" class="btn-apply">Appliquer</button>
-        <button type="button" id="resetBtn" class="btn-reset">Réinitialiser</button>
-      </div>
-    </form>
-  </div>
-</div>
+      btn.disabled = true;
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      try{
+        const form = new FormData();
+        form.append("produit", produit);
 
-<script>
-  function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
+        const res = await fetch(`/stations/${stationId}/toggle-follow/`, {
+          method: "POST",
+          headers: { "X-CSRFToken": csrftoken },
+          body: form
+        });
 
-  function formatDateFR(value){
-    if(!value) return "-";
-    const d = new Date(value);
-    if (isNaN(d.getTime())) return value;
-    const pad = (n) => String(n).padStart(2, "0");
-    return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  }
+        // Si pas connecté -> Django va rediriger (HTML), donc res.json() échoue
+        const ct = res.headers.get("content-type") || "";
+        if(!ct.includes("application/json")){
+          alert("Veuillez vous connecter pour suivre une station.");
+          window.location.href = "/accounts/login/?next=" + encodeURIComponent(window.location.pathname);
+          return;
+        }
 
-  function getColor(essence, gasoil) {
-    if (essence === 'rupture' || gasoil === 'rupture') return 'red';
-    if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
-    if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
-    return 'gray';
-  }
+        const data = await res.json();
+        if(!data.ok){
+          alert(data.error || "Erreur lors du suivi");
+          return;
+        }
 
-  var map = L.map('map').setView([12.65, -8.0], 6);
+        updateFollowBtn(btn, data.followed);
+      }catch(err){
+        console.error(err);
+        alert("Erreur réseau");
+      }finally{
+        btn.disabled = false;
+      }
+    });
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
+    // ✅ Map init (Zoom déplacé en bottomleft)
+    var map = L.map('map', { zoomControl: false }).setView([12.65, -8.0], 6);
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-  var stations = JSON.parse('{{ stations_json|escapejs }}');
-  var bounds = [];
-
-  stations.forEach(function(s) {
-    if (!s.lat || !s.lng) return;
-
-    var color = getColor(s.essence_statut, s.gasoil_statut);
-
-    var marker = L.circleMarker([s.lat, s.lng], {
-      radius: 7,
-      color: color,
-      fillColor: color,
-      fillOpacity: 0.9
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    const lastUpdateText = formatDateFR(s.last_update);
+    var stations = JSON.parse('{{ stations_json|escapejs }}');
+    var boundsAll = [];
+    var markers = [];
 
-    marker.bindPopup(`
-      <b>${s.nom}</b><br>
-      Région: ${s.region || "-"}<br>
-      Cercle: ${s.cercle || "-"}<br>
-      Commune: ${s.commune || "-"}<br><br>
+    stations.forEach(function(s) {
+      if (!s.lat || !s.lng) return;
 
-      Essence: ${s.essence_statut || "-"}<br>
-      Gasoil: ${s.gasoil_statut || "-"}<br><br>
+      var color = getColor(s.essence_statut, s.gasoil_statut);
 
-      <b>Dernière mise à jour :</b> ${lastUpdateText}<br><br>
+      var marker = L.circleMarker([s.lat, s.lng], {
+        radius: 8,
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.9
+      }).addTo(map);
 
-      <a href="/manager/">🔐 Espace gérant</a>
-    `);
+      marker.__station = s;
 
-    bounds.push([s.lat, s.lng]);
-  });
+      const lastUpdateText = formatDateFR(s.last_update);
 
-  if (bounds.length > 0) {
-    map.fitBounds(bounds, {padding:[30,30]});
-  }
-  setTimeout(() => map.invalidateSize(), 250);
+      // ✅ état suivi depuis le JSON (bool)
+      const followed = !!s.is_followed;
 
-  document.getElementById('locBtn').addEventListener('click', () => {
-    if(!navigator.geolocation){
-      alert("Géolocalisation non disponible.");
-      return;
-    }
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const { latitude, longitude } = pos.coords;
-      map.setView([latitude, longitude], 14, { animate: true });
-      L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map)
-        .bindPopup("Vous êtes ici").openPopup();
-    }, () => alert("Impossible d’obtenir la position."));
-  });
+      marker.bindPopup(`
+        <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
+        <div style="color:#334155;font-size:13px">
+          <div><b>Région:</b> ${s.region || "-"}</div>
+          <div><b>Cercle:</b> ${s.cercle || "-"}</div>
+          <div><b>Commune:</b> ${s.commune || "-"}</div>
 
-  // --- filtres dynamiques + compteur ---
-  const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
-  const communesData = JSON.parse('{{ communes_json|escapejs }}');
+          <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
+          <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
 
-  const regionSelect  = document.getElementById('id_region');
-  const cercleSelect  = document.getElementById('id_cercle');
-  const communeSelect = document.getElementById('id_commune');
-  const statutSelect  = document.getElementById('id_statut');
-  const stationCountEl = document.getElementById('stationCount');
+          <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
 
-  const selectedRegion  = regionSelect.dataset.selected || "";
-  const selectedCercle  = cercleSelect.dataset.selected || "";
-  const selectedCommune = communeSelect.dataset.selected || "";
+          <!-- ✅ Bouton Suivre -->
+          <button
+            type="button"
+            class="follow-btn ${followed ? "is-followed" : ""}"
+            data-station-id="${s.id}"
+            data-produit=""
+            data-followed="${followed ? "1" : "0"}"
+          >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
 
-  function getSelectedText(selectEl){
-    const opt = selectEl.options[selectEl.selectedIndex];
-    return opt ? opt.textContent.trim() : "";
-  }
+          <div class="follow-note">Notification uniquement quand le stock devient <b>PLEIN</b>.</div>
 
-  function populateCercles(regionId, keepSelected = true) {
-    const currentSelected = keepSelected ? selectedCercle : "";
-    cercleSelect.innerHTML = "";
-    const optAll = document.createElement("option");
-    optAll.value = "";
-    optAll.textContent = "Tous";
-    cercleSelect.appendChild(optAll);
+          <div style="margin-top:10px">
+            <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
+              🔐 Espace gérant
+            </a>
+          </div>
+        </div>
+      `, { maxWidth: 280 });
 
-    cerclesData.forEach(function(ce) {
-      if (regionId && String(ce.region_id) !== String(regionId)) return;
-      const opt = document.createElement("option");
-      opt.value = ce.id;
-      opt.textContent = ce.nom;
-      if (currentSelected && String(ce.id) === String(currentSelected)) opt.selected = true;
-      cercleSelect.appendChild(opt);
+      markers.push(marker);
+      boundsAll.push([s.lat, s.lng]);
     });
-  }
 
-  function populateCommunes(regionId, cercleId, keepSelected = true) {
-    const currentSelected = keepSelected ? selectedCommune : "";
-    communeSelect.innerHTML = "";
-    const optAll = document.createElement("option");
-    optAll.value = "";
-    optAll.textContent = "Toutes";
-    communeSelect.appendChild(optAll);
+    if (boundsAll.length > 0) map.fitBounds(boundsAll, {padding:[40,40]});
+    setTimeout(() => map.invalidateSize(), 250);
 
-    communesData.forEach(function(c) {
-      if (cercleId && String(c.cercle_id) !== String(cercleId)) return;
-      if (!cercleId && regionId) {
-        const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
-        if (!cercle || String(cercle.region_id) !== String(regionId)) return;
+    // ===== Geoloc =====
+    document.getElementById('locBtn').addEventListener('click', () => {
+      if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        map.setView([latitude, longitude], 14, { animate: true });
+        L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map)
+          .bindPopup("Vous êtes ici").openPopup();
+      }, () => alert("Impossible d’obtenir la position."));
+    });
+
+    // ===== Legend toggle =====
+    const legendBox = document.getElementById('legendBox');
+    document.getElementById('legendToggle').addEventListener('click', () => {
+      legendBox.classList.toggle('collapsed');
+      document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
+    });
+
+    // ===== Mini filters open/close =====
+    const mini = document.getElementById('miniFilters');
+    const toggleBtn = document.getElementById('toggleFiltersBtn');
+    const closeMiniBtn = document.getElementById('closeMiniBtn');
+
+    function openMini(){ mini.classList.add('open'); try{ map.closePopup(); }catch(e){} }
+    function closeMini(){ mini.classList.remove('open'); }
+
+    toggleBtn.addEventListener('click', () => {
+      mini.classList.contains('open') ? closeMini() : openMini();
+    });
+    closeMiniBtn.addEventListener('click', closeMini);
+    map.on('click', () => closeMini());
+
+    // --- filtres dynamiques + compteur ---
+    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
+    const communesData = JSON.parse('{{ communes_json|escapejs }}');
+
+    const regionSelect  = document.getElementById('id_region');
+    const cercleSelect  = document.getElementById('id_cercle');
+    const communeSelect = document.getElementById('id_commune');
+    const statutSelect  = document.getElementById('id_statut');
+    const stationCountEl = document.getElementById('stationCount');
+
+    const selectedRegion  = regionSelect.dataset.selected || "";
+    const selectedCercle  = cercleSelect.dataset.selected || "";
+    const selectedCommune = communeSelect.dataset.selected || "";
+
+    function getSelectedText(selectEl){
+      const opt = selectEl.options[selectEl.selectedIndex];
+      return opt ? opt.textContent.trim() : "";
+    }
+
+    function populateCercles(regionId, keepSelected = true) {
+      const currentSelected = keepSelected ? selectedCercle : "";
+      cercleSelect.innerHTML = "";
+      const optAll = document.createElement("option");
+      optAll.value = "";
+      optAll.textContent = "Tous";
+      cercleSelect.appendChild(optAll);
+
+      cerclesData.forEach(function(ce) {
+        if (regionId && String(ce.region_id) !== String(regionId)) return;
+        const opt = document.createElement("option");
+        opt.value = ce.id;
+        opt.textContent = ce.nom;
+        if (currentSelected && String(ce.id) === String(currentSelected)) opt.selected = true;
+        cercleSelect.appendChild(opt);
+      });
+    }
+
+    function populateCommunes(regionId, cercleId, keepSelected = true) {
+      const currentSelected = keepSelected ? selectedCommune : "";
+      communeSelect.innerHTML = "";
+      const optAll = document.createElement("option");
+      optAll.value = "";
+      optAll.textContent = "Toutes";
+      communeSelect.appendChild(optAll);
+
+      communesData.forEach(function(c) {
+        if (cercleId && String(c.cercle_id) !== String(cercleId)) return;
+        if (!cercleId && regionId) {
+          const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
+          if (!cercle || String(cercle.region_id) !== String(regionId)) return;
+        }
+        const opt = document.createElement("option");
+        opt.value = c.id;
+        opt.textContent = c.nom;
+        if (currentSelected && String(c.id) === String(currentSelected)) opt.selected = true;
+        communeSelect.appendChild(opt);
+      });
+    }
+
+    function stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName){
+      if (regionId && normalize(s.region) !== normalize(regionName)) return false;
+      if (cercleId && normalize(s.cercle) !== normalize(cercleName)) return false;
+      if (communeId && normalize(s.commune) !== normalize(communeName)) return false;
+
+      if (statutVal) {
+        const e = normalize(s.essence_statut);
+        const g = normalize(s.gasoil_statut);
+        const st = normalize(statutVal);
+        if (st === "dispo" && !(e === "dispo" || g === "dispo")) return false;
+        if (st === "faible" && !(e === "faible" || g === "faible")) return false;
+        if (st === "rupture" && !(e === "rupture" || g === "rupture")) return false;
       }
-      const opt = document.createElement("option");
-      opt.value = c.id;
-      opt.textContent = c.nom;
-      if (currentSelected && String(c.id) === String(currentSelected)) opt.selected = true;
-      communeSelect.appendChild(opt);
+      return true;
+    }
+
+    function filteredMarkers(){
+      const regionId  = regionSelect.value || "";
+      const cercleId  = cercleSelect.value || "";
+      const communeId = communeSelect.value || "";
+      const statutVal = statutSelect.value || "";
+
+      const regionName  = getSelectedText(regionSelect);
+      const cercleName  = getSelectedText(cercleSelect);
+      const communeName = getSelectedText(communeSelect);
+
+      return markers.filter(m => {
+        const s = m.__station || {};
+        return stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName);
+      });
+    }
+
+    function updateStationCount(){
+      stationCountEl.textContent = String(filteredMarkers().length);
+    }
+
+    function recenterOnFiltered(){
+      const ms = filteredMarkers();
+      if(ms.length === 0){
+        alert("Aucune station ne correspond aux filtres.");
+        return;
+      }
+      const b = L.latLngBounds(ms.map(m => m.getLatLng()));
+      map.fitBounds(b, { padding: [50, 50] });
+      closeMini();
+    }
+
+    regionSelect.addEventListener('change', function() {
+      const regionId = this.value || "";
+      populateCercles(regionId, false);
+      populateCommunes(regionId, cercleSelect.value, false);
+      updateStationCount();
     });
-  }
 
-  function stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName){
-    if (regionId && normalize(s.region) !== normalize(regionName)) return false;
-    if (cercleId && normalize(s.cercle) !== normalize(cercleName)) return false;
-    if (communeId && normalize(s.commune) !== normalize(communeName)) return false;
+    cercleSelect.addEventListener('change', function() {
+      const cercleId = this.value || "";
+      const regionId = regionSelect.value || "";
+      populateCommunes(regionId, cercleId, false);
+      updateStationCount();
+    });
 
-    if (statutVal) {
-      const e = normalize(s.essence_statut);
-      const g = normalize(s.gasoil_statut);
-      const st = normalize(statutVal);
-      if (st === "dispo" && !(e === "dispo" || g === "dispo")) return false;
-      if (st === "faible" && !(e === "faible" || g === "faible")) return false;
-      if (st === "rupture" && !(e === "rupture" || g === "rupture")) return false;
-    }
-    return true;
-  }
+    communeSelect.addEventListener('change', updateStationCount);
+    statutSelect.addEventListener('change', updateStationCount);
 
-  function updateStationCount(){
-    const regionId  = regionSelect.value || "";
-    const cercleId  = cercleSelect.value || "";
-    const communeId = communeSelect.value || "";
-    const statutVal = statutSelect.value || "";
+    document.addEventListener('DOMContentLoaded', function() {
+      populateCercles(selectedRegion, true);
+      populateCommunes(selectedRegion, selectedCercle, true);
+      setTimeout(updateStationCount, 0);
+    });
 
-    const regionName  = getSelectedText(regionSelect);
-    const cercleName  = getSelectedText(cercleSelect);
-    const communeName = getSelectedText(communeSelect);
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      regionSelect.dataset.selected = "";
+      cercleSelect.dataset.selected = "";
+      communeSelect.dataset.selected = "";
 
-    let count = 0;
-    for (const s of stations) {
-      if (stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName)) count++;
-    }
-    stationCountEl.textContent = String(count);
-  }
+      regionSelect.value = "";
+      statutSelect.value = "";
 
-  regionSelect.addEventListener('change', function() {
-    const regionId = this.value || "";
-    populateCercles(regionId, false);
-    populateCommunes(regionId, cercleSelect.value, false);
-    updateStationCount();
-  });
+      populateCercles("", false);
+      populateCommunes("", "", false);
 
-  cercleSelect.addEventListener('change', function() {
-    const cercleId = this.value || "";
-    const regionId = regionSelect.value || "";
-    populateCommunes(regionId, cercleId, false);
-    updateStationCount();
-  });
+      setTimeout(updateStationCount, 0);
+    });
 
-  communeSelect.addEventListener('change', updateStationCount);
-  statutSelect.addEventListener('change', updateStationCount);
+    document.getElementById('recenterBtn').addEventListener('click', recenterOnFiltered);
 
-  document.addEventListener('DOMContentLoaded', function() {
-    populateCercles(selectedRegion, true);
-    populateCommunes(selectedRegion, selectedCercle, true);
-    setTimeout(updateStationCount, 0);
-  });
-
-  document.getElementById('resetBtn').addEventListener('click', () => {
-    regionSelect.dataset.selected = "";
-    cercleSelect.dataset.selected = "";
-    communeSelect.dataset.selected = "";
-
-    regionSelect.value = "";
-    statutSelect.value = "";
-
-    populateCercles("", false);
-    populateCommunes("", "", false);
-
-    setTimeout(updateStationCount, 0);
-  });
-</script>
-
+    document.getElementById('filtersForm').addEventListener('submit', () => closeMini());
+  </script>
 </body>
 </html>

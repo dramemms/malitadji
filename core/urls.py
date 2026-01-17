@@ -1,24 +1,9 @@
-"""
-URL configuration for core project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
+from django.contrib import admin  # tu peux le laisser
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-
 from django.views.generic import TemplateView
+
+from stations.admin_dashboard import admin_site  # ✅ AJOUT
 
 # JWT pour l'app mobile
 from rest_framework_simplejwt.views import (
@@ -27,9 +12,8 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-
-    # Django admin
-    path("admin/", admin.site.urls),
+    # ✅ Admin Malitadji (dashboard + liste apps)
+    path("admin/", admin_site.urls),
 
     # --- AUTHENTIFICATION WEB ---
     path(
@@ -49,15 +33,11 @@ urlpatterns = [
 
     # --- PRIVACY POLICY (Play Store) ---
     path(
-    "privacy-policy/",
-    TemplateView.as_view(template_name="stations/privacy-policy.html"),
-    name="privacy_policy",
-),
-
+        "privacy-policy/",
+        TemplateView.as_view(template_name="stations/privacy-policy.html"),
+        name="privacy_policy",
+    ),
 
     # --- APPLICATION STATIONS ---
     path("", include("stations.urls")),
 ]
-
-
-

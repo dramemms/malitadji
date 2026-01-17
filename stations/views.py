@@ -1,6 +1,8 @@
 # stations/views.py
 import json
 
+from django.contrib.admin.views.decorators import staff_member_required
+
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
@@ -14,6 +16,16 @@ from django.views.decorators.http import require_GET
 
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .serializers import StationSerializer
+
+
+from django.db.models import Count
+
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
+
+from .models import Station, StationFollow
 
 # ✅ AJOUT (pour formater la date en ISO local)
 from django.utils.timezone import localtime
@@ -519,3 +531,140 @@ class StationViewSet(ReadOnlyModelViewSet):
         "stock"
     )
     serializer_class = StationSerializer
+
+@staff_member_required
+def malitadji_dashboard(request):
+    """
+    Dashboard interne (staff/admin) :
+    - KPIs: stations, dispo/faible/rupture/inconnu
+    - Dernière mise à jour globale
+    - Top communes (nombre de stations)
+    """
+
+    total_stations = Station.objects.count()
+
+    # Helper : convertir niveau texte -> code interne
+    def niveau_to_code(niveau):
+        if not niveau:
+            return ""
+        n = str(niveau).lower()
+        if "rupture" in n or "out" in n:
+            return "rupture"
+        if "faible" in n or "low" in n:
+            return "faible"
+        if "dispo" in n or "disponible" in n or "plein" in n or "full" in n:
+            return "dispo"
+        return ""
+
+    dispo_count = 0
+    faible_count = 0
+    rupture_count = 0
+    inconnu_count = 0
+
+    # Dernière date de mise à jour globale
+    last_update = (
+        Stock.objects.order_by("-date_maj").values_list("date_maj", flat=True).first()
+    )
+
+    # Statut global par station (Essence + Gasoil)
+    for s in Station.objects.all():
+        essence_stock = (
+            Stock.objects.filter(station=s, produit__iexact="essence")
+            .order_by("-date_maj")
+            .first()
+        )
+        gasoil_stock = (
+            Stock.objects.filter(station=s, produit__iexact="gasoil")
+            .order_by("-date_maj")
+            .first()
+        )
+
+        essence_statut = niveau_to_code(essence_stock.niveau if essence_stock else "")
+        gasoil_statut = niveau_to_code(gasoil_stock.niveau if gasoil_stock else "")
+
+        if "rupture" in (essence_statut, gasoil_statut):
+            rupture_count += 1
+        elif "faible" in (essence_statut, gasoil_statut):
+            faible_count += 1
+        elif "dispo" in (essence_statut, gasoil_statut):
+            dispo_count += 1
+        else:
+            inconnu_count += 1
+
+    def pct(val):
+        return round(val * 100 / total_stations, 1) if total_stations else 0
+
+    by_commune = (
+        Station.objects.values("commune__nom")
+        .annotate(n=Count("id"))
+        .order_by("-n")[:10]
+    )
+
+    context = {
+        "kpi": {
+            "total_stations": total_stations,
+            "stations_avec_stock": Station.objects.filter(stocks__isnull=False).distinct().count(),
+            "dispo_count": dispo_count,
+            "faible_count": faible_count,
+            "rupture_count": rupture_count,
+            "inconnu_count": inconnu_count,
+            "dispo_pct": pct(dispo_count),
+            "faible_pct": pct(faible_count),
+            "rupture_pct": pct(rupture_count),
+            "inconnu_pct": pct(inconnu_count),
+            "last_update": last_update,
+        },
+        "by_commune": by_commune,
+    }
+
+    return render(request, "stations/malitadji_dashboard.html", context)
+
+
+@require_POST
+@login_required
+def toggle_follow_station(request, station_id):
+    station = get_object_or_404(Station, pk=station_id)
+
+    produit = request.POST.get("produit", "") or None  # "essence" / "gasoil" / ""(tous)
+    # Normalisation
+    if produit not in (None, "essence", "gasoil"):
+        return JsonResponse({"ok": False, "error": "produit invalide"}, status=400)
+
+    follow, created = StationFollow.objects.get_or_create(
+        user=request.user,
+        station=station,
+        produit=produit,
+        defaults={"is_active": True},
+    )
+
+    # Toggle
+    follow.is_active = not follow.is_active
+    follow.save(update_fields=["is_active"])
+
+    return JsonResponse({
+        "ok": True,
+        "followed": follow.is_active,
+        "station_id": station.id,
+        "produit": produit or "tous",
+    })
+
+
+@require_POST
+@login_required
+def register_device_token(request):
+    try:
+        data = json.loads(request.body.decode("utf-8") or "{}")
+    except Exception:
+        return JsonResponse({"ok": False, "error": "JSON invalide"}, status=400)
+
+    token = (data.get("token") or "").strip()
+    platform = (data.get("platform") or "android").strip()
+
+    if not token:
+        return JsonResponse({"ok": False, "error": "token manquant"}, status=400)
+
+    DeviceToken.objects.update_or_create(
+        token=token,
+        defaults={"user": request.user, "platform": platform, "is_active": True},
+    )
+    return JsonResponse({"ok": True})

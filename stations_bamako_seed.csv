@@ -1,0 +1,88 @@
+provider,fuel,commune,locality,station_name,latitude,longitude,source_image
+SHELL,super,Commune 1,Banconi,SHELL Banconi,12.6759,-8.0476,shell_image
+SHELL,super,Commune 1,Boulkassoumbougou,SHELL Boulkassoumbougou,12.6465,-8.0192,shell_image
+SHELL,super,Commune 1,Boulkassoumbougou Terminus,SHELL Boulkassoumbougou Terminus,12.6439,-8.0174,shell_image
+SHELL,super,Commune 1,Djélibougou,SHELL Djélibougou,12.6623,-8.0415,shell_image
+SHELL,super,Commune 1,Moribabougou,SHELL Moribabougou,12.6832,-8.0029,shell_image
+SHELL,super,Commune 1,Sotuba ACI,SHELL Sotuba ACI,12.6368,-7.9926,shell_image
+SHELL,super,Commune 1,Titibougou,SHELL Titibougou,12.6587,-8.0094,shell_image
+SHELL,super,Commune 2,Boguoba,SHELL Boguoba,12.6551,-8.0323,shell_image
+SHELL,super,Commune 2,Bozola,SHELL Bozola,12.6503,-8.0369,shell_image
+SHELL,super,Commune 2,Omnisport,SHELL Omnisport,12.6477,-8.0258,shell_image
+SHELL,super,Commune 2,Sotuba - Quinzambougou,SHELL Sotuba - Quinzambougou,12.6394,-7.9953,shell_image
+SHELL,super,Commune 3,Chemin de fer,SHELL Chemin de fer,12.6436,-8.0211,shell_image
+SHELL,super,Commune 3,Ex-Base,SHELL Ex-Base,12.6402,-8.0269,shell_image
+SHELL,super,Commune 4,Fleuve,SHELL Fleuve,12.6488,-8.0042,shell_image
+SHELL,super,Commune 4,Place de l’Indépendance,SHELL Place de l’Indépendance,12.6392,-8.0029,shell_image
+SHELL,super,Commune 4,Djicoroni Para,SHELL Djicoroni Para,12.6269,-8.0281,shell_image
+SHELL,super,Commune 4,Hamdallaye,SHELL Hamdallaye,12.6214,-8.0317,shell_image
+SHELL,super,Commune 4,Kwame Nkrumah 1,SHELL Kwame Nkrumah 1,12.6325,-8.0138,shell_image
+SHELL,super,Commune 4,Kwame Nkrumah 2,SHELL Kwame Nkrumah 2,12.6331,-8.0119,shell_image
+SHELL,super,Commune 4,Sébénicoro 1,SHELL Sébénicoro 1,12.6178,-8.0446,shell_image
+SHELL,super,Commune 4,Sébénicoro 2,SHELL Sébénicoro 2,12.6199,-8.0412,shell_image
+SHELL,super,Commune 4,ACI 2000,SHELL ACI 2000,12.6172,-8.0061,shell_image
+SHELL,super,Commune 5,Baco Djicoroni 1,SHELL Baco Djicoroni 1,12.6059,-8.0207,shell_image
+SHELL,super,Commune 5,Baco Djicoroni 2,SHELL Baco Djicoroni 2,12.6038,-8.0241,shell_image
+SHELL,super,Commune 5,Kalaban Coura 1,SHELL Kalaban Coura 1,12.5976,-8.0124,shell_image
+SHELL,super,Commune 5,Kalaban Coura 2,SHELL Kalaban Coura 2,12.5959,-8.0157,shell_image
+SHELL,super,Commune 5,Quartier Mali,SHELL Quartier Mali,12.6112,-8.0275,shell_image
+SHELL,super,Commune 5,Simbo,SHELL Simbo,12.6091,-8.0332,shell_image
+SHELL,super,Commune 5,Sogolon,SHELL Sogolon,12.6138,-8.0374,shell_image
+SHELL,super,Commune 5,Badala,SHELL Badala,12.6017,-8.0296,shell_image
+SHELL,super,Commune 6,Avenue de l’OUA,SHELL Avenue de l’OUA,12.6179,-7.9893,shell_image
+SHELL,super,Commune 6,Banankabougou,SHELL Banankabougou,12.6021,-7.9964,shell_image
+SHELL,super,Commune 6,Faladié,SHELL Faladié,12.5979,-7.9846,shell_image
+SHELL,super,Commune 6,Halles de Bko,SHELL Halles de Bko,12.6405,-8.0065,shell_image
+SHELL,super,Commune 6,Kabala,SHELL Kabala,12.5668,-8.0152,shell_image
+SHELL,super,Commune 6,Kalaban Coro,SHELL Kalaban Coro,12.5874,-8.0409,shell_image
+SHELL,super,Commune 6,Magnambougou Secteur 4,SHELL Magnambougou Secteur 4,12.5998,-7.9901,shell_image
+SHELL,super,Commune 6,Missabougou,SHELL Missabougou,12.6035,-7.9896,shell_image
+SHELL,super,Commune 6,Missabougou Canal,SHELL Missabougou Canal,12.6011,-7.9871,shell_image
+SHELL,super,Commune 6,OMAP,SHELL OMAP,12.6084,-7.9832,shell_image
+SHELL,super,Commune 6,Niamakoro 30m,SHELL Niamakoro 30m,12.5946,-8.0033,shell_image
+SHELL,super,Commune 6,Niamana,SHELL Niamana,12.5742,-7.9721,shell_image
+SHELL,super,Commune 6,Sénou 1,SHELL Sénou 1,12.5337,-7.9494,shell_image
+SHELL,super,Commune 6,Sénou 2,SHELL Sénou 2,12.5319,-7.9452,shell_image
+SHELL,super,Commune 6,Sogoniko,SHELL Sogoniko,12.6115,-7.9776,shell_image
+SHELL,super,Commune 6,Yirimadio 1,SHELL Yirimadio 1,12.6198,-7.9625,shell_image
+SHELL,super,Commune 6,Yirimadio 2,SHELL Yirimadio 2,12.6221,-7.9592,shell_image
+SHELL,super,Kati,Kati Point G,SHELL Kati Point G,12.7446,-8.0728,shell_image
+SHELL,super,Kati,Kati Sanafarala,SHELL Kati Sanafarala,12.7302,-8.0649,shell_image
+SHELL,gasoil,Commune 4,Place CAN,SHELL Place CAN,12.6318,-8.0179,shell_image
+SHELL,gasoil,Commune 6,Niamakoro,SHELL Niamakoro,12.5946,-8.0033,shell_image
+SHELL,gasoil,Commune 6,Magnambougou,SHELL Magnambougou,12.5998,-7.9901,shell_image
+SHELL,gasoil,Kati,Kati Kambila,SHELL Kati Kambila,12.7148,-8.0309,shell_image
+COLIENERGY,"super,gasoil",Commune 6,30M,COLIENERGY 30M,12.5946,-8.0033,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,3ème Pont,COLIENERGY 3ème Pont,12.6299,-7.9981,colienergy_image
+COLIENERGY,"super,gasoil",Commune 5,Bacodji,COLIENERGY Bacodji,12.6237,-8.0254,colienergy_image
+COLIENERGY,"super,gasoil",Commune 5,Bacodji Marché,COLIENERGY Bacodji Marché,12.6246,-8.0232,colienergy_image
+COLIENERGY,"super,gasoil",Commune 5,Bacodji Rond-point,COLIENERGY Bacodji Rond-point,12.6225,-8.0211,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Badialan,COLIENERGY Badialan,12.6268,-8.0354,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Banankabougou,COLIENERGY Banankabougou,12.6021,-7.9964,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Camp DGUE,COLIENERGY Camp DGUE,12.6379,-8.0134,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Campus,COLIENERGY Campus,12.6354,-8.0102,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Chemin des grottes,COLIENERGY Chemin des grottes,12.6331,-8.0206,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Chicoro,COLIENERGY Chicoro,12.6218,-8.0321,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Corniche,COLIENERGY Corniche,12.6461,-8.0067,colienergy_image
+COLIENERGY,"super,gasoil",Commune 5,Daoudabougou,COLIENERGY Daoudabougou,12.6075,-8.0299,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,2ème Pont,COLIENERGY 2ème Pont,12.6359,-8.0069,colienergy_image
+COLIENERGY,"super,gasoil",Commune 1,Djélibougou,COLIENERGY Djélibougou,12.6623,-8.0415,colienergy_image
+COLIENERGY,"super,gasoil",Commune 1,Doumanzana,COLIENERGY Doumanzana,12.6408,-8.0532,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Faladié,COLIENERGY Faladié,12.5979,-7.9846,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Fleuve,COLIENERGY Fleuve,12.6488,-8.0042,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Garan City,COLIENERGY Garan City,12.6137,-7.9991,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Golf,COLIENERGY Golf,12.6272,-8.0093,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Halles de Bko,COLIENERGY Halles de Bko,12.6405,-8.0065,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Kilomètre 9,COLIENERGY Kilomètre 9,12.6171,-8.0587,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Kwame Nkrumah,COLIENERGY Kwame Nkrumah,12.6327,-8.0126,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Lafia,COLIENERGY Lafia,12.6194,-7.9812,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Nèrèkoro,COLIENERGY Nèrèkoro,12.5817,-7.9908,colienergy_image
+COLIENERGY,"super,gasoil",Commune 2,Niaréla,COLIENERGY Niaréla,12.6517,-8.0327,colienergy_image
+COLIENERGY,"super,gasoil",Commune 2,Omnisport,COLIENERGY Omnisport,12.6477,-8.0258,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Présidence,COLIENERGY Présidence,12.6395,-8.0001,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Place CAN,COLIENERGY Place CAN,12.6318,-8.0179,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Route de Ségou,COLIENERGY Route de Ségou,12.6399,-8.0651,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Route Aéroport,COLIENERGY Route Aéroport,12.6064,-7.9768,colienergy_image
+COLIENERGY,"super,gasoil",Commune 1,Titibougou,COLIENERGY Titibougou,12.6587,-8.0094,colienergy_image
+COLIENERGY,"super,gasoil",Commune 4,Tour d’Afrique,COLIENERGY Tour d’Afrique,12.6373,-8.0141,colienergy_image
+COLIENERGY,"super,gasoil",Commune 6,Woyanco,COLIENERGY Woyanco,12.6206,-7.9891,colienergy_image

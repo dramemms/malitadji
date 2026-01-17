@@ -1,0 +1,175 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* =========================
+   LAYOUT GLOBAL
+   ========================= */
+.malitadji-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 16px 0;
+}
+
+.malitadji-kpis{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:14px;
+}
+.malitadji-kpis-2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:14px;
+}
+.malitadji-card{
+  padding:14px;
+}
+.malitadji-value{
+  font-size:28px;
+  font-weight:700;
+}
+.malitadji-sub{
+  color:#666;
+}
+
+/* =========================
+   TABLE TOP COMMUNES
+   ========================= */
+.malitadji-table{
+  width:100% !important;
+  border-collapse:collapse;
+  table-layout:auto !important;
+}
+
+.malitadji-table th,
+.malitadji-table td{
+  padding:10px 12px;
+  border-top:1px solid #e5e5e5;
+  vertical-align:middle;
+}
+
+/* ✅ FIX: empêcher l'affichage vertical (STATIONS) */
+.malitadji-table thead th{
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  writing-mode:horizontal-tb !important;
+}
+
+/* Colonne chiffres */
+.malitadji-table th.num,
+.malitadji-table td.num{
+  text-align:right !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  writing-mode:horizontal-tb !important;
+  min-width:120px !important;
+  width:120px !important;
+}
+
+/* Optionnel: un peu plus propre visuellement */
+.malitadji-table thead th{
+  border-top:0;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width:1100px){
+  .malitadji-kpis{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .malitadji-kpis,
+  .malitadji-kpis-2{grid-template-columns:1fr;}
+  .malitadji-wrap{padding:12px 10px 0;}
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="malitadji-wrap">
+
+  
+
+  <!-- KPI PRINCIPAUX -->
+  <div class="malitadji-kpis">
+    <div class="module malitadji-card">
+      <h2>Stations</h2>
+      <div class="malitadji-value">{{ kpi.total_stations }}</div>
+      <div class="malitadji-sub">Total</div>
+    </div>
+
+    <div class="module malitadji-card">
+      <h2>Disponibles</h2>
+      <div class="malitadji-value">{{ kpi.dispo_count }}</div>
+      <div class="malitadji-sub">{{ kpi.dispo_pct }}%</div>
+    </div>
+
+    <div class="module malitadji-card">
+      <h2>Faibles</h2>
+      <div class="malitadji-value">{{ kpi.faible_count }}</div>
+      <div class="malitadji-sub">{{ kpi.faible_pct }}%</div>
+    </div>
+
+    <div class="module malitadji-card">
+      <h2>Ruptures</h2>
+      <div class="malitadji-value">{{ kpi.rupture_count }}</div>
+      <div class="malitadji-sub">{{ kpi.rupture_pct }}%</div>
+    </div>
+  </div>
+
+  <!-- KPI SECONDAIRES -->
+  <div class="malitadji-kpis-2">
+    <div class="module malitadji-card">
+      <h2>Stations avec stock</h2>
+      <div class="malitadji-value">{{ kpi.stations_avec_stock }}</div>
+      <div class="malitadji-sub">Au moins une mise à jour</div>
+    </div>
+
+    <div class="module malitadji-card">
+      <h2>Dernière mise à jour</h2>
+      <div class="malitadji-value" style="font-size:18px;">
+        {% if kpi.last_update %}
+          {{ kpi.last_update|date:"d F Y • H\\hi" }}
+        {% else %}
+          —
+        {% endif %}
+      </div>
+      <div class="malitadji-sub">Global</div>
+    </div>
+  </div>
+
+  <!-- TOP COMMUNES -->
+  <div class="module malitadji-card">
+    <h2>Top communes (stations)</h2>
+    <table class="malitadji-table">
+      <thead>
+        <tr>
+          <th>Commune</th>
+          <th class="num">Stations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in by_commune %}
+          <tr>
+            <td>{{ row.commune__nom|default:"(sans commune)" }}</td>
+            <td class="num">{{ row.n }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="2">Aucune donnée</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{{ block.super }}
+{% endblock %}
