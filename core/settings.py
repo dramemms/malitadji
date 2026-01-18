@@ -17,7 +17,7 @@ ALLOWED_HOSTS = [
     "www.malitadji.com",
     "127.0.0.1",
     "localhost",
-    "192.168.88.206",  # LAN (téléphone / autres postes)
+    "192.168.88.197",  # LAN (téléphone / autres postes)
 ]
 
 # =========================
