@@ -6,7 +6,6 @@
   <title>Malitadji – Carte carburant Mali</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#020617" />
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
@@ -171,6 +170,7 @@
       color:#0f172a;
       font-weight: 900;
       cursor:pointer;
+      user-select:none;
     }
     .mini-fab .mini-btn.primary{
       background: var(--brandBlue);
@@ -185,7 +185,7 @@
       bottom: calc(68px + var(--safeBottom));
       z-index: 3700;
 
-      width: min(320px, calc(100vw - 24px));
+      width: min(340px, calc(100vw - 24px));
       background: rgba(255,255,255,.98);
       color:#111827;
       border-radius: 16px;
@@ -219,7 +219,7 @@
 
     .mini-body{
       padding: 10px 12px 12px;
-      max-height: min(56vh, 420px);
+      max-height: min(60vh, 520px);
       overflow:auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -275,6 +275,65 @@
       border:1px solid #d1d5db;
     }
 
+    /* ===== Panneau Suivies (séparé) ===== */
+    .followed-wrap{ padding: 12px; }
+    .followed-head{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      margin-bottom: 8px;
+    }
+    .followed-title{ font-weight:1000; font-size:13px; color:#0f172a; }
+    .followed-actions{ display:flex; gap:8px; align-items:center; }
+    .mini-linkbtn{
+      border:1px solid rgba(148,163,184,.45);
+      background:#fff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .mini-linkbtn.danger{
+      border-color: rgba(239,68,68,.35);
+      color:#b91c1c;
+      background: rgba(254,242,242,.85);
+    }
+    .followed-list{ display:flex; flex-direction:column; gap:8px; }
+    .followed-item{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(148,163,184,.35);
+      background: rgba(241,245,249,.55);
+    }
+    .followed-item .meta{ min-width:0; display:flex; flex-direction:column; gap:3px; }
+    .followed-item .name{
+      font-weight:1000; font-size:13px; color:#0f172a;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 220px;
+    }
+    .followed-item .sub{
+      font-size:12px; color:#475569;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 220px;
+    }
+    .followed-item .go{
+      border:0;
+      border-radius: 12px;
+      padding: 10px 10px;
+      font-weight: 1000;
+      cursor:pointer;
+      background: var(--brandBlue);
+      color:#fff;
+      flex:0 0 auto;
+    }
+    .followed-empty{
+      font-size: 13px;
+      color:#475569;
+      background: rgba(241,245,249,.6);
+      border:1px dashed rgba(148,163,184,.6);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
     /* Leaflet */
     .leaflet-control-zoom a{
       width:44px !important;
@@ -318,7 +377,6 @@
       border:1px solid #e5e7eb;
       color:#111;
     }
-    .follow-btn:disabled{opacity:.6;cursor:not-allowed;}
     .follow-note{
       margin-top:6px;
       font-size:12px;
@@ -365,10 +423,11 @@
       <!-- Boutons discrets -->
       <div class="mini-fab">
         <button class="mini-btn" id="recenterBtn" type="button" aria-label="Recentrer">◎</button>
+        <button class="mini-btn" id="openFollowedBtn" type="button" aria-label="Mes stations suivies">★ Suivies</button>
         <button class="mini-btn primary" id="toggleFiltersBtn" type="button" aria-label="Filtres">Filtres</button>
       </div>
 
-      <!-- Panneau discret coin -->
+      <!-- Panneau discret coin (Filtres) -->
       <div class="mini-panel" id="miniFilters">
         <div class="mini-head">
           <div class="mini-title">Filtres</div>
@@ -421,17 +480,35 @@
         </div>
       </div>
 
-    </div>
-  </div>
+      <!-- Panneau Suivies (séparé) -->
+      <div class="mini-panel" id="miniFollowed">
+        <div class="mini-head">
+          <div class="mini-title">Mes stations suivies</div>
+          <button class="mini-close" id="closeFollowedBtn" type="button" aria-label="Fermer">✕</button>
+        </div>
+        <div class="followed-wrap">
+          <div class="followed-head">
+            <div class="followed-title">Sur ce navigateur</div>
+            <div class="followed-actions">
+              <button type="button" class="mini-linkbtn" id="refreshFollowedBtn">Rafraîchir</button>
+              <button type="button" class="mini-linkbtn danger" id="clearFollowedBtn" title="Supprimer toutes les stations suivies">Tout effacer</button>
+            </div>
+          </div>
+          <div id="followedList" class="followed-list"></div>
+          <div style="margin-top:10px;font-size:12px;color:#475569;line-height:1.25">
+            Astuce: ouvre une station puis clique <b>Suivre cette station</b>.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /map-wrap -->
+  </div><!-- /app -->
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
-    // ----------------------------
     // Utils
-    // ----------------------------
     function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
-
     function formatDateFR(value){
       if(!value) return "-";
       const d = new Date(value);
@@ -439,7 +516,6 @@
       const pad = (n) => String(n).padStart(2, "0");
       return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
     }
-
     function getColor(essence, gasoil) {
       const e = normalize(essence);
       const g = normalize(gasoil);
@@ -449,76 +525,33 @@
       return 'gray';
     }
 
-    // ✅ CSRF (pour POST Django)
-    function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
+    // ✅ Suivi local (Web)
+    const LS_FOLLOWS_KEY = "malitadji_followed_stations_v1";
+    function getFollowedLocal(){
+      try{
+        const raw = localStorage.getItem(LS_FOLLOWS_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        return Array.isArray(arr) ? arr : [];
+      }catch(e){ return []; }
     }
-    const csrftoken = getCookie('csrftoken');
-
+    function isFollowedLocal(stationId){ return getFollowedLocal().includes(String(stationId)); }
+    function toggleFollowLocal(stationId){
+      const id = String(stationId);
+      const list = new Set(getFollowedLocal());
+      if(list.has(id)) list.delete(id); else list.add(id);
+      localStorage.setItem(LS_FOLLOWS_KEY, JSON.stringify([...list]));
+      return list.has(id);
+    }
+    function clearFollowedLocal(){ localStorage.setItem(LS_FOLLOWS_KEY, JSON.stringify([])); }
     function updateFollowBtn(btn, followed){
       btn.dataset.followed = followed ? "1" : "0";
       btn.classList.toggle("is-followed", followed);
       btn.textContent = followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station";
     }
 
-    // ✅ click handler global (popup dynamique)
-    document.addEventListener("click", async function(e){
-      const btn = e.target.closest(".follow-btn");
-      if(!btn) return;
-
-      const stationId = btn.dataset.stationId;
-      const produit = btn.dataset.produit || ""; // "" = tous produits
-      btn.disabled = true;
-
-      try{
-        const form = new FormData();
-        form.append("produit", produit);
-
-        const res = await fetch(`/stations/${stationId}/toggle-follow/`, {
-          method: "POST",
-          headers: { "X-CSRFToken": csrftoken },
-          body: form
-        });
-
-        const ct = res.headers.get("content-type") || "";
-        if(!ct.includes("application/json")){
-          alert("Veuillez vous connecter pour suivre une station.");
-          window.location.href = "/accounts/login/?next=" + encodeURIComponent(window.location.pathname);
-          return;
-        }
-
-        const data = await res.json();
-        if(!data.ok){
-          alert(data.error || "Erreur lors du suivi");
-          return;
-        }
-
-        updateFollowBtn(btn, data.followed);
-      }catch(err){
-        console.error(err);
-        alert("Erreur réseau");
-      }finally{
-        btn.disabled = false;
-      }
-    });
-
-    // ----------------------------
     // Map init
-    // ----------------------------
     var map = L.map('map', { zoomControl: false }).setView([12.65, -8.0], 6);
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap'
@@ -526,43 +559,54 @@
 
     var markers = [];
     var boundsAll = [];
+    var markerById = {}; // stationId -> marker
 
     function clearMarkers(){
-      markers.forEach(m => {
-        try{ map.removeLayer(m); }catch(e){}
-      });
+      markers.forEach(m => { try{ map.removeLayer(m); }catch(e){} });
       markers = [];
       boundsAll = [];
+      markerById = {};
     }
 
-    // ----------------------------
-    // Filters UI open/close
-    // ----------------------------
-    const mini = document.getElementById('miniFilters');
+    // Panels open/close
+    const miniFilters = document.getElementById('miniFilters');
+    const miniFollowed = document.getElementById('miniFollowed');
     const toggleBtn = document.getElementById('toggleFiltersBtn');
     const closeMiniBtn = document.getElementById('closeMiniBtn');
+    const openFollowedBtn = document.getElementById('openFollowedBtn');
+    const closeFollowedBtn = document.getElementById('closeFollowedBtn');
 
-    function openMini(){ mini.classList.add('open'); try{ map.closePopup(); }catch(e){} }
-    function closeMini(){ mini.classList.remove('open'); }
+    function openPanel(el){
+      miniFilters.classList.remove('open');
+      miniFollowed.classList.remove('open');
+      el.classList.add('open');
+      try{ map.closePopup(); }catch(e){}
+    }
+    function closePanels(){
+      miniFilters.classList.remove('open');
+      miniFollowed.classList.remove('open');
+    }
 
     toggleBtn.addEventListener('click', () => {
-      mini.classList.contains('open') ? closeMini() : openMini();
+      miniFilters.classList.contains('open') ? miniFilters.classList.remove('open') : openPanel(miniFilters);
     });
-    closeMiniBtn.addEventListener('click', closeMini);
-    map.on('click', () => closeMini());
+    closeMiniBtn.addEventListener('click', () => miniFilters.classList.remove('open'));
 
-    // ----------------------------
+    openFollowedBtn.addEventListener('click', () => {
+      miniFollowed.classList.contains('open') ? miniFollowed.classList.remove('open') : openPanel(miniFollowed);
+      renderFollowedList();
+    });
+    closeFollowedBtn.addEventListener('click', () => miniFollowed.classList.remove('open'));
+    map.on('click', () => closePanels());
+
     // Legend toggle
-    // ----------------------------
     const legendBox = document.getElementById('legendBox');
     document.getElementById('legendToggle').addEventListener('click', () => {
       legendBox.classList.toggle('collapsed');
       document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
     });
 
-    // ----------------------------
     // Geoloc
-    // ----------------------------
     document.getElementById('locBtn').addEventListener('click', () => {
       if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -573,11 +617,9 @@
       }, () => alert("Impossible d’obtenir la position."));
     });
 
-    // ----------------------------
     // Data for dropdown dependencies (from Django context)
-    // ----------------------------
-    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');   // [{id, nom, region_id}, ...]
-    const communesData = JSON.parse('{{ communes_json|escapejs }}'); // [{id, nom, cercle_id}, ...]
+    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
+    const communesData = JSON.parse('{{ communes_json|escapejs }}');
 
     const regionSelect  = document.getElementById('id_region');
     const cercleSelect  = document.getElementById('id_cercle');
@@ -616,10 +658,8 @@
       communeSelect.appendChild(optAll);
 
       communesData.forEach(function(c) {
-        // si cercle choisi: filtre strict
         if (cercleId && String(c.cercle_id) !== String(cercleId)) return;
 
-        // si pas cercle mais region: filtre via cercle.region_id
         if (!cercleId && regionId) {
           const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
           if (!cercle || String(cercle.region_id) !== String(regionId)) return;
@@ -633,9 +673,96 @@
       });
     }
 
-    // ----------------------------
+    // Suivies panel rendering
+    const followedListEl = document.getElementById("followedList");
+    const refreshFollowedBtn = document.getElementById("refreshFollowedBtn");
+    const clearFollowedBtn = document.getElementById("clearFollowedBtn");
+
+    function stationSubLine(s){
+      const parts = [];
+      if(s.commune) parts.push(s.commune);
+      if(s.cercle) parts.push(s.cercle);
+      if(s.region) parts.push(s.region);
+      return parts.join(" · ");
+    }
+
+    function renderFollowedList(){
+      const ids = getFollowedLocal();
+      if(!ids.length){
+        followedListEl.innerHTML = `<div class="followed-empty">Aucune station suivie pour le moment.</div>`;
+        return;
+      }
+
+      const rows = [];
+      ids.forEach((id) => {
+        const m = markerById[String(id)];
+        if(!m || !m.__station){
+          rows.push(`
+            <div class="followed-item">
+              <div class="meta">
+                <div class="name">Station #${id}</div>
+                <div class="sub">Ouvre la carte et recharge pour voir le détail.</div>
+              </div>
+              <button class="go" type="button" data-go-station="${id}">Voir</button>
+            </div>
+          `);
+          return;
+        }
+        const s = m.__station;
+        rows.push(`
+          <div class="followed-item">
+            <div class="meta">
+              <div class="name">${s.nom}</div>
+              <div class="sub">${stationSubLine(s) || "-"}</div>
+            </div>
+            <button class="go" type="button" data-go-station="${s.id}">Voir</button>
+          </div>
+        `);
+      });
+
+      followedListEl.innerHTML = rows.join("");
+    }
+
+    refreshFollowedBtn.addEventListener("click", () => renderFollowedList());
+    clearFollowedBtn.addEventListener("click", () => {
+      if(!confirm("Supprimer toutes les stations suivies ?")) return;
+      clearFollowedLocal();
+      renderFollowedList();
+      const openPopup = map._popup;
+      if(openPopup){
+        const btn = openPopup.getElement()?.querySelector?.(".follow-btn");
+        if(btn && btn.dataset.stationId){
+          updateFollowBtn(btn, false);
+        }
+      }
+    });
+
+    // Delegation pour "Voir"
+    document.addEventListener("click", (e) => {
+      const go = e.target.closest("[data-go-station]");
+      if(!go) return;
+      const id = String(go.getAttribute("data-go-station"));
+      const m = markerById[id];
+      if(!m){
+        alert("Station non chargée. Clique sur Appliquer pour recharger la carte.");
+        return;
+      }
+      miniFollowed.classList.remove("open");
+      map.setView(m.getLatLng(), 15, { animate: true });
+      m.openPopup();
+    });
+
+    // ✅ click handler (popup) — toggle localStorage
+    document.addEventListener("click", function(e){
+      const btn = e.target.closest(".follow-btn");
+      if(!btn) return;
+      const stationId = btn.dataset.stationId;
+      const followed = toggleFollowLocal(stationId);
+      updateFollowBtn(btn, followed);
+      if(miniFollowed.classList.contains("open")) renderFollowedList();
+    });
+
     // Fetch GeoJSON + build markers
-    // ----------------------------
     function buildGeoUrl(){
       const params = new URLSearchParams();
       const regionId = regionSelect.value || "";
@@ -666,7 +793,9 @@
 
         const lng = Number(coords[0]);
         const lat = Number(coords[1]);
-        if(!lat || !lng) return;
+
+        // ✅ FIX IMPORTANT
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
         const color = getColor(p.essence, p.gasoil);
 
@@ -684,20 +813,19 @@
           region: p.region,
           cercle: p.cercle,
           commune: p.commune,
-
           region_id: p.region_id,
           cercle_id: p.cercle_id,
           commune_id: p.commune_id,
-
           essence_statut: p.essence,
           gasoil_statut: p.gasoil,
           last_update: p.derniere_maj,
-          is_followed: !!p.is_followed,
         };
 
         const s = marker.__station;
+        markerById[String(s.id)] = marker;
+
         const lastUpdateText = formatDateFR(s.last_update);
-        const followed = !!s.is_followed;
+        const followed = isFollowedLocal(s.id);
 
         marker.bindPopup(`
           <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
@@ -715,11 +843,10 @@
               type="button"
               class="follow-btn ${followed ? "is-followed" : ""}"
               data-station-id="${s.id}"
-              data-produit=""
               data-followed="${followed ? "1" : "0"}"
             >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
 
-            <div class="follow-note">Notification uniquement quand le stock devient <b>PLEIN</b>.</div>
+            <div class="follow-note">Notifications web: enregistrées localement. (Push réservé à l'app mobile)</div>
 
             <div style="margin-top:10px">
               <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
@@ -739,11 +866,11 @@
         map.fitBounds(boundsAll, { padding:[40,40] });
       }
       setTimeout(() => map.invalidateSize(), 250);
+
+      if(miniFollowed.classList.contains("open")) renderFollowedList();
     }
 
-    // ----------------------------
-    // Sync inverse + dépendances dropdown
-    // ----------------------------
+    // Dropdown dependencies
     regionSelect.addEventListener('change', function() {
       const regionId = this.value || "";
       populateCercles(regionId, false);
@@ -756,7 +883,6 @@
         populateCommunes(regionSelect.value || "", "", false);
         return;
       }
-      // cercle -> region auto
       const cercle = cerclesData.find(ce => String(ce.id) === String(cercleId));
       if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
         regionSelect.value = String(cercle.region_id);
@@ -772,29 +898,24 @@
       const commune = communesData.find(c => String(c.id) === String(communeId));
       if(!commune) return;
 
-      // commune -> cercle
       const cercleId = String(commune.cercle_id);
       if(String(cercleSelect.value || "") !== cercleId){
         cercleSelect.value = cercleId;
       }
 
-      // cercle -> region
       const cercle = cerclesData.find(ce => String(ce.id) === cercleId);
       if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
         regionSelect.value = String(cercle.region_id);
         populateCercles(regionSelect.value, true);
       }
 
-      // recharge communes du cercle (et garde la commune)
       populateCommunes(regionSelect.value || "", cercleId, true);
     });
 
-    // ----------------------------
-    // Apply / Reset / Recenter
-    // ----------------------------
+    // ✅ Apply / Reset / Recenter
     document.getElementById('filtersForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      closeMini();
+      miniFilters.classList.remove('open');
       await reloadStationsFromApi({fitBounds: true});
     });
 
@@ -816,21 +937,17 @@
         return;
       }
       map.fitBounds(boundsAll, { padding: [50, 50] });
-      closeMini();
+      closePanels();
     });
 
-    // ----------------------------
-    // Initial load
-    // ----------------------------
+    // ✅ Initial load (IMPORTANT)
     document.addEventListener('DOMContentLoaded', async function() {
-      // initialiser dropdowns selon sélection serveur
       if(selectedRegion) regionSelect.value = selectedRegion;
       populateCercles(selectedRegion, true);
       if(selectedCercle) cercleSelect.value = selectedCercle;
       populateCommunes(selectedRegion, selectedCercle, true);
       if(selectedCommune) communeSelect.value = selectedCommune;
 
-      // charge stations initiales via API avec les valeurs actuelles
       await reloadStationsFromApi({fitBounds: true});
     });
   </script>
