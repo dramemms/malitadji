@@ -427,6 +427,9 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
+    // ----------------------------
+    // Utils
+    // ----------------------------
     function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
 
     function formatDateFR(value){
@@ -438,9 +441,11 @@
     }
 
     function getColor(essence, gasoil) {
-      if (essence === 'rupture' || gasoil === 'rupture') return 'red';
-      if (essence === 'faible'  || gasoil === 'faible')  return 'orange';
-      if (essence === 'dispo'   || gasoil === 'dispo')   return 'green';
+      const e = normalize(essence);
+      const g = normalize(gasoil);
+      if (e === 'rupture' || g === 'rupture') return 'red';
+      if (e === 'faible'  || g === 'faible')  return 'orange';
+      if (e === 'dispo'   || g === 'dispo')   return 'green';
       return 'gray';
     }
 
@@ -474,7 +479,6 @@
 
       const stationId = btn.dataset.stationId;
       const produit = btn.dataset.produit || ""; // "" = tous produits
-
       btn.disabled = true;
 
       try{
@@ -487,7 +491,6 @@
           body: form
         });
 
-        // Si pas connecté -> Django va rediriger (HTML), donc res.json() échoue
         const ct = res.headers.get("content-type") || "";
         if(!ct.includes("application/json")){
           alert("Veuillez vous connecter pour suivre une station.");
@@ -510,7 +513,9 @@
       }
     });
 
-    // ✅ Map init (Zoom déplacé en bottomleft)
+    // ----------------------------
+    // Map init
+    // ----------------------------
     var map = L.map('map', { zoomControl: false }).setView([12.65, -8.0], 6);
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
@@ -519,86 +524,20 @@
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    var stations = JSON.parse('{{ stations_json|escapejs }}');
-    var boundsAll = [];
     var markers = [];
+    var boundsAll = [];
 
-    stations.forEach(function(s) {
-      if (!s.lat || !s.lng) return;
+    function clearMarkers(){
+      markers.forEach(m => {
+        try{ map.removeLayer(m); }catch(e){}
+      });
+      markers = [];
+      boundsAll = [];
+    }
 
-      var color = getColor(s.essence_statut, s.gasoil_statut);
-
-      var marker = L.circleMarker([s.lat, s.lng], {
-        radius: 8,
-        color: color,
-        fillColor: color,
-        fillOpacity: 0.9
-      }).addTo(map);
-
-      marker.__station = s;
-
-      const lastUpdateText = formatDateFR(s.last_update);
-
-      // ✅ état suivi depuis le JSON (bool)
-      const followed = !!s.is_followed;
-
-      marker.bindPopup(`
-        <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
-        <div style="color:#334155;font-size:13px">
-          <div><b>Région:</b> ${s.region || "-"}</div>
-          <div><b>Cercle:</b> ${s.cercle || "-"}</div>
-          <div><b>Commune:</b> ${s.commune || "-"}</div>
-
-          <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
-          <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
-
-          <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
-
-          <!-- ✅ Bouton Suivre -->
-          <button
-            type="button"
-            class="follow-btn ${followed ? "is-followed" : ""}"
-            data-station-id="${s.id}"
-            data-produit=""
-            data-followed="${followed ? "1" : "0"}"
-          >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
-
-          <div class="follow-note">Notification uniquement quand le stock devient <b>PLEIN</b>.</div>
-
-          <div style="margin-top:10px">
-            <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
-              🔐 Espace gérant
-            </a>
-          </div>
-        </div>
-      `, { maxWidth: 280 });
-
-      markers.push(marker);
-      boundsAll.push([s.lat, s.lng]);
-    });
-
-    if (boundsAll.length > 0) map.fitBounds(boundsAll, {padding:[40,40]});
-    setTimeout(() => map.invalidateSize(), 250);
-
-    // ===== Geoloc =====
-    document.getElementById('locBtn').addEventListener('click', () => {
-      if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude, longitude } = pos.coords;
-        map.setView([latitude, longitude], 14, { animate: true });
-        L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map)
-          .bindPopup("Vous êtes ici").openPopup();
-      }, () => alert("Impossible d’obtenir la position."));
-    });
-
-    // ===== Legend toggle =====
-    const legendBox = document.getElementById('legendBox');
-    document.getElementById('legendToggle').addEventListener('click', () => {
-      legendBox.classList.toggle('collapsed');
-      document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
-    });
-
-    // ===== Mini filters open/close =====
+    // ----------------------------
+    // Filters UI open/close
+    // ----------------------------
     const mini = document.getElementById('miniFilters');
     const toggleBtn = document.getElementById('toggleFiltersBtn');
     const closeMiniBtn = document.getElementById('closeMiniBtn');
@@ -612,9 +551,33 @@
     closeMiniBtn.addEventListener('click', closeMini);
     map.on('click', () => closeMini());
 
-    // --- filtres dynamiques + compteur ---
-    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
-    const communesData = JSON.parse('{{ communes_json|escapejs }}');
+    // ----------------------------
+    // Legend toggle
+    // ----------------------------
+    const legendBox = document.getElementById('legendBox');
+    document.getElementById('legendToggle').addEventListener('click', () => {
+      legendBox.classList.toggle('collapsed');
+      document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
+    });
+
+    // ----------------------------
+    // Geoloc
+    // ----------------------------
+    document.getElementById('locBtn').addEventListener('click', () => {
+      if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        map.setView([latitude, longitude], 14, { animate: true });
+        L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map)
+          .bindPopup("Vous êtes ici").openPopup();
+      }, () => alert("Impossible d’obtenir la position."));
+    });
+
+    // ----------------------------
+    // Data for dropdown dependencies (from Django context)
+    // ----------------------------
+    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');   // [{id, nom, region_id}, ...]
+    const communesData = JSON.parse('{{ communes_json|escapejs }}'); // [{id, nom, cercle_id}, ...]
 
     const regionSelect  = document.getElementById('id_region');
     const cercleSelect  = document.getElementById('id_cercle');
@@ -626,13 +589,8 @@
     const selectedCercle  = cercleSelect.dataset.selected || "";
     const selectedCommune = communeSelect.dataset.selected || "";
 
-    function getSelectedText(selectEl){
-      const opt = selectEl.options[selectEl.selectedIndex];
-      return opt ? opt.textContent.trim() : "";
-    }
-
-    function populateCercles(regionId, keepSelected = true) {
-      const currentSelected = keepSelected ? selectedCercle : "";
+    function populateCercles(regionId, keepSelectedValue) {
+      const keep = keepSelectedValue ? (cercleSelect.value || selectedCercle) : "";
       cercleSelect.innerHTML = "";
       const optAll = document.createElement("option");
       optAll.value = "";
@@ -644,13 +602,13 @@
         const opt = document.createElement("option");
         opt.value = ce.id;
         opt.textContent = ce.nom;
-        if (currentSelected && String(ce.id) === String(currentSelected)) opt.selected = true;
+        if (keep && String(ce.id) === String(keep)) opt.selected = true;
         cercleSelect.appendChild(opt);
       });
     }
 
-    function populateCommunes(regionId, cercleId, keepSelected = true) {
-      const currentSelected = keepSelected ? selectedCommune : "";
+    function populateCommunes(regionId, cercleId, keepSelectedValue) {
+      const keep = keepSelectedValue ? (communeSelect.value || selectedCommune) : "";
       communeSelect.innerHTML = "";
       const optAll = document.createElement("option");
       optAll.value = "";
@@ -658,106 +616,223 @@
       communeSelect.appendChild(optAll);
 
       communesData.forEach(function(c) {
+        // si cercle choisi: filtre strict
         if (cercleId && String(c.cercle_id) !== String(cercleId)) return;
+
+        // si pas cercle mais region: filtre via cercle.region_id
         if (!cercleId && regionId) {
           const cercle = cerclesData.find(ce => String(ce.id) === String(c.cercle_id));
           if (!cercle || String(cercle.region_id) !== String(regionId)) return;
         }
+
         const opt = document.createElement("option");
         opt.value = c.id;
         opt.textContent = c.nom;
-        if (currentSelected && String(c.id) === String(currentSelected)) opt.selected = true;
+        if (keep && String(c.id) === String(keep)) opt.selected = true;
         communeSelect.appendChild(opt);
       });
     }
 
-    function stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName){
-      if (regionId && normalize(s.region) !== normalize(regionName)) return false;
-      if (cercleId && normalize(s.cercle) !== normalize(cercleName)) return false;
-      if (communeId && normalize(s.commune) !== normalize(communeName)) return false;
-
-      if (statutVal) {
-        const e = normalize(s.essence_statut);
-        const g = normalize(s.gasoil_statut);
-        const st = normalize(statutVal);
-        if (st === "dispo" && !(e === "dispo" || g === "dispo")) return false;
-        if (st === "faible" && !(e === "faible" || g === "faible")) return false;
-        if (st === "rupture" && !(e === "rupture" || g === "rupture")) return false;
-      }
-      return true;
-    }
-
-    function filteredMarkers(){
-      const regionId  = regionSelect.value || "";
-      const cercleId  = cercleSelect.value || "";
+    // ----------------------------
+    // Fetch GeoJSON + build markers
+    // ----------------------------
+    function buildGeoUrl(){
+      const params = new URLSearchParams();
+      const regionId = regionSelect.value || "";
+      const cercleId = cercleSelect.value || "";
       const communeId = communeSelect.value || "";
       const statutVal = statutSelect.value || "";
 
-      const regionName  = getSelectedText(regionSelect);
-      const cercleName  = getSelectedText(cercleSelect);
-      const communeName = getSelectedText(communeSelect);
+      if(regionId) params.set("region", regionId);
+      if(cercleId) params.set("cercle", cercleId);
+      if(communeId) params.set("commune", communeId);
+      if(statutVal) params.set("statut", statutVal);
 
-      return markers.filter(m => {
-        const s = m.__station || {};
-        return stationMatches(s, regionId, cercleId, communeId, statutVal, regionName, cercleName, communeName);
+      const q = params.toString();
+      return "/api/stations.geojson" + (q ? ("?" + q) : "");
+    }
+
+    async function reloadStationsFromApi({fitBounds = true} = {}){
+      clearMarkers();
+
+      const url = buildGeoUrl();
+      const res = await fetch(url);
+      const geo = await res.json();
+
+      (geo.features || []).forEach((f) => {
+        const p = f.properties || {};
+        const coords = (f.geometry && f.geometry.coordinates) || null;
+        if(!coords || coords.length < 2) return;
+
+        const lng = Number(coords[0]);
+        const lat = Number(coords[1]);
+        if(!lat || !lng) return;
+
+        const color = getColor(p.essence, p.gasoil);
+
+        const marker = L.circleMarker([lat, lng], {
+          radius: 8,
+          color: color,
+          fillColor: color,
+          fillOpacity: 0.9
+        }).addTo(map);
+
+        marker.__station = {
+          id: p.id,
+          nom: p.nom,
+          adresse: p.adresse,
+          region: p.region,
+          cercle: p.cercle,
+          commune: p.commune,
+
+          region_id: p.region_id,
+          cercle_id: p.cercle_id,
+          commune_id: p.commune_id,
+
+          essence_statut: p.essence,
+          gasoil_statut: p.gasoil,
+          last_update: p.derniere_maj,
+          is_followed: !!p.is_followed,
+        };
+
+        const s = marker.__station;
+        const lastUpdateText = formatDateFR(s.last_update);
+        const followed = !!s.is_followed;
+
+        marker.bindPopup(`
+          <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
+          <div style="color:#334155;font-size:13px">
+            <div><b>Région:</b> ${s.region || "-"}</div>
+            <div><b>Cercle:</b> ${s.cercle || "-"}</div>
+            <div><b>Commune:</b> ${s.commune || "-"}</div>
+
+            <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
+            <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
+
+            <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
+
+            <button
+              type="button"
+              class="follow-btn ${followed ? "is-followed" : ""}"
+              data-station-id="${s.id}"
+              data-produit=""
+              data-followed="${followed ? "1" : "0"}"
+            >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
+
+            <div class="follow-note">Notification uniquement quand le stock devient <b>PLEIN</b>.</div>
+
+            <div style="margin-top:10px">
+              <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
+                🔐 Espace gérant
+              </a>
+            </div>
+          </div>
+        `, { maxWidth: 280 });
+
+        markers.push(marker);
+        boundsAll.push([lat, lng]);
       });
-    }
 
-    function updateStationCount(){
-      stationCountEl.textContent = String(filteredMarkers().length);
-    }
+      stationCountEl.textContent = String(markers.length);
 
-    function recenterOnFiltered(){
-      const ms = filteredMarkers();
-      if(ms.length === 0){
-        alert("Aucune station ne correspond aux filtres.");
-        return;
+      if(fitBounds && boundsAll.length > 0){
+        map.fitBounds(boundsAll, { padding:[40,40] });
       }
-      const b = L.latLngBounds(ms.map(m => m.getLatLng()));
-      map.fitBounds(b, { padding: [50, 50] });
-      closeMini();
+      setTimeout(() => map.invalidateSize(), 250);
     }
 
+    // ----------------------------
+    // Sync inverse + dépendances dropdown
+    // ----------------------------
     regionSelect.addEventListener('change', function() {
       const regionId = this.value || "";
       populateCercles(regionId, false);
-      populateCommunes(regionId, cercleSelect.value, false);
-      updateStationCount();
+      populateCommunes(regionId, cercleSelect.value || "", false);
     });
 
     cercleSelect.addEventListener('change', function() {
       const cercleId = this.value || "";
-      const regionId = regionSelect.value || "";
-      populateCommunes(regionId, cercleId, false);
-      updateStationCount();
+      if(!cercleId){
+        populateCommunes(regionSelect.value || "", "", false);
+        return;
+      }
+      // cercle -> region auto
+      const cercle = cerclesData.find(ce => String(ce.id) === String(cercleId));
+      if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
+        regionSelect.value = String(cercle.region_id);
+        populateCercles(regionSelect.value, true);
+      }
+      populateCommunes(regionSelect.value || "", cercleId, false);
     });
 
-    communeSelect.addEventListener('change', updateStationCount);
-    statutSelect.addEventListener('change', updateStationCount);
+    communeSelect.addEventListener('change', function() {
+      const communeId = this.value || "";
+      if(!communeId) return;
 
-    document.addEventListener('DOMContentLoaded', function() {
-      populateCercles(selectedRegion, true);
-      populateCommunes(selectedRegion, selectedCercle, true);
-      setTimeout(updateStationCount, 0);
+      const commune = communesData.find(c => String(c.id) === String(communeId));
+      if(!commune) return;
+
+      // commune -> cercle
+      const cercleId = String(commune.cercle_id);
+      if(String(cercleSelect.value || "") !== cercleId){
+        cercleSelect.value = cercleId;
+      }
+
+      // cercle -> region
+      const cercle = cerclesData.find(ce => String(ce.id) === cercleId);
+      if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
+        regionSelect.value = String(cercle.region_id);
+        populateCercles(regionSelect.value, true);
+      }
+
+      // recharge communes du cercle (et garde la commune)
+      populateCommunes(regionSelect.value || "", cercleId, true);
     });
 
-    document.getElementById('resetBtn').addEventListener('click', () => {
-      regionSelect.dataset.selected = "";
-      cercleSelect.dataset.selected = "";
-      communeSelect.dataset.selected = "";
+    // ----------------------------
+    // Apply / Reset / Recenter
+    // ----------------------------
+    document.getElementById('filtersForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      closeMini();
+      await reloadStationsFromApi({fitBounds: true});
+    });
 
+    document.getElementById('resetBtn').addEventListener('click', async () => {
       regionSelect.value = "";
+      cercleSelect.value = "";
+      communeSelect.value = "";
       statutSelect.value = "";
 
       populateCercles("", false);
       populateCommunes("", "", false);
 
-      setTimeout(updateStationCount, 0);
+      await reloadStationsFromApi({fitBounds: true});
     });
 
-    document.getElementById('recenterBtn').addEventListener('click', recenterOnFiltered);
+    document.getElementById('recenterBtn').addEventListener('click', () => {
+      if(boundsAll.length === 0){
+        alert("Aucune station à afficher.");
+        return;
+      }
+      map.fitBounds(boundsAll, { padding: [50, 50] });
+      closeMini();
+    });
 
-    document.getElementById('filtersForm').addEventListener('submit', () => closeMini());
+    // ----------------------------
+    // Initial load
+    // ----------------------------
+    document.addEventListener('DOMContentLoaded', async function() {
+      // initialiser dropdowns selon sélection serveur
+      if(selectedRegion) regionSelect.value = selectedRegion;
+      populateCercles(selectedRegion, true);
+      if(selectedCercle) cercleSelect.value = selectedCercle;
+      populateCommunes(selectedRegion, selectedCercle, true);
+      if(selectedCommune) communeSelect.value = selectedCommune;
+
+      // charge stations initiales via API avec les valeurs actuelles
+      await reloadStationsFromApi({fitBounds: true});
+    });
   </script>
 </body>
 </html>

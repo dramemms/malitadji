@@ -2,6 +2,7 @@ from django.contrib import admin  # tu peux le laisser
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+from stations.api_geojson import stations_geojson
 
 from stations.admin_dashboard import admin_site  # ✅ AJOUT
 
@@ -30,6 +31,7 @@ urlpatterns = [
     # --- AUTHENTIFICATION API MOBILE (JWT) ---
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+     path("api/stations.geojson", stations_geojson, name="stations_geojson"),
 
     # --- PRIVACY POLICY (Play Store) ---
     path(
