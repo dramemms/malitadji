@@ -6,9 +6,13 @@ from . import api
 
 urlpatterns = [
     # Pages HTML
+
+     path("", views.home, name="home"),        # /
+    path("home/", views.home, name="home_page"),  # /home/
+    path("carte/", views.carte, name="carte"),
+    path("manager/login/", views.manager_login, name="manager_login"),
     path("manager/", views.manager_dashboard, name="manager_dashboard"),
     path("manager/logout/", views.manager_logout, name="manager_logout"),
-    path("carte/", views.carte, name="carte"),
 
     # API Device (public)
     path("api/device/register/", api.register_device, name="api_register_device"),
