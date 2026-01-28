@@ -9,7 +9,8 @@ FIREBASE_SERVICE_ACCOUNT_FILE = BASE_DIR / "core" / "firebase_service_account.js
 # SECURITY
 # =========================
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-default-key-change-me")
-DEBUG = True  # passe à False en prod
+DEBUG = os.environ.get("DEBUG", "0") == "1"
+
 
 ALLOWED_HOSTS = [
     "malitadji.onrender.com",
@@ -62,7 +63,7 @@ MIDDLEWARE = [
 # =========================
 # ✅ Recommandé : origins explicites
 # (Ne pas utiliser CORS_ALLOW_ALL_ORIGINS=True avec CORS_ALLOW_CREDENTIALS=True)
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 
 
 # Origines du FRONT (Flutter Web / Vite dev server)
@@ -181,3 +182,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # DEFAULT PRIMARY KEY
 # =========================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
