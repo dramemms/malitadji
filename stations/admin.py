@@ -4,8 +4,13 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import Group
 
-from .models import Region, Cercle, Commune, Station, Stock
-from .admin_dashboard import admin_site  # ✅ TON admin personnalisé
+from .admin_dashboard import admin_site  # ✅ ton admin personnalisé
+from .models import (
+    Region, Cercle, Commune,
+    Station, Stock,
+    Device, DeviceFollow,
+    StationFollow, InAppNotification,
+)
 
 User = get_user_model()
 
@@ -32,9 +37,9 @@ class CommuneAdmin(admin.ModelAdmin):
     list_filter = ("cercle__region", "cercle")
     search_fields = ("nom", "cercle__nom", "cercle__region__nom")
 
+    @admin.display(description="Région")
     def get_region(self, obj):
         return obj.cercle.region.nom if obj.cercle and obj.cercle.region else ""
-    get_region.short_description = "Région"
 
 
 @admin.register(Station, site=admin_site)
@@ -49,15 +54,15 @@ class StationAdmin(admin.ModelAdmin):
         "commune__cercle__region__nom",
     )
 
+    @admin.display(description="Cercle")
     def get_cercle(self, obj):
         return obj.commune.cercle.nom if obj.commune and obj.commune.cercle else ""
-    get_cercle.short_description = "Cercle"
 
+    @admin.display(description="Région")
     def get_region(self, obj):
         if obj.commune and obj.commune.cercle and obj.commune.cercle.region:
             return obj.commune.cercle.region.nom
         return ""
-    get_region.short_description = "Région"
 
 
 @admin.register(Stock, site=admin_site)
@@ -74,9 +79,46 @@ class StockAdmin(admin.ModelAdmin):
 
 
 # ==========================================================
-# USERS / GROUPS (Gestion des utilisateurs comme stations)
+# DEVICES (mobile)
 # ==========================================================
-# (Sécurité) enlever si déjà enregistré ailleurs
+@admin.register(Device, site=admin_site)
+class DeviceAdmin(admin.ModelAdmin):
+    list_display = ("device_id", "platform", "is_active", "last_seen_at", "created_at")
+    list_filter = ("platform", "is_active")
+    search_fields = ("device_id", "fcm_token")
+    readonly_fields = ("created_at", "last_seen_at")
+
+
+@admin.register(DeviceFollow, site=admin_site)
+class DeviceFollowAdmin(admin.ModelAdmin):
+    list_display = ("device", "station", "produit", "is_active", "created_at")
+    list_filter = ("produit", "is_active")
+    search_fields = ("device__device_id", "station__nom")
+    readonly_fields = ("created_at",)
+
+
+# ==========================================================
+# (Optionnel) FOLLOW / NOTIFS WEB (debug)
+# ==========================================================
+@admin.register(StationFollow, site=admin_site)
+class StationFollowAdmin(admin.ModelAdmin):
+    list_display = ("user", "station", "produit", "is_active", "created_at")
+    list_filter = ("produit", "is_active")
+    search_fields = ("user__username", "station__nom")
+    readonly_fields = ("created_at",)
+
+
+@admin.register(InAppNotification, site=admin_site)
+class InAppNotificationAdmin(admin.ModelAdmin):
+    list_display = ("user", "title", "station", "produit", "is_read", "created_at")
+    list_filter = ("is_read", "produit")
+    search_fields = ("user__username", "title", "message", "station__nom")
+    readonly_fields = ("created_at",)
+
+
+# ==========================================================
+# USERS / GROUPS (sur ton admin_site)
+# ==========================================================
 try:
     admin_site.unregister(User)
 except admin.sites.NotRegistered:
@@ -90,10 +132,6 @@ except admin.sites.NotRegistered:
 
 @admin.register(User, site=admin_site)
 class UserAdmin(DjangoUserAdmin):
-    """
-    Admin User complet (même fonctionnalités que Django),
-    mais sur ton admin_site Malitadji.
-    """
     list_display = (
         "username",
         "email",
@@ -107,8 +145,6 @@ class UserAdmin(DjangoUserAdmin):
     list_filter = ("is_staff", "is_superuser", "is_active", "groups")
     search_fields = ("username", "email", "first_name", "last_name")
     ordering = ("username",)
-
-    # ✅ utile pour gérer les permissions/gérants rapidement
     filter_horizontal = ("groups", "user_permissions")
 
 

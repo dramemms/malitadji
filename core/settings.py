@@ -17,17 +17,16 @@ ALLOWED_HOSTS = [
     "www.malitadji.com",
     "127.0.0.1",
     "localhost",
-    "192.168.88.197",  # LAN (téléphone / autres postes)
+    "192.168.88.197",
+    "10.95.122.247",   # ✅ IP PC sur hotspot
+    "0.0.0.0",         # ✅ utile en dev
 ]
 
 # =========================
 # APPLICATIONS
 # =========================
 INSTALLED_APPS = [
-    # CORS
     "corsheaders",
-
-    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,11 +34,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Tes apps
-    
+    # ✅ ajoute ceci
+    "notifications.apps.NotificationsConfig",
+
     "manager",
-     "stations.apps.StationsConfig",
+    "stations.apps.StationsConfig",
 ]
+
 
 # =========================
 # MIDDLEWARE (ordre important)
@@ -63,14 +64,31 @@ MIDDLEWARE = [
 # (Ne pas utiliser CORS_ALLOW_ALL_ORIGINS=True avec CORS_ALLOW_CREDENTIALS=True)
 CORS_ALLOW_ALL_ORIGINS = True
 
+
 # Origines du FRONT (Flutter Web / Vite dev server)
 CORS_ALLOWED_ORIGINS = [
+     # Flutter Web (ton port actuel)
+    "http://localhost:18850",
+    "http://127.0.0.1:18850",
+    "http://localhost:27127",
+    "http://127.0.0.1:27127",
+
+
+    # autres ports (si tu les utilises)
     "http://localhost:13691",
     "http://127.0.0.1:13691",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:50827",
     "http://127.0.0.1:50827",
+
+   # Si tu utilises LAN (téléphone)
+    "http://192.168.88.197:8000",
+
+    # prod
+    "https://malitadji.com",
+    "https://www.malitadji.com",
+    "https://malitadji.onrender.com",
 ]
 
 # Si tu utilises cookies/sessions (sinon tu peux mettre False)
@@ -81,12 +99,17 @@ CORS_ALLOW_PRIVATE_NETWORK = True
 
 # Si tu utilises SessionAuth/CSRF (souvent utile en admin)
 CSRF_TRUSTED_ORIGINS = [
+     "http://localhost:18850",
+    "http://127.0.0.1:18850",
     "http://localhost:13691",
     "http://127.0.0.1:13691",
-    "http://localhost:50827",
-    "http://127.0.0.1:50827",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://localhost:50827",
+    "http://127.0.0.1:50827",
+    "https://malitadji.com",
+    "https://www.malitadji.com",
+    "https://malitadji.onrender.com",
 ]
 
 # Optionnel: headers autorisés (utile si tu envoies Authorization)

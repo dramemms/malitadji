@@ -1,35 +1,23 @@
-from django.urls import path, include
+# stations/urls.py
+from django.urls import path
+from .api_admin_geo import api_regions, api_cercles, api_communes
 from . import views
-
-from rest_framework.routers import DefaultRouter
-from .views import StationViewSet
-
-router = DefaultRouter()
-router.register(r"stations", StationViewSet, basename="stations")
+from . import api
 
 urlpatterns = [
-    # Page d'accueil
-    path("", views.home, name="home"),
-
-    # Carte publique
+    # Pages HTML
+    path("manager/", views.manager_dashboard, name="manager_dashboard"),
+    path("manager/logout/", views.manager_logout, name="manager_logout"),
     path("carte/", views.carte, name="carte"),
 
-    # Espace gérant
-    path("manager/login/", views.manager_login, name="manager_login"),
-    path("manager/logout/", views.manager_logout, name="manager_logout"),
-    path("manager/", views.manager_dashboard, name="manager_dashboard"),
-    
+    # API Device (public)
+    path("api/device/register/", api.register_device, name="api_register_device"),
+    path("api/device/follow/<int:station_id>/", api.follow_station, name="api_follow_station"),
+    path("api/device/unfollow/<int:station_id>/", api.unfollow_station, name="api_unfollow_station"),
+    path("api/device/follows/", api.my_follows, name="api_my_follows"),
 
-    # API mobile (tes endpoints existants)
-    path("api/regions/", views.api_regions, name="api_regions"),
-    path("api/cercles/", views.api_cercles, name="api_cercles"),
-    path("api/communes/", views.api_communes, name="api_communes"),
-    path("api/stations/", views.api_stations, name="api_stations"),
-path("api/device/register/", views.register_device_token, name="register_device_token"),
-
-
-    # DRF router endpoints (ex: /api/stations/)
-    path("api/", include(router.urls)),
-
-    path("stations/<int:station_id>/toggle-follow/", views.toggle_follow_station, name="toggle_follow_station"),
+    # API Geo (filtres)
+    path("api/regions/", api_regions, name="api_regions"),
+    path("api/cercles/", api_cercles, name="api_cercles"),
+    path("api/communes/", api_communes, name="api_communes"),
 ]

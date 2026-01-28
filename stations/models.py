@@ -1,11 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
 from django.utils import timezone
 from django.db.models import UniqueConstraint
 
 User = get_user_model()
-
 
 # -----------------
 # LOCALISATION
@@ -15,7 +13,7 @@ class Region(models.Model):
     nom = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ['nom']
+        ordering = ["nom"]
 
     def __str__(self):
         return self.nom
@@ -25,12 +23,12 @@ class Cercle(models.Model):
     region = models.ForeignKey(
         Region,
         on_delete=models.CASCADE,
-        related_name='cercles'
+        related_name="cercles",
     )
     nom = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ['region__nom', 'nom']
+        ordering = ["region__nom", "nom"]
 
     def __str__(self):
         return f"{self.nom} ({self.region.nom})"
@@ -40,12 +38,12 @@ class Commune(models.Model):
     cercle = models.ForeignKey(
         Cercle,
         on_delete=models.CASCADE,
-        related_name='communes'
+        related_name="communes",
     )
     nom = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ['cercle__region__nom', 'cercle__nom', 'nom']
+        ordering = ["cercle__region__nom", "cercle__nom", "nom"]
 
     def __str__(self):
         return f"{self.nom} ({self.cercle.nom}, {self.cercle.region.nom})"
@@ -60,7 +58,7 @@ class Station(models.Model):
     commune = models.ForeignKey(
         Commune,
         on_delete=models.CASCADE,
-        related_name='stations'
+        related_name="stations",
     )
     adresse = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
@@ -72,11 +70,11 @@ class Station(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='stations'
+        related_name="stations",
     )
 
     class Meta:
-        ordering = ['commune__cercle__region__nom', 'commune__nom', 'nom']
+        ordering = ["commune__cercle__region__nom", "commune__nom", "nom"]
 
     def __str__(self):
         return self.nom
@@ -88,30 +86,29 @@ class Station(models.Model):
 
 class Stock(models.Model):
     NIVEAUX = [
-        ('Bas', 'Bas'),
-        ('Faible', 'Faible'),
-        ('Plein', 'Plein'),
-        ('Rupture', 'Rupture'),
+        ("Bas", "Bas"),
+        ("Faible", "Faible"),
+        ("Plein", "Plein"),
+        ("Rupture", "Rupture"),
     ]
 
     PRODUITS = [
-        ('essence', 'Essence'),
-        ('gasoil', 'Gasoil'),
-       
+        ("essence", "Essence"),
+        ("gasoil", "Gasoil"),
     ]
 
     station = models.ForeignKey(
         Station,
         on_delete=models.CASCADE,
-        related_name='stocks'
+        related_name="stocks",
     )
     produit = models.CharField(max_length=50, choices=PRODUITS)
     niveau = models.CharField(max_length=20, choices=NIVEAUX)
     date_maj = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-date_maj']
-        unique_together = ('station', 'produit')  # un stock par produit
+        ordering = ["-date_maj"]
+        unique_together = ("station", "produit")  # un stock par produit
 
     def __str__(self):
         return f"{self.station.nom} - {self.produit} ({self.niveau})"
@@ -125,23 +122,18 @@ class StockHistory(models.Model):
     station = models.ForeignKey(
         Station,
         on_delete=models.CASCADE,
-        related_name='historique_stocks'
+        related_name="historique_stocks",
     )
     produit = models.CharField(max_length=50)
-    ancien_niveau = models.CharField(
-        max_length=20,
-        blank=True,
-        null=True
-    )
+    ancien_niveau = models.CharField(max_length=20, blank=True, null=True)
     nouveau_niveau = models.CharField(max_length=20)
     date_maj = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-date_maj']
+        ordering = ["-date_maj"]
 
     def __str__(self):
         return f"{self.station.nom} - {self.produit} : {self.nouveau_niveau}"
-
 
 
 class StationFollow(models.Model):
@@ -149,25 +141,23 @@ class StationFollow(models.Model):
     Un utilisateur suit une station et choisit sur quel(s) produit(s) il veut être notifié.
     """
     PRODUITS = [
-        ('essence', 'Essence'),
-        ('gasoil', 'Gasoil'),
+        ("essence", "Essence"),
+        ("gasoil", "Gasoil"),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="station_follows")
     station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name="followers")
 
-    # Si vide => on notifie pour les 2 produits (option)
+    # Si vide => on notifie pour les 2 produits
     produit = models.CharField(max_length=50, choices=PRODUITS, blank=True, null=True)
 
-    # A quel moment notifier
     notify_on_levels = models.CharField(
-    max_length=50,
-    choices=[
-        ("Plein", "Seulement Plein"),
-    ],
-    default="Plein"
-)
-
+        max_length=50,
+        choices=[
+            ("Plein", "Seulement Plein"),
+        ],
+        default="Plein",
+    )
 
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -192,8 +182,6 @@ class InAppNotification(models.Model):
 
     title = models.CharField(max_length=255)
     message = models.TextField()
-
-    # Anti-doublon : un évènement unique (station+produit+niveau+minute+user)
     event_key = models.CharField(max_length=255, unique=True)
 
     is_read = models.BooleanField(default=False)
@@ -205,13 +193,42 @@ class InAppNotification(models.Model):
     def __str__(self):
         return self.title
 
-class DeviceToken(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="device_tokens")
-    token = models.CharField(max_length=255, unique=True)
-    platform = models.CharField(max_length=30, default="android")  # android/web/ios
+
+class Device(models.Model):
+    """
+    Appareil (mobile) identifié sans compte utilisateur.
+    """
+    device_id = models.CharField(max_length=64, unique=True, db_index=True)
+    fcm_token = models.CharField(max_length=255, blank=True, null=True, db_index=True)
+    platform = models.CharField(max_length=30, default="android")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_seen_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user} ({self.platform})"
+        return f"{self.device_id} ({self.platform})"
+
+
+class DeviceFollow(models.Model):
+    """
+    Un appareil suit une station (optionnel: par produit).
+    """
+    PRODUITS = [
+        ("essence", "Essence"),
+        ("gasoil", "Gasoil"),
+    ]
+
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="station_follows")
+    station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name="device_followers")
+    produit = models.CharField(max_length=50, choices=PRODUITS, blank=True, null=True)  # null => tous
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=["device", "station", "produit"], name="uniq_follow_device_station_product")
+        ]
+
+    def __str__(self):
+        p = self.produit if self.produit else "tous"
+        return f"{self.device} suit {self.station} ({p})"

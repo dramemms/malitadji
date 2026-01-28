@@ -24,7 +24,8 @@
       --safeLeft: env(safe-area-inset-left);
       --safeRight: env(safe-area-inset-right);
 
-      --topbarH: 64px;
+      /* ✅ Topbar compact mobile */
+      --topbarH: 52px;
 
       --brandGreen1:#22c55e;
       --brandGreen2:#16a34a;
@@ -54,46 +55,60 @@
       padding-right: var(--safeRight);
     }
 
-    /* ===== Topbar ===== */
+    /* ===== Topbar (compact mobile menu in black band) ===== */
     .topbar{
-      position:sticky;
-      top:0;
+      position: sticky;
+      top: 0;
       z-index: 4000;
       height: calc(var(--topbarH) + var(--safeTop));
-      padding: calc(10px + var(--safeTop)) 12px 10px;
+      padding: calc(8px + var(--safeTop)) 10px 8px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      background: linear-gradient(to right, rgba(2,6,23,.98), rgba(2,6,23,.82));
+      background: linear-gradient(to right, rgba(2,6,23,.98), rgba(2,6,23,.85));
       border-bottom: 1px solid rgba(15,23,42,.95);
       backdrop-filter: blur(10px);
     }
+
     .brand{display:flex;align-items:center;gap:10px;min-width:0}
     .logo{
-      width:32px;height:32px;border-radius:12px;
+      width:30px;height:30px;border-radius:12px;
       background: radial-gradient(circle at 30% 20%, var(--brandGreen1), var(--brandGreen2), var(--brandGreen3));
       display:grid;place-items:center;
       color:#022c22;font-weight:900;flex:0 0 auto;
     }
-    .brand-title{min-width:0;display:flex;flex-direction:column;gap:2px}
+    .brand-title{min-width:0;display:flex;flex-direction:column;gap:1px}
     .brand-title strong{
-      font-size:14px;font-weight:900;
+      font-size:13px;font-weight:900;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .brand-title span{
       font-size:11px;color:var(--muted);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-    .top-actions{display:flex;gap:8px;flex:0 0 auto}
+
+    /* ✅ Compact icon actions */
+    .top-actions{display:flex;gap:8px;flex:0 0 auto;align-items:center}
     .icon-btn{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(15,23,42,.65);
+      width:38px;height:38px;border-radius:12px;
+      border:1px solid rgba(148,163,184,.28);
+      background: rgba(15,23,42,.55);
       color: var(--text);
       display:grid;place-items:center;
-      cursor:pointer;font-weight:900;
+      cursor:pointer;
       user-select:none;
+      padding:0;
+    }
+    .icon-btn:active{ transform: translateY(1px); }
+    .icon-btn svg{ width:18px;height:18px; }
+
+    /* Desktop: un peu plus grand */
+    @media (min-width: 900px){
+      .icon-btn{ width:44px;height:44px;border-radius:14px; }
+      .icon-btn svg{ width:20px;height:20px; }
+      :root{ --topbarH: 64px; }
+      .brand-title strong{ font-size:14px; }
     }
 
     /* ===== Map ===== */
@@ -116,7 +131,7 @@
       position:absolute;
       z-index: 2500;
       left: 12px;
-      top: 12px;
+      bottom: calc(12px + var(--safeBottom));
       background: rgba(255,255,255,.96);
       color: #111827;
       border-radius: 14px;
@@ -129,17 +144,14 @@
     }
     .legend .head{
       display:flex;align-items:center;justify-content:space-between;
-      gap:10px;
-      font-weight:900;
-      margin-bottom:6px;
+      gap:10px;font-weight:900;margin-bottom:6px;
     }
     .legend .toggle{
       width:30px;height:30px;border-radius:10px;
       border:1px solid rgba(148,163,184,.45);
       background:#fff;
       display:grid;place-items:center;
-      cursor:pointer;
-      font-weight:900;
+      cursor:pointer;font-weight:900;
     }
     .legend .rows{display:block}
     .legend.collapsed .rows{display:none}
@@ -150,51 +162,111 @@
     .dot.bad{background:red}
     .dot.unk{background:gray}
 
-    /* ===== Mini buttons (discrets) ===== */
-    .mini-fab{
-      position:absolute;
-      right: 12px;
-      bottom: calc(12px + var(--safeBottom));
-      z-index: 3600;
-      display:flex;
-      gap:10px;
-      align-items:center;
+    /* Leaflet */
+    .leaflet-control-zoom a{
+      width:44px !important;
+      height:44px !important;
+      line-height:44px !important;
+      font-size:18px !important;
     }
-    .mini-fab .mini-btn{
-      height: 44px;
-      padding: 0 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,.35);
-      box-shadow: 0 10px 22px rgba(0,0,0,.22);
-      background: rgba(255,255,255,.96);
-      color:#0f172a;
-      font-weight: 900;
+    .leaflet-container{ touch-action: pan-x pan-y; }
+
+    .leaflet-bottom.leaflet-left{
+      margin-left: 8px;
+      margin-bottom: calc(12px + var(--safeBottom));
+    }
+
+    .leaflet-popup-content-wrapper{ border-radius: 14px !important; overflow:hidden; }
+    .leaflet-popup-content{ margin: 10px 12px !important; font-size: 14px !important; line-height: 1.35 !important; }
+    .leaflet-popup-close-button{ width:34px !important; height:34px !important; font-size:22px !important; }
+
+    /* ============================
+       ✅ Bouton 🔔 Suivi station
+       ============================ */
+    .follow-btn{
+      width:100%;
+      border:0;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
       cursor:pointer;
+      background:#0f2b7a;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-top:10px;
       user-select:none;
     }
-    .mini-fab .mini-btn.primary{
-      background: var(--brandBlue);
-      color:#fff;
-      border-color: rgba(255,255,255,.10);
+    .follow-btn.is-followed{
+      background:#0b1220;
+      border:1px solid #e5e7eb;
+      color:#111;
+    }
+    .follow-note{
+      margin-top:6px;
+      font-size:12px;
+      color:#475569;
+      line-height:1.2;
     }
 
-    /* ===== Mini panel (coin) ===== */
-    .mini-panel{
+    /* ============================
+       ✅ Bouton centrer carte (sous la topbar)
+       ============================ */
+    .center-map-btn{
       position:absolute;
       right: 12px;
-      bottom: calc(68px + var(--safeBottom));
-      z-index: 3700;
+      top: calc(var(--topbarH) + var(--safeTop) + 10px);
+      z-index: 4250;
 
-      width: min(340px, calc(100vw - 24px));
-      background: rgba(255,255,255,.98);
-      color:#111827;
-      border-radius: 16px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.30);
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+
       border: 1px solid rgba(148,163,184,.35);
+      background: rgba(255,255,255,.94);
+      color:#0f172a;
 
-      overflow:hidden;
-      display:none;
+      font-weight: 1000;
+      font-size: 20px;
+      cursor:pointer;
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+      user-select:none;
     }
+    .center-map-btn:active{ transform: translateY(1px); }
+
+    /* ============================
+       ✅ Mini panels (Filtres / Suivies / Recherche)
+       ============================ */
+.mini-panel{
+  position:absolute;
+  left: 12px;
+  right: 12px;
+
+  /* 🔑 clé du fix */
+  top: calc(var(--topbarH) + var(--safeTop) + 12px);
+  bottom: calc(12px + var(--safeBottom));
+
+  z-index: 4400;
+  background: rgba(255,255,255,.98);
+  color:#111827;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.30);
+  border: 1px solid rgba(148,163,184,.35);
+
+  overflow: hidden;
+  display:none;
+}
+.mini-panel.open{ display:block; }
+
+.mini-body{
+  padding: 10px 12px 12px;
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100% - 56px); /* header du panneau */
+}
+
     .mini-panel.open{ display:block; }
 
     .mini-head{
@@ -215,11 +287,11 @@
       display:grid;place-items:center;
       font-weight:900;
       cursor:pointer;
+      user-select:none;
     }
 
     .mini-body{
       padding: 10px 12px 12px;
-      max-height: min(60vh, 520px);
       overflow:auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -267,6 +339,7 @@
       font-weight: 900;
       cursor:pointer;
       border:none;
+      user-select:none;
     }
     .mini-actions .btn-apply{ background: var(--brandBlue); color:#fff; }
     .mini-actions .btn-reset{
@@ -275,7 +348,7 @@
       border:1px solid #d1d5db;
     }
 
-    /* ===== Panneau Suivies (séparé) ===== */
+    /* ===== Panneau Suivies ===== */
     .followed-wrap{ padding: 12px; }
     .followed-head{
       display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -324,6 +397,7 @@
       background: var(--brandBlue);
       color:#fff;
       flex:0 0 auto;
+      user-select:none;
     }
     .followed-empty{
       font-size: 13px;
@@ -334,77 +408,131 @@
       padding: 10px 12px;
     }
 
-    /* Leaflet */
-    .leaflet-control-zoom a{
-      width:44px !important;
-      height:44px !important;
-      line-height:44px !important;
-      font-size:18px !important;
-    }
-    .leaflet-container{ touch-action: pan-x pan-y; }
-
-    /* ✅ Zoom en bas à gauche : marge safe-area */
-    .leaflet-bottom.leaflet-left{
-      margin-left: 8px;
-      margin-bottom: calc(12px + var(--safeBottom));
-    }
-
-    .leaflet-popup-content-wrapper{ border-radius: 14px !important; overflow:hidden; }
-    .leaflet-popup-content{ margin: 10px 12px !important; font-size: 14px !important; line-height: 1.35 !important; }
-    .leaflet-popup-close-button{ width:34px !important; height:34px !important; font-size:22px !important; }
-
-    /* ============================
-       ✅ Bouton 🔔 Suivi station
-       ============================ */
-    .follow-btn{
-      width:100%;
-      border:0;
-      border-radius:12px;
-      padding:10px 12px;
-      font-weight:900;
-      cursor:pointer;
-      background:#0f2b7a;
-      color:#fff;
-      display:flex;
+    /* ✅ Petit badge compteur stations (optionnel) */
+    .pill{
+      display:inline-flex;
       align-items:center;
-      justify-content:center;
-      gap:10px;
-      margin-top:10px;
+      gap:6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(148,163,184,.28);
+      background: rgba(15,23,42,.40);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 12px;
       user-select:none;
     }
-    .follow-btn.is-followed{
-      background:#0b1220;
-      border:1px solid #e5e7eb;
-      color:#111;
+    @media (max-width: 520px){
+      .brand-title span{ display:none; }
+      .pill{ display:none; }
     }
-    .follow-note{
-      margin-top:6px;
-      font-size:12px;
-      color:#475569;
-      line-height:1.2;
+
+    /* ============================
+       ✅ Recherche - styles résultats
+       ============================ */
+    .search-item{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(148,163,184,.35);
+      background: rgba(241,245,249,.55);
+    }
+    .search-item .meta{ min-width:0; display:flex; flex-direction:column; gap:3px; }
+    .search-item .name{
+      font-weight:1000; font-size:13px; color:#0f172a;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 240px;
+    }
+    .search-item .sub{
+      font-size:12px; color:#475569;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 240px;
+    }
+    .search-item .go{
+      border:0;
+      border-radius: 12px;
+      padding: 10px 10px;
+      font-weight: 1000;
+      cursor:pointer;
+      background: var(--brandBlue);
+      color:#fff;
+      flex:0 0 auto;
+      user-select:none;
     }
   </style>
 </head>
 
 <body>
   <div class="app">
+    <!-- ✅ MENU COMPACT MOBILE DANS LA BANDE NOIRE -->
     <header class="topbar">
       <div class="brand">
         <div class="logo">M</div>
         <div class="brand-title">
-          <strong>Disponibilité du carburant</strong>
+          <strong>Carburant Mali</strong>
           <span>Bamako & Régions · Malitadji</span>
+        </div>
+        <div class="pill" title="Stations chargées">
+          <span id="stationCountTop">0</span> stations
         </div>
       </div>
 
       <div class="top-actions">
-        <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">⌖</button>
-        <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">⌂</a>
+        <!-- Recherche -->
+        <button class="icon-btn" id="searchBtn" title="Recherche" aria-label="Recherche">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Suivies -->
+        <button class="icon-btn" id="followedBtn" title="Stations suivies" aria-label="Suivies">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 17.3 6.2 20.5l1.1-6.5L2.6 9.9l6.6-1L12 3l2.8 5.9 6.6 1-4.7 4.1 1.1 6.5z"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Filtres -->
+        <button class="icon-btn" id="filtersBtn" title="Filtres" aria-label="Filtres">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M2 14h4m4-2h4m4 4h4"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Reset -->
+        <button class="icon-btn" id="resetTopBtn" title="Réinitialiser" aria-label="Reset">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-3-6.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Ma position -->
+        <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm9 4h-2.1A7 7 0 0 0 12 5.1V3h0v2.1A7 7 0 0 0 5.1 12H3v0h2.1A7 7 0 0 0 12 18.9V21h0v-2.1A7 7 0 0 0 18.9 12H21Z"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Accueil -->
+        <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </header>
 
     <div class="map-wrap">
       <div id="map"></div>
+
+      <!-- ✅ Bouton centrer la carte -->
+      <button class="center-map-btn" id="centerMapBtn" type="button" title="Centrer la carte" aria-label="Centrer la carte">⊕</button>
 
       <!-- Légende -->
       <div class="legend" id="legendBox">
@@ -414,20 +542,13 @@
         </div>
         <div class="rows">
           <div class="row"><span class="dot ok"></span>Disponible</div>
-          <div class="row"><span class="dot warn"></span>Faible</div>
+          <div class="row"><span class="dot warn"></span>Faible / Bas</div>
           <div class="row"><span class="dot bad"></span>Rupture</div>
           <div class="row"><span class="dot unk"></span>Inconnu</div>
         </div>
       </div>
 
-      <!-- Boutons discrets -->
-      <div class="mini-fab">
-        <button class="mini-btn" id="recenterBtn" type="button" aria-label="Recentrer">◎</button>
-        <button class="mini-btn" id="openFollowedBtn" type="button" aria-label="Mes stations suivies">★ Suivies</button>
-        <button class="mini-btn primary" id="toggleFiltersBtn" type="button" aria-label="Filtres">Filtres</button>
-      </div>
-
-      <!-- Panneau discret coin (Filtres) -->
+      <!-- Panneau (Filtres) -->
       <div class="mini-panel" id="miniFilters">
         <div class="mini-head">
           <div class="mini-title">Filtres</div>
@@ -463,9 +584,10 @@
             <label>Statut</label>
             <select name="statut" id="id_statut">
               <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
-              <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
-              <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible</option>
+              <option value="dispo"   {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
+              <option value="faible"  {% if statut_selected == "faible" %}selected{% endif %}>Faible (Bas + Faible)</option>
               <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
+              <option value="inconnu" {% if statut_selected == "inconnu" %}selected{% endif %}>Inconnu</option>
             </select>
 
             <div class="mini-count">
@@ -473,14 +595,15 @@
             </div>
 
             <div class="mini-actions">
-              <button type="submit" class="btn-apply">Appliquer</button>
-              <button type="button" id="resetBtn" class="btn-reset">Réinitialiser</button>
+              <button type="button" id="openFollowedFromFilters" class="btn-reset">★ Suivies</button>
+              <button type="submit" class="btn-apply">✔ Appliquer</button>
+              <button type="button" id="resetBtn" class="btn-reset">↺ Réinitialiser</button>
             </div>
           </form>
         </div>
       </div>
 
-      <!-- Panneau Suivies (séparé) -->
+      <!-- Panneau Suivies -->
       <div class="mini-panel" id="miniFollowed">
         <div class="mini-head">
           <div class="mini-title">Mes stations suivies</div>
@@ -501,6 +624,41 @@
         </div>
       </div>
 
+      <!-- ✅ Panneau Recherche (nouveau) -->
+      <div class="mini-panel" id="miniSearch">
+        <div class="mini-head">
+          <div class="mini-title">Recherche</div>
+          <button class="mini-close" id="closeSearchBtn" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <div class="mini-body">
+          <label>Nom de station</label>
+          <input id="searchInput" type="search" placeholder="Ex: Total, Shell, Station 15..."
+            style="width:100%;margin-top:6px;padding:10px 12px;border-radius:12px;border:1px solid rgba(148,163,184,.55);outline:none;font-size:14px;min-height:44px;background:#fff" />
+
+          <div style="display:flex;gap:10px;margin-top:10px;">
+            <button type="button" id="searchClearBtn"
+              style="flex:1;min-height:44px;border-radius:14px;font-size:13px;font-weight:900;cursor:pointer;border:1px solid #d1d5db;background:#f3f4f6;">
+              Effacer
+            </button>
+            <button type="button" id="searchGoBtn"
+              style="flex:1;min-height:44px;border-radius:14px;font-size:13px;font-weight:900;cursor:pointer;border:none;background:var(--brandBlue);color:#fff;">
+              Rechercher
+            </button>
+          </div>
+
+          <div class="mini-count" style="margin-top:12px;background:#f8fafc;border:1px solid rgba(148,163,184,.35)">
+            Résultats : <span id="searchCount">0</span>
+          </div>
+
+          <div id="searchResults" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;"></div>
+
+          <div style="margin-top:10px;font-size:12px;color:#475569;line-height:1.25">
+            Astuce: tape 2–3 lettres, puis clique sur une station.
+          </div>
+        </div>
+      </div>
+
     </div><!-- /map-wrap -->
   </div><!-- /app -->
 
@@ -516,6 +674,8 @@
       const pad = (n) => String(n).padStart(2, "0");
       return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
     }
+
+    // ✅ API renvoie: dispo / faible / rupture / inconnu
     function getColor(essence, gasoil) {
       const e = normalize(essence);
       const g = normalize(gasoil);
@@ -523,6 +683,15 @@
       if (e === 'faible'  || g === 'faible')  return 'orange';
       if (e === 'dispo'   || g === 'dispo')   return 'green';
       return 'gray';
+    }
+
+    function getGlobalStatus(essence, gasoil){
+      const e = normalize(essence);
+      const g = normalize(gasoil);
+      if (e === "rupture" || g === "rupture") return "rupture";
+      if (e === "faible"  || g === "faible")  return "faible";
+      if (e === "dispo"   || g === "dispo")   return "dispo";
+      return "inconnu";
     }
 
     // ✅ Suivi local (Web)
@@ -568,35 +737,32 @@
       markerById = {};
     }
 
-    // Panels open/close
+    // ✅ Panels open/close
     const miniFilters = document.getElementById('miniFilters');
     const miniFollowed = document.getElementById('miniFollowed');
-    const toggleBtn = document.getElementById('toggleFiltersBtn');
+    const miniSearch = document.getElementById('miniSearch');
+
     const closeMiniBtn = document.getElementById('closeMiniBtn');
-    const openFollowedBtn = document.getElementById('openFollowedBtn');
     const closeFollowedBtn = document.getElementById('closeFollowedBtn');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
 
     function openPanel(el){
       miniFilters.classList.remove('open');
       miniFollowed.classList.remove('open');
+      miniSearch.classList.remove('open');
       el.classList.add('open');
       try{ map.closePopup(); }catch(e){}
     }
+
     function closePanels(){
       miniFilters.classList.remove('open');
       miniFollowed.classList.remove('open');
+      miniSearch.classList.remove('open');
     }
 
-    toggleBtn.addEventListener('click', () => {
-      miniFilters.classList.contains('open') ? miniFilters.classList.remove('open') : openPanel(miniFilters);
-    });
     closeMiniBtn.addEventListener('click', () => miniFilters.classList.remove('open'));
-
-    openFollowedBtn.addEventListener('click', () => {
-      miniFollowed.classList.contains('open') ? miniFollowed.classList.remove('open') : openPanel(miniFollowed);
-      renderFollowedList();
-    });
     closeFollowedBtn.addEventListener('click', () => miniFollowed.classList.remove('open'));
+    closeSearchBtn.addEventListener('click', () => miniSearch.classList.remove('open'));
     map.on('click', () => closePanels());
 
     // Legend toggle
@@ -606,7 +772,7 @@
       document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
     });
 
-    // Geoloc
+    // Geoloc (topbar)
     document.getElementById('locBtn').addEventListener('click', () => {
       if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -618,14 +784,15 @@
     });
 
     // Data for dropdown dependencies (from Django context)
-    const cerclesData = JSON.parse('{{ cercles_json|escapejs }}');
-    const communesData = JSON.parse('{{ communes_json|escapejs }}');
+    const cerclesData  = JSON.parse('{{ cercles_json|default:"[]"|escapejs }}');
+    const communesData = JSON.parse('{{ communes_json|default:"[]"|escapejs }}');
 
     const regionSelect  = document.getElementById('id_region');
     const cercleSelect  = document.getElementById('id_cercle');
     const communeSelect = document.getElementById('id_commune');
     const statutSelect  = document.getElementById('id_statut');
     const stationCountEl = document.getElementById('stationCount');
+    const stationCountTopEl = document.getElementById('stationCountTop');
 
     const selectedRegion  = regionSelect.dataset.selected || "";
     const selectedCercle  = cercleSelect.dataset.selected || "";
@@ -737,7 +904,7 @@
       }
     });
 
-    // Delegation pour "Voir"
+    // Delegation pour "Voir" (suivies)
     document.addEventListener("click", (e) => {
       const go = e.target.closest("[data-go-station]");
       if(!go) return;
@@ -776,98 +943,136 @@
       if(statutVal) params.set("statut", statutVal);
 
       const q = params.toString();
-      return "/api/stations.geojson" + (q ? ("?" + q) : "");
+      return "/api/stations.geojson/" + (q ? ("?" + q) : "");
+    }
+
+    function updateCounts(){
+      stationCountEl.textContent = String(markers.length);
+      stationCountTopEl.textContent = String(markers.length);
     }
 
     async function reloadStationsFromApi({fitBounds = true} = {}){
-      clearMarkers();
+      try{
+        stationCountEl.textContent = "…";
+        stationCountTopEl.textContent = "…";
 
-      const url = buildGeoUrl();
-      const res = await fetch(url);
-      const geo = await res.json();
+        clearMarkers();
 
-      (geo.features || []).forEach((f) => {
-        const p = f.properties || {};
-        const coords = (f.geometry && f.geometry.coordinates) || null;
-        if(!coords || coords.length < 2) return;
+        const url = buildGeoUrl();
+        const res = await fetch(url);
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        const geo = await res.json();
 
-        const lng = Number(coords[0]);
-        const lat = Number(coords[1]);
+        const selectedStatut = statutSelect.value || "";
+        const selectedRegionId = regionSelect.value || "";
+        const selectedCercleId = cercleSelect.value || "";
+        const selectedCommuneId = communeSelect.value || "";
 
-        // ✅ FIX IMPORTANT
-        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        let features = (geo.features || []);
 
-        const color = getColor(p.essence, p.gasoil);
+        // ✅ fallback filtrage côté client
+        features = features.filter((f) => {
+          const p = f.properties || {};
 
-        const marker = L.circleMarker([lat, lng], {
-          radius: 8,
-          color: color,
-          fillColor: color,
-          fillOpacity: 0.9
-        }).addTo(map);
+          if (selectedRegionId && String(p.region_id) !== String(selectedRegionId)) return false;
+          if (selectedCercleId && String(p.cercle_id) !== String(selectedCercleId)) return false;
+          if (selectedCommuneId && String(p.commune_id) !== String(selectedCommuneId)) return false;
 
-        marker.__station = {
-          id: p.id,
-          nom: p.nom,
-          adresse: p.adresse,
-          region: p.region,
-          cercle: p.cercle,
-          commune: p.commune,
-          region_id: p.region_id,
-          cercle_id: p.cercle_id,
-          commune_id: p.commune_id,
-          essence_statut: p.essence,
-          gasoil_statut: p.gasoil,
-          last_update: p.derniere_maj,
-        };
+          if (selectedStatut){
+            const gs = getGlobalStatus(p.essence, p.gasoil);
+            if (gs !== selectedStatut) return false;
+          }
+          return true;
+        });
 
-        const s = marker.__station;
-        markerById[String(s.id)] = marker;
+        features.forEach((f) => {
+          const p = f.properties || {};
+          const coords = (f.geometry && f.geometry.coordinates) || null;
+          if(!coords || coords.length < 2) return;
 
-        const lastUpdateText = formatDateFR(s.last_update);
-        const followed = isFollowedLocal(s.id);
+          const lng = Number(coords[0]);
+          const lat = Number(coords[1]);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
-        marker.bindPopup(`
-          <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
-          <div style="color:#334155;font-size:13px">
-            <div><b>Région:</b> ${s.region || "-"}</div>
-            <div><b>Cercle:</b> ${s.cercle || "-"}</div>
-            <div><b>Commune:</b> ${s.commune || "-"}</div>
+          const color = getColor(p.essence, p.gasoil);
 
-            <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
-            <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
+          const marker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: color,
+            fillColor: color,
+            fillOpacity: 0.9
+          }).addTo(map);
 
-            <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
+          marker.__station = {
+            id: p.id,
+            nom: p.nom,
+            adresse: p.adresse,
+            region: p.region,
+            cercle: p.cercle,
+            commune: p.commune,
+            region_id: p.region_id,
+            cercle_id: p.cercle_id,
+            commune_id: p.commune_id,
+            essence_statut: p.essence,
+            gasoil_statut: p.gasoil,
+            last_update: p.derniere_maj,
+          };
 
-            <button
-              type="button"
-              class="follow-btn ${followed ? "is-followed" : ""}"
-              data-station-id="${s.id}"
-              data-followed="${followed ? "1" : "0"}"
-            >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
+          const s = marker.__station;
+          markerById[String(s.id)] = marker;
 
-            <div class="follow-note">Notifications web: enregistrées localement. (Push réservé à l'app mobile)</div>
+          const lastUpdateText = formatDateFR(s.last_update);
+          const followed = isFollowedLocal(s.id);
 
-            <div style="margin-top:10px">
-              <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
-                🔐 Espace gérant
-              </a>
+          marker.bindPopup(`
+            <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
+            <div style="color:#334155;font-size:13px">
+              <div><b>Région:</b> ${s.region || "-"}</div>
+              <div><b>Cercle:</b> ${s.cercle || "-"}</div>
+              <div><b>Commune:</b> ${s.commune || "-"}</div>
+
+              <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
+              <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
+
+              <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
+
+              <button
+                type="button"
+                class="follow-btn ${followed ? "is-followed" : ""}"
+                data-station-id="${s.id}"
+                data-followed="${followed ? "1" : "0"}"
+              >${followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station"}</button>
+
+              <div class="follow-note">Notifications web: enregistrées localement. (Push réservé à l'app mobile)</div>
+
+              <div style="margin-top:10px">
+                <a href="/manager/" style="display:inline-block;padding:10px 12px;border-radius:12px;background:#1e3a8a;color:#fff;font-weight:900;text-decoration:none">
+                  🔐 Espace gérant
+                </a>
+              </div>
             </div>
-          </div>
-        `, { maxWidth: 280 });
+          `, { maxWidth: 280 });
 
-        markers.push(marker);
-        boundsAll.push([lat, lng]);
-      });
+          markers.push(marker);
+          boundsAll.push([lat, lng]);
+        });
 
-      stationCountEl.textContent = String(markers.length);
+        updateCounts();
 
-      if(fitBounds && boundsAll.length > 0){
-        map.fitBounds(boundsAll, { padding:[40,40] });
+        if(fitBounds && boundsAll.length > 0){
+          map.fitBounds(boundsAll, { padding:[40,40] });
+        }
+        setTimeout(() => map.invalidateSize(), 250);
+
+        if(miniFollowed.classList.contains("open")) renderFollowedList();
+        // ✅ si recherche ouverte, rafraîchir résultats (liste à jour)
+        if(miniSearch.classList.contains("open")) renderSearchResults();
+      }catch(err){
+        console.error(err);
+        stationCountEl.textContent = "0";
+        stationCountTopEl.textContent = "0";
+        alert("Erreur lors du chargement des stations. Vérifie /api/stations.geojson/");
       }
-      setTimeout(() => map.invalidateSize(), 250);
-
-      if(miniFollowed.classList.contains("open")) renderFollowedList();
     }
 
     // Dropdown dependencies
@@ -903,7 +1108,7 @@
         cercleSelect.value = cercleId;
       }
 
-      const cercle = cerclesData.find(ce => String(ce.id) === cercleId);
+      const cercle = cerclesData.find(ce => String(ce.id) === String(cercleId));
       if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
         regionSelect.value = String(cercle.region_id);
         populateCercles(regionSelect.value, true);
@@ -912,7 +1117,7 @@
       populateCommunes(regionSelect.value || "", cercleId, true);
     });
 
-    // ✅ Apply / Reset / Recenter
+    // ✅ Apply / Reset (panel filtres)
     document.getElementById('filtersForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       miniFilters.classList.remove('open');
@@ -931,16 +1136,113 @@
       await reloadStationsFromApi({fitBounds: true});
     });
 
-    document.getElementById('recenterBtn').addEventListener('click', () => {
-      if(boundsAll.length === 0){
-        alert("Aucune station à afficher.");
-        return;
-      }
-      map.fitBounds(boundsAll, { padding: [50, 50] });
-      closePanels();
+    // ✅ Bouton "★ Suivies" depuis le panneau Filtres
+    document.getElementById("openFollowedFromFilters").addEventListener("click", () => {
+      miniFilters.classList.remove("open");
+      openPanel(miniFollowed);
+      renderFollowedList();
     });
 
-    // ✅ Initial load (IMPORTANT)
+    // ✅ MENU TOPBAR wiring (compact)
+    document.getElementById("filtersBtn").addEventListener("click", () => openPanel(miniFilters));
+    document.getElementById("followedBtn").addEventListener("click", () => { openPanel(miniFollowed); renderFollowedList(); });
+    document.getElementById("resetTopBtn").addEventListener("click", () => document.getElementById("resetBtn").click());
+
+    // ============================
+    // ✅ Recherche (mini panneau)
+    // ============================
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    const searchCount = document.getElementById("searchCount");
+    const searchGoBtn = document.getElementById("searchGoBtn");
+    const searchClearBtn = document.getElementById("searchClearBtn");
+
+    function stationSearchText(s){
+      const parts = [];
+      if(s.nom) parts.push(s.nom);
+      if(s.commune) parts.push(s.commune);
+      if(s.cercle) parts.push(s.cercle);
+      if(s.region) parts.push(s.region);
+      return normalize(parts.join(" "));
+    }
+
+    function renderSearchResults(){
+      const q = normalize(searchInput.value);
+      const all = Object.values(markerById)
+        .map(m => m.__station)
+        .filter(Boolean);
+
+      let filtered = all;
+      if(q.length >= 2){
+        filtered = all.filter(s => stationSearchText(s).includes(q));
+      }
+
+      const max = 30;
+      const shown = filtered.slice(0, max);
+
+      searchCount.textContent = String(filtered.length);
+
+      if(!shown.length){
+        searchResults.innerHTML = `<div class="followed-empty">Aucun résultat.</div>`;
+        return;
+      }
+
+      searchResults.innerHTML = shown.map(s => `
+        <div class="search-item">
+          <div class="meta">
+            <div class="name">${s.nom}</div>
+            <div class="sub">${stationSubLine(s) || "-"}</div>
+          </div>
+          <button class="go" type="button" data-search-go="${s.id}">Voir</button>
+        </div>
+      `).join("");
+    }
+
+    function openSearch(){
+      openPanel(miniSearch);
+      setTimeout(() => searchInput.focus(), 60);
+      renderSearchResults();
+    }
+
+    document.getElementById("searchBtn").addEventListener("click", openSearch);
+
+    searchGoBtn.addEventListener("click", renderSearchResults);
+    searchClearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      renderSearchResults();
+      searchInput.focus();
+    });
+
+    // tape -> recherche auto
+    searchInput.addEventListener("input", () => {
+      clearTimeout(window.__searchT);
+      window.__searchT = setTimeout(renderSearchResults, 120);
+    });
+
+    // clic sur résultat -> centre + popup
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-search-go]");
+      if(!btn) return;
+      const id = String(btn.getAttribute("data-search-go"));
+      const m = markerById[id];
+      if(!m) return;
+      miniSearch.classList.remove("open");
+      map.setView(m.getLatLng(), 15, { animate: true });
+      m.openPopup();
+    });
+
+    // ✅ Bouton "centrer carte"
+    const DEFAULT_CENTER = [12.65, -8.0];
+    const DEFAULT_ZOOM = 6;
+    document.getElementById("centerMapBtn").addEventListener("click", () => {
+      if(boundsAll.length > 0){
+        map.fitBounds(boundsAll, { padding:[40,40] });
+      }else{
+        map.setView(DEFAULT_CENTER, DEFAULT_ZOOM, { animate:true });
+      }
+    });
+
+    // ✅ Initial load
     document.addEventListener('DOMContentLoaded', async function() {
       if(selectedRegion) regionSelect.value = selectedRegion;
       populateCercles(selectedRegion, true);

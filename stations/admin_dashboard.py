@@ -1,7 +1,8 @@
 # stations/admin_dashboard.py
 from django.contrib import admin
 from django.db.models import Count
-from stations.models import Station, Stock
+from .models import Station, Stock
+
 
 
 class MalitadjiAdminSite(admin.AdminSite):

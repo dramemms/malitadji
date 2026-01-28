@@ -1,162 +1,239 @@
+<!-- stations/templates/stations/manager_dashboard.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Dashboard gérant - Carburant</title>
+  <title>Dashboard gérant – Malitadji</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, sans-serif; margin: 20px; }
-    .container { max-width: 900px; margin: 0 auto; }
+    :root{
+      --bg:#0b1220;
+      --panel:#0f172a;
+      --card:#111c33;
+      --line: rgba(148,163,184,.22);
+      --text:#e5e7eb;
+      --muted:#9ca3af;
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
+      --ok:#16a34a;
+      --warn:#f59e0b;
+      --bad:#dc2626;
+      --info:#2563eb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg, var(--bg), #070b14 70%);
+      color:var(--text);
+      padding:18px;
+    }
+    .container{max-width:980px;margin:0 auto}
+    a{color:inherit}
+
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;margin-bottom:14px;
+    }
+    h1{margin:0;font-size:20px}
+    .sub{color:var(--muted);font-size:13px;margin-top:2px}
+
+    .btn{
+      padding:10px 14px;border-radius:999px;border:1px solid var(--line);
+      background:#0b1b3a;color:#fff;font-weight:700;cursor:pointer;
+    }
+    .btn:hover{filter:brightness(1.06)}
+    .btn-danger{background:#3a0b0b}
+    .btn-primary{background:#1e3a8a;border-color:rgba(255,255,255,.12)}
+
+    .card{
+      background:rgba(17,28,51,.85);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      margin-bottom:14px;
     }
 
-    .message {
-      padding: 10px 14px;
-      background: #dcfce7;
-      border: 1px solid #16a34a;
-      border-radius: 6px;
-      margin-bottom: 15px;
+    .row{display:grid;grid-template-columns: 1fr 1fr; gap:12px}
+    @media(max-width:720px){ .row{grid-template-columns:1fr} }
+
+    label{display:block;font-weight:800;margin-bottom:6px;font-size:13px;color:#dbeafe}
+    select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(148,163,184,.25);
+      background:#0b1220;
+      color:var(--text);
+      outline:none;
     }
 
-    .error { background: #fee2e2; border-color: #b91c1c; }
-
-    .station-select { margin-bottom: 20px; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
+    .message{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(22,163,74,.35);
+      background:rgba(22,163,74,.15);
+      margin-bottom:10px;
     }
-
-    th, td {
-      border: 1px solid #e5e7eb;
-      padding: 6px 8px;
-      font-size: 14px;
+    .message.error{
+      border-color: rgba(220,38,38,.35);
+      background: rgba(220,38,38,.14);
     }
+    .message .small{color:var(--muted);font-size:12px;margin-top:4px}
 
-    th {
-      background: #f3f4f6;
-      text-align: left;
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:10px 10px;border-bottom:1px solid rgba(148,163,184,.18);font-size:14px}
+    th{color:#c7d2fe;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.22);
+      font-weight:800;font-size:12px;
     }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--muted)}
+    .b-plein{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.15)}
+    .b-plein .dot{background:var(--ok)}
+    .b-faible{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.15)}
+    .b-faible .dot{background:var(--warn)}
+    .b-bas{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.10)}
+    .b-bas .dot{background:var(--warn)}
+    .b-rupture{border-color:rgba(220,38,38,.4);background:rgba(220,38,38,.16)}
+    .b-rupture .dot{background:var(--bad)}
+    .b-inc{border-color:rgba(37,99,235,.35);background:rgba(37,99,235,.12)}
+    .b-inc .dot{background:var(--info)}
 
-    .form-row { margin-bottom: 8px; }
-
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    select {
-      width: 100%;
-      padding: 4px 6px;
-      border-radius: 4px;
-      border: 1px solid #d1d5db;
-    }
-
-    button {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: none;
-      background: #1e3a8a;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .logout-btn {
-      background: #b91c1c;
+    .muted{color:var(--muted)}
+    .footer{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:13px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
 
-<div class="container">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div>
+        <h1>Dashboard gérant</h1>
+        <div class="sub">Mise à jour des stocks & notifications push</div>
+      </div>
 
-  <!-- 🔝 BARRE SUPÉRIEURE -->
-  <div class="topbar">
-    <h1>Dashboard gérant</h1>
-
-    <form method="post" action="{% url 'manager_logout' %}">
-      {% csrf_token %}
-      <button type="submit" class="logout-btn">Déconnexion</button>
-    </form>
-  </div>
-
-  {% if message %}
-    <div class="message">{{ message }}</div>
-  {% endif %}
-
-  {% if is_super %}
-    <div class="station-select">
-      <form method="get">
-        <label for="id_station_select">Station :</label>
-        <select id="id_station_select" name="station" onchange="this.form.submit()">
-          {% for s in stations_list %}
-            <option value="{{ s.id }}" {% if s.id == station.id %}selected{% endif %}>
-              {{ s.nom }} – {{ s.commune }}
-            </option>
-          {% endfor %}
-        </select>
+      <form method="post" action="{% url 'manager_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Déconnexion</button>
       </form>
     </div>
-  {% else %}
-    <p><strong>Station :</strong> {{ station.nom }} ({{ station.commune }})</p>
-  {% endif %}
 
-  <h2>Mise à jour du stock – {{ station.nom }}</h2>
+    {% if message %}
+      <div class="message {% if message_error %}error{% endif %}">
+        {{ message }}
+        {% if push_info %}
+          <div class="small">
+            🔔 Push: sent={{ push_info.sent }} · fail={{ push_info.fail }} · tokens={{ push_info.token_count }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
 
-  <form method="post" action="?station={{ station.id }}">
-    {% csrf_token %}
-
-    <div class="form-row">
-      <label for="id_produit">Produit</label>
-      {{ form.produit }}
+    <!-- Station selector (superuser) -->
+    <div class="card">
+      {% if is_super %}
+        <form method="get">
+          <label for="id_station_select">Station</label>
+          <select id="id_station_select" name="station" onchange="this.form.submit()">
+            {% for s in stations_list %}
+              <option value="{{ s.id }}" {% if s.id == station.id %}selected{% endif %}>
+                {{ s.nom }} – {{ s.commune }}
+              </option>
+            {% endfor %}
+          </select>
+        </form>
+      {% else %}
+        <div>
+          <div class="muted" style="font-size:12px">Station</div>
+          <div style="font-weight:900;font-size:16px">{{ station.nom }}</div>
+          <div class="muted">{{ station.commune }}</div>
+        </div>
+      {% endif %}
     </div>
 
-    <div class="form-row">
-      <label for="id_niveau">Niveau</label>
-      {{ form.niveau }}
+    <!-- Form update -->
+    <div class="card">
+      <h2 style="margin:0 0 10px 0;font-size:16px">Mettre à jour le stock</h2>
+
+      <form method="post" action="?station={{ station.id }}">
+        {% csrf_token %}
+
+        <div class="row">
+          <div>
+            <label for="id_produit">Produit</label>
+            {{ form.produit }}
+          </div>
+          <div>
+            <label for="id_niveau">Niveau</label>
+            {{ form.niveau }}
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <span class="muted" style="font-size:12px">
+            ℹ️ La notification push est déclenchée quand le niveau devient <strong>Plein</strong>.
+          </span>
+        </div>
+      </form>
     </div>
 
-    <button type="submit">Enregistrer</button>
-  </form>
+    <!-- Current stocks -->
+    <div class="card">
+      <h2 style="margin:0 0 6px 0;font-size:16px">Stocks actuels</h2>
+      <div class="muted" style="font-size:12px">Dernières mises à jour pour la station</div>
 
-  <h2>Stocks actuels</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Niveau</th>
+            <th>Dernière mise à jour</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for stock in stocks %}
+            <tr>
+              <td style="font-weight:800">{{ stock.produit }}</td>
+              <td>
+                {% with n=stock.niveau|lower %}
+                  {% if "plein" in n %}
+                    <span class="badge b-plein"><span class="dot"></span>Plein</span>
+                  {% elif "rupture" in n %}
+                    <span class="badge b-rupture"><span class="dot"></span>Rupture</span>
+                  {% elif "faible" in n %}
+                    <span class="badge b-faible"><span class="dot"></span>Faible</span>
+                  {% elif "bas" in n %}
+                    <span class="badge b-bas"><span class="dot"></span>Bas</span>
+                  {% else %}
+                    <span class="badge b-inc"><span class="dot"></span>{{ stock.niveau }}</span>
+                  {% endif %}
+                {% endwith %}
+              </td>
+              <td class="muted">{{ stock.date_maj|date:"d/m/Y H:i" }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3" class="muted"><em>Aucun stock encore enregistré.</em></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Produit</th>
-        <th>Niveau</th>
-        <th>Dernière mise à jour</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for stock in stocks %}
-        <tr>
-          <td>{{ stock.produit }}</td>
-          <td>{{ stock.niveau }}</td>
-          <td>{{ stock.date_maj|date:"d/m/Y H:i" }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="3"><em>Aucun stock encore enregistré.</em></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      <div class="footer">
+        🔁 <a href="/carte/">Retour à la carte</a>
+      </div>
+    </div>
 
-  <p style="margin-top: 20px;">
-    🔁 <a href="/carte/">Retour à la carte</a>
-  </p>
-
-</div>
-
+  </div>
 </body>
 </html>
