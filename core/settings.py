@@ -19,7 +19,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "192.168.88.197",
-    "10.95.122.247",   # ✅ IP PC sur hotspot
+    "10.95.122.247",
+    "192.168.88.195"   # ✅ IP PC sur hotspot
     "0.0.0.0",         # ✅ utile en dev
 ]
 
