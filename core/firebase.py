@@ -1,14 +1,23 @@
-# core/firebase.py
+import os
+import json
 import firebase_admin
 from firebase_admin import credentials
-from django.conf import settings
 
-def init_firebase():
-    """
-    Initialise Firebase Admin une seule fois.
-    """
+def init_firebase_admin():
     if firebase_admin._apps:
-        return
+        return True
 
-    cred = credentials.Certificate(str(settings.FIREBASE_SERVICE_ACCOUNT_FILE))
-    firebase_admin.initialize_app(cred)
+    raw = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
+    if not raw:
+        print("⚠️ FIREBASE_SERVICE_ACCOUNT_JSON manquant -> notifications désactivées")
+        return False
+
+    try:
+        data = json.loads(raw)
+        cred = credentials.Certificate(data)
+        firebase_admin.initialize_app(cred)
+        print("✅ Firebase Admin initialisé OK (env json)")
+        return True
+    except Exception as e:
+        print(f"⚠️ Firebase Admin init FAILED: {e}")
+        return False
