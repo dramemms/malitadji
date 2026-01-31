@@ -3,7 +3,19 @@ import os
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-FIREBASE_SERVICE_ACCOUNT_FILE = BASE_DIR / "core" / "firebase_service_account.json"
+FBASE_DIR = Path(__file__).resolve().parent.parent
+
+# --- Firebase credentials (Render Secret File) ---
+# Sur Render, les "Secret Files" sont montés dans /etc/secrets/
+FIREBASE_SERVICE_ACCOUNT_FILE = Path(
+    os.getenv("FIREBASE_CREDENTIALS_PATH", "/etc/secrets/firebase_service_account.json")
+)
+
+# Fallback local (optionnel) si tu as le fichier en dev local (NE PAS COMMIT)
+_local = BASE_DIR / "core" / "firebase_service_account.json"
+if not FIREBASE_SERVICE_ACCOUNT_FILE.exists() and _local.exists():
+    FIREBASE_SERVICE_ACCOUNT_FILE = _local
+
 
 # =========================
 # SECURITY
