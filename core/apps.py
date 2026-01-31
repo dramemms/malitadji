@@ -7,9 +7,9 @@ class CoreConfig(AppConfig):
 
     def ready(self):
         # Init Firebase au démarrage Django
-        from .firebase import init_firebase
         try:
-            init_firebase()
+            from .firebase import init_firebase_admin
+            init_firebase_admin()
         except Exception as e:
-            # On évite de casser tout Django si le JSON manque en dev
+            # Ne pas casser Django si Firebase n'est pas dispo (dev / config)
             print("⚠️ Firebase init error:", e)
