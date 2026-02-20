@@ -18,3 +18,8 @@ firebase_service_account.json
 # OS
 .DS_Store
 Thumbs.db
+
+*.sqlite3
+backup_*.json
+*.geojson
+venv/
