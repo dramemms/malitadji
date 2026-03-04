@@ -180,6 +180,45 @@
     .leaflet-popup-content{ margin: 10px 12px !important; font-size: 14px !important; line-height: 1.35 !important; }
     .leaflet-popup-close-button{ width:34px !important; height:34px !important; font-size:22px !important; }
 
+    /* ✅ Leaflet parfois override les liens */
+    .leaflet-popup-content a{ color: inherit; }
+
+    /* ============================
+       ✅ Google Maps buttons (popup) - lisibilité
+       ============================ */
+    .gmaps-row{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .gmaps-btn{
+      flex:1;
+      min-width: 140px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:900;
+      text-decoration:none !important;
+      color:#ffffff !important;          /* ✅ force texte blanc */
+      line-height:1;
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      user-select:none;
+    }
+    .gmaps-btn *{ color:#ffffff !important; } /* ✅ force emoji/icone */
+    .gmaps-btn.dir{ background:#2563eb; }
+    .gmaps-btn.open{ background:#0f172a; }
+    .gmaps-btn:hover{ filter: brightness(1.05); }
+    .gmaps-btn:focus{
+      outline: 3px solid rgba(37,99,235,.35);
+      outline-offset: 2px;
+    }
+    .gmaps-btn:active{ transform: translateY(1px); }
+
     /* ============================
        ✅ Bouton 🔔 Suivi station
        ============================ */
@@ -202,7 +241,7 @@
     .follow-btn.is-followed{
       background:#0b1220;
       border:1px solid #e5e7eb;
-      color:#111;
+      color:#ffffff; /* ✅ reste lisible */
     }
     .follow-note{
       margin-top:6px;
@@ -239,34 +278,24 @@
     /* ============================
        ✅ Mini panels (Filtres / Suivies / Recherche)
        ============================ */
-.mini-panel{
-  position:absolute;
-  left: 12px;
-  right: 12px;
+    .mini-panel{
+      position:absolute;
+      left: 12px;
+      right: 12px;
 
-  /* 🔑 clé du fix */
-  top: calc(var(--topbarH) + var(--safeTop) + 12px);
-  bottom: calc(12px + var(--safeBottom));
+      top: calc(var(--topbarH) + var(--safeTop) + 12px);
+      bottom: calc(12px + var(--safeBottom));
 
-  z-index: 4400;
-  background: rgba(255,255,255,.98);
-  color:#111827;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.30);
-  border: 1px solid rgba(148,163,184,.35);
+      z-index: 4400;
+      background: rgba(255,255,255,.98);
+      color:#111827;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.30);
+      border: 1px solid rgba(148,163,184,.35);
 
-  overflow: hidden;
-  display:none;
-}
-.mini-panel.open{ display:block; }
-
-.mini-body{
-  padding: 10px 12px 12px;
-  overflow:auto;
-  -webkit-overflow-scrolling: touch;
-  height: calc(100% - 56px); /* header du panneau */
-}
-
+      overflow: hidden;
+      display:none;
+    }
     .mini-panel.open{ display:block; }
 
     .mini-head{
@@ -294,6 +323,7 @@
       padding: 10px 12px 12px;
       overflow:auto;
       -webkit-overflow-scrolling: touch;
+      height: calc(100% - 56px);
     }
 
     .mini-body label{
@@ -718,6 +748,18 @@
       btn.textContent = followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station";
     }
 
+    // ✅ Google Maps URLs (direction + open)
+    function googleDirectionsUrl(lat, lng, label){
+      const dest = `${lat},${lng}`;
+      const query = encodeURIComponent(label || dest);
+      // directions (point B)
+      return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}&destination_place_id=&travelmode=driving`;
+    }
+    function googleOpenUrl(lat, lng, label){
+      const q = label ? `${label} (${lat},${lng})` : `${lat},${lng}`;
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+    }
+
     // Map init
     var map = L.map('map', { zoomControl: false }).setView([12.65, -8.0], 6);
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
@@ -1024,6 +1066,9 @@
           const lastUpdateText = formatDateFR(s.last_update);
           const followed = isFollowedLocal(s.id);
 
+          const dirUrl = googleDirectionsUrl(lat, lng, s.nom);
+          const openUrl = googleOpenUrl(lat, lng, s.nom);
+
           marker.bindPopup(`
             <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
             <div style="color:#334155;font-size:13px">
@@ -1035,6 +1080,16 @@
               <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
 
               <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
+
+              <!-- ✅ Google Maps -->
+              <div class="gmaps-row">
+                <a class="gmaps-btn dir" href="${dirUrl}" target="_blank" rel="noopener">
+                  🧭 Itinéraire
+                </a>
+                <a class="gmaps-btn open" href="${openUrl}" target="_blank" rel="noopener">
+                  📍 Ouvrir Maps
+                </a>
+              </div>
 
               <button
                 type="button"
@@ -1051,7 +1106,7 @@
                 </a>
               </div>
             </div>
-          `, { maxWidth: 280 });
+          `, { maxWidth: 300 });
 
           markers.push(marker);
           boundsAll.push([lat, lng]);
@@ -1065,7 +1120,6 @@
         setTimeout(() => map.invalidateSize(), 250);
 
         if(miniFollowed.classList.contains("open")) renderFollowedList();
-        // ✅ si recherche ouverte, rafraîchir résultats (liste à jour)
         if(miniSearch.classList.contains("open")) renderSearchResults();
       }catch(err){
         console.error(err);
@@ -1213,13 +1267,11 @@
       searchInput.focus();
     });
 
-    // tape -> recherche auto
     searchInput.addEventListener("input", () => {
       clearTimeout(window.__searchT);
       window.__searchT = setTimeout(renderSearchResults, 120);
     });
 
-    // clic sur résultat -> centre + popup
     document.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-search-go]");
       if(!btn) return;
