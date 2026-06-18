@@ -56,10 +56,12 @@ class Commune(models.Model):
 class Station(models.Model):
     nom = models.CharField(max_length=200)
     commune = models.ForeignKey(
-        Commune,
-        on_delete=models.CASCADE,
-        related_name="stations",
-    )
+    Commune,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name="stations",
+)
     adresse = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
