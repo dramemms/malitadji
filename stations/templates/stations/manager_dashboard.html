@@ -234,6 +234,32 @@
       {% endif %}
     </div>
 
+  <div class="card">
+  <h2>📊 Statistiques de la station</h2>
+
+  <div class="row">
+
+    <div style="
+        background:#166534;
+        padding:5px;
+        border-radius:12px;
+        text-align:center;
+    ">
+      <div class="muted">Application mobile</div>
+
+      <div style="
+          font-size:34px;
+          font-weight:bold;
+          margin-top:2px;
+      ">
+        {{ device_followers_count|default:0 }}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
     <div class="card">
       <h2>Modifier les informations de la station</h2>
 

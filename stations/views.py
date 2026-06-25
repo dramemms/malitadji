@@ -387,17 +387,44 @@ def manager_dashboard(request):
 
     stocks = Stock.objects.filter(station=station).order_by("produit")
 
-    return render(request, "stations/manager_dashboard.html", {
-        "station": station,
-        "stations_list": stations_queryset if is_super else None,
-        "is_super": is_super,
-        "form": form,
-        "stocks": stocks,
-        "message": message,
-        "message_error": message_error,
-        "push_info": push_info,
-        "search": search,
-        "regions": Region.objects.order_by("nom"),
-        "cercles": Cercle.objects.select_related("region").order_by("nom"),
-        "communes": Commune.objects.select_related("cercle", "cercle__region").order_by("nom"),
-    })
+    # ==========================
+    # Statistiques des abonnés
+    # ==========================
+    followers_count = StationFollow.objects.filter(
+        station=station,
+        is_active=True
+    ).count()
+
+    device_followers_count = DeviceFollow.objects.filter(
+        station=station,
+        is_active=True
+    ).count()
+
+    followers_total = followers_count + device_followers_count
+
+    return render(
+        request,
+        "stations/manager_dashboard.html",
+        {
+            "station": station,
+            "stations_list": stations_queryset if is_super else None,
+            "is_super": is_super,
+            "form": form,
+            "stocks": stocks,
+            "message": message,
+            "message_error": message_error,
+            "push_info": push_info,
+            "search": search,
+            "regions": Region.objects.order_by("nom"),
+            "cercles": Cercle.objects.select_related("region").order_by("nom"),
+            "communes": Commune.objects.select_related(
+                "cercle",
+                "cercle__region"
+            ).order_by("nom"),
+
+            # Statistiques abonnés
+            "followers_total": followers_total,
+            "followers_count": followers_count,
+            "device_followers_count": device_followers_count,
+        },
+    )
