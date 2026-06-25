@@ -15,18 +15,13 @@
       --line: rgba(148,163,184,.28);
       --text:#e5e7eb;
       --muted:#9ca3af;
-
       --card:#ffffff;
       --cardText:#111827;
-
       --safeTop: env(safe-area-inset-top);
       --safeBottom: env(safe-area-inset-bottom);
       --safeLeft: env(safe-area-inset-left);
       --safeRight: env(safe-area-inset-right);
-
-      /* ✅ Topbar compact mobile */
       --topbarH: 52px;
-
       --brandGreen1:#22c55e;
       --brandGreen2:#16a34a;
       --brandGreen3:#15803d;
@@ -55,7 +50,6 @@
       padding-right: var(--safeRight);
     }
 
-    /* ===== Topbar (compact mobile menu in black band) ===== */
     .topbar{
       position: sticky;
       top: 0;
@@ -88,7 +82,6 @@
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
 
-    /* ✅ Compact icon actions */
     .top-actions{display:flex;gap:8px;flex:0 0 auto;align-items:center}
     .icon-btn{
       width:38px;height:38px;border-radius:12px;
@@ -103,7 +96,6 @@
     .icon-btn:active{ transform: translateY(1px); }
     .icon-btn svg{ width:18px;height:18px; }
 
-    /* Desktop: un peu plus grand */
     @media (min-width: 900px){
       .icon-btn{ width:44px;height:44px;border-radius:14px; }
       .icon-btn svg{ width:20px;height:20px; }
@@ -111,7 +103,6 @@
       .brand-title strong{ font-size:14px; }
     }
 
-    /* ===== Map ===== */
     .map-wrap{
       position:relative;
       flex:1;
@@ -126,7 +117,6 @@
       z-index: 1;
     }
 
-    /* ===== Legend (compact + collapsible) ===== */
     .legend{
       position:absolute;
       z-index: 2500;
@@ -162,7 +152,6 @@
     .dot.bad{background:red}
     .dot.unk{background:gray}
 
-    /* Leaflet */
     .leaflet-control-zoom a{
       width:44px !important;
       height:44px !important;
@@ -179,13 +168,8 @@
     .leaflet-popup-content-wrapper{ border-radius: 14px !important; overflow:hidden; }
     .leaflet-popup-content{ margin: 10px 12px !important; font-size: 14px !important; line-height: 1.35 !important; }
     .leaflet-popup-close-button{ width:34px !important; height:34px !important; font-size:22px !important; }
-
-    /* ✅ Leaflet parfois override les liens */
     .leaflet-popup-content a{ color: inherit; }
 
-    /* ============================
-       ✅ Google Maps buttons (popup) - lisibilité
-       ============================ */
     .gmaps-row{
       display:flex;
       gap:10px;
@@ -203,13 +187,13 @@
       border-radius:14px;
       font-weight:900;
       text-decoration:none !important;
-      color:#ffffff !important;          /* ✅ force texte blanc */
+      color:#ffffff !important;
       line-height:1;
       box-shadow: 0 10px 18px rgba(0,0,0,.12);
       border: 1px solid rgba(255,255,255,.18);
       user-select:none;
     }
-    .gmaps-btn *{ color:#ffffff !important; } /* ✅ force emoji/icone */
+    .gmaps-btn *{ color:#ffffff !important; }
     .gmaps-btn.dir{ background:#2563eb; }
     .gmaps-btn.open{ background:#0f172a; }
     .gmaps-btn:hover{ filter: brightness(1.05); }
@@ -219,9 +203,6 @@
     }
     .gmaps-btn:active{ transform: translateY(1px); }
 
-    /* ============================
-       ✅ Bouton 🔔 Suivi station
-       ============================ */
     .follow-btn{
       width:100%;
       border:0;
@@ -241,7 +222,7 @@
     .follow-btn.is-followed{
       background:#0b1220;
       border:1px solid #e5e7eb;
-      color:#ffffff; /* ✅ reste lisible */
+      color:#ffffff;
     }
     .follow-note{
       margin-top:6px;
@@ -250,23 +231,17 @@
       line-height:1.2;
     }
 
-    /* ============================
-       ✅ Bouton centrer carte (sous la topbar)
-       ============================ */
     .center-map-btn{
       position:absolute;
       right: 12px;
       top: calc(var(--topbarH) + var(--safeTop) + 10px);
       z-index: 4250;
-
       width: 52px;
       height: 52px;
       border-radius: 18px;
-
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(255,255,255,.94);
       color:#0f172a;
-
       font-weight: 1000;
       font-size: 20px;
       cursor:pointer;
@@ -275,24 +250,18 @@
     }
     .center-map-btn:active{ transform: translateY(1px); }
 
-    /* ============================
-       ✅ Mini panels (Filtres / Suivies / Recherche)
-       ============================ */
     .mini-panel{
       position:absolute;
       left: 12px;
       right: 12px;
-
       top: calc(var(--topbarH) + var(--safeTop) + 12px);
       bottom: calc(12px + var(--safeBottom));
-
       z-index: 4400;
       background: rgba(255,255,255,.98);
       color:#111827;
       border-radius: 16px;
       box-shadow: 0 18px 40px rgba(0,0,0,.30);
       border: 1px solid rgba(148,163,184,.35);
-
       overflow: hidden;
       display:none;
     }
@@ -378,7 +347,6 @@
       border:1px solid #d1d5db;
     }
 
-    /* ===== Panneau Suivies ===== */
     .followed-wrap{ padding: 12px; }
     .followed-head{
       display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -438,7 +406,6 @@
       padding: 10px 12px;
     }
 
-    /* ✅ Petit badge compteur stations (optionnel) */
     .pill{
       display:inline-flex;
       align-items:center;
@@ -457,9 +424,6 @@
       .pill{ display:none; }
     }
 
-    /* ============================
-       ✅ Recherche - styles résultats
-       ============================ */
     .search-item{
       display:flex;
       align-items:flex-start;
@@ -495,7 +459,6 @@
 
 <body>
   <div class="app">
-    <!-- ✅ MENU COMPACT MOBILE DANS LA BANDE NOIRE -->
     <header class="topbar">
       <div class="brand">
         <div class="logo">M</div>
@@ -509,14 +472,12 @@
       </div>
 
       <div class="top-actions">
-        <!-- Recherche -->
         <button class="icon-btn" id="searchBtn" title="Recherche" aria-label="Recherche">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
 
-        <!-- Suivies -->
         <button class="icon-btn" id="followedBtn" title="Stations suivies" aria-label="Suivies">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 17.3 6.2 20.5l1.1-6.5L2.6 9.9l6.6-1L12 3l2.8 5.9 6.6 1-4.7 4.1 1.1 6.5z"
@@ -524,7 +485,6 @@
           </svg>
         </button>
 
-        <!-- Filtres -->
         <button class="icon-btn" id="filtersBtn" title="Filtres" aria-label="Filtres">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M2 14h4m4-2h4m4 4h4"
@@ -532,7 +492,6 @@
           </svg>
         </button>
 
-        <!-- Reset -->
         <button class="icon-btn" id="resetTopBtn" title="Réinitialiser" aria-label="Reset">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M21 12a9 9 0 1 1-3-6.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -540,7 +499,6 @@
           </svg>
         </button>
 
-        <!-- Ma position -->
         <button class="icon-btn" id="locBtn" title="Ma position" aria-label="Ma position">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm9 4h-2.1A7 7 0 0 0 12 5.1V3h0v2.1A7 7 0 0 0 5.1 12H3v0h2.1A7 7 0 0 0 12 18.9V21h0v-2.1A7 7 0 0 0 18.9 12H21Z"
@@ -548,7 +506,6 @@
           </svg>
         </button>
 
-        <!-- Accueil -->
         <a class="icon-btn" href="{% url 'home' %}" title="Accueil" aria-label="Accueil">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"
@@ -561,10 +518,8 @@
     <div class="map-wrap">
       <div id="map"></div>
 
-      <!-- ✅ Bouton centrer la carte -->
       <button class="center-map-btn" id="centerMapBtn" type="button" title="Centrer la carte" aria-label="Centrer la carte">⊕</button>
 
-      <!-- Légende -->
       <div class="legend" id="legendBox">
         <div class="head">
           <span>Légende</span>
@@ -578,7 +533,6 @@
         </div>
       </div>
 
-      <!-- Panneau (Filtres) -->
       <div class="mini-panel" id="miniFilters">
         <div class="mini-head">
           <div class="mini-title">Filtres</div>
@@ -614,10 +568,17 @@
             <label>Statut</label>
             <select name="statut" id="id_statut">
               <option value="" {% if not statut_selected %}selected{% endif %}>Tous</option>
-              <option value="dispo"   {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
-              <option value="faible"  {% if statut_selected == "faible" %}selected{% endif %}>Faible (Bas + Faible)</option>
+              <option value="dispo" {% if statut_selected == "dispo" %}selected{% endif %}>Disponible</option>
+              <option value="faible" {% if statut_selected == "faible" %}selected{% endif %}>Faible / Bas</option>
               <option value="rupture" {% if statut_selected == "rupture" %}selected{% endif %}>Rupture</option>
               <option value="inconnu" {% if statut_selected == "inconnu" %}selected{% endif %}>Inconnu</option>
+            </select>
+
+            <label>Type de carburant</label>
+            <select name="carburant" id="id_carburant">
+              <option value="" selected>Tous</option>
+              <option value="essence">Essence</option>
+              <option value="gasoil">Diesel / Gasoil</option>
             </select>
 
             <div class="mini-count">
@@ -633,7 +594,6 @@
         </div>
       </div>
 
-      <!-- Panneau Suivies -->
       <div class="mini-panel" id="miniFollowed">
         <div class="mini-head">
           <div class="mini-title">Mes stations suivies</div>
@@ -644,7 +604,7 @@
             <div class="followed-title">Sur ce navigateur</div>
             <div class="followed-actions">
               <button type="button" class="mini-linkbtn" id="refreshFollowedBtn">Rafraîchir</button>
-              <button type="button" class="mini-linkbtn danger" id="clearFollowedBtn" title="Supprimer toutes les stations suivies">Tout effacer</button>
+              <button type="button" class="mini-linkbtn danger" id="clearFollowedBtn">Tout effacer</button>
             </div>
           </div>
           <div id="followedList" class="followed-list"></div>
@@ -654,7 +614,6 @@
         </div>
       </div>
 
-      <!-- ✅ Panneau Recherche (nouveau) -->
       <div class="mini-panel" id="miniSearch">
         <div class="mini-head">
           <div class="mini-title">Recherche</div>
@@ -689,14 +648,14 @@
         </div>
       </div>
 
-    </div><!-- /map-wrap -->
-  </div><!-- /app -->
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
-    // Utils
     function normalize(s){ return (s || "").toString().trim().toLowerCase(); }
+
     function formatDateFR(value){
       if(!value) return "-";
       const d = new Date(value);
@@ -705,27 +664,36 @@
       return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
     }
 
-    // ✅ API renvoie: dispo / faible / rupture / inconnu
-    function getColor(essence, gasoil) {
+    function getFuelStatus(essence, gasoil){
+      const fuel = document.getElementById("id_carburant")?.value || "";
       const e = normalize(essence);
       const g = normalize(gasoil);
-      if (e === 'rupture' || g === 'rupture') return 'red';
-      if (e === 'faible'  || g === 'faible')  return 'orange';
-      if (e === 'dispo'   || g === 'dispo')   return 'green';
-      return 'gray';
-    }
 
-    function getGlobalStatus(essence, gasoil){
-      const e = normalize(essence);
-      const g = normalize(gasoil);
+      if (fuel === "essence") return e || "inconnu";
+      if (fuel === "gasoil") return g || "inconnu";
+
       if (e === "rupture" || g === "rupture") return "rupture";
-      if (e === "faible"  || g === "faible")  return "faible";
-      if (e === "dispo"   || g === "dispo")   return "dispo";
+      if (e === "faible" || g === "faible") return "faible";
+      if (e === "bas" || g === "bas") return "faible";
+      if (e === "dispo" || g === "dispo") return "dispo";
+      if (e === "disponible" || g === "disponible") return "dispo";
       return "inconnu";
     }
 
-    // ✅ Suivi local (Web)
+    function getColor(essence, gasoil) {
+      const status = getFuelStatus(essence, gasoil);
+      if (status === "rupture") return "red";
+      if (status === "faible" || status === "bas") return "orange";
+      if (status === "dispo" || status === "disponible") return "green";
+      return "gray";
+    }
+
+    function getGlobalStatus(essence, gasoil){
+      return getFuelStatus(essence, gasoil);
+    }
+
     const LS_FOLLOWS_KEY = "malitadji_followed_stations_v1";
+
     function getFollowedLocal(){
       try{
         const raw = localStorage.getItem(LS_FOLLOWS_KEY);
@@ -733,7 +701,9 @@
         return Array.isArray(arr) ? arr : [];
       }catch(e){ return []; }
     }
+
     function isFollowedLocal(stationId){ return getFollowedLocal().includes(String(stationId)); }
+
     function toggleFollowLocal(stationId){
       const id = String(stationId);
       const list = new Set(getFollowedLocal());
@@ -741,26 +711,25 @@
       localStorage.setItem(LS_FOLLOWS_KEY, JSON.stringify([...list]));
       return list.has(id);
     }
+
     function clearFollowedLocal(){ localStorage.setItem(LS_FOLLOWS_KEY, JSON.stringify([])); }
+
     function updateFollowBtn(btn, followed){
       btn.dataset.followed = followed ? "1" : "0";
       btn.classList.toggle("is-followed", followed);
       btn.textContent = followed ? "🔕 Ne plus suivre" : "🔔 Suivre cette station";
     }
 
-    // ✅ Google Maps URLs (direction + open)
     function googleDirectionsUrl(lat, lng, label){
       const dest = `${lat},${lng}`;
-      const query = encodeURIComponent(label || dest);
-      // directions (point B)
-      return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}&destination_place_id=&travelmode=driving`;
+      return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}&travelmode=driving`;
     }
+
     function googleOpenUrl(lat, lng, label){
       const q = label ? `${label} (${lat},${lng})` : `${lat},${lng}`;
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
     }
 
-    // Map init
     var map = L.map('map', { zoomControl: false }).setView([12.65, -8.0], 6);
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -770,7 +739,7 @@
 
     var markers = [];
     var boundsAll = [];
-    var markerById = {}; // stationId -> marker
+    var markerById = {};
 
     function clearMarkers(){
       markers.forEach(m => { try{ map.removeLayer(m); }catch(e){} });
@@ -779,7 +748,6 @@
       markerById = {};
     }
 
-    // ✅ Panels open/close
     const miniFilters = document.getElementById('miniFilters');
     const miniFollowed = document.getElementById('miniFollowed');
     const miniSearch = document.getElementById('miniSearch');
@@ -807,14 +775,12 @@
     closeSearchBtn.addEventListener('click', () => miniSearch.classList.remove('open'));
     map.on('click', () => closePanels());
 
-    // Legend toggle
     const legendBox = document.getElementById('legendBox');
     document.getElementById('legendToggle').addEventListener('click', () => {
       legendBox.classList.toggle('collapsed');
       document.getElementById('legendToggle').textContent = legendBox.classList.contains('collapsed') ? '▸' : '▾';
     });
 
-    // Geoloc (topbar)
     document.getElementById('locBtn').addEventListener('click', () => {
       if(!navigator.geolocation){ alert("Géolocalisation non disponible."); return; }
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -825,7 +791,6 @@
       }, () => alert("Impossible d’obtenir la position."));
     });
 
-    // Data for dropdown dependencies (from Django context)
     const cerclesData  = JSON.parse('{{ cercles_json|default:"[]"|escapejs }}');
     const communesData = JSON.parse('{{ communes_json|default:"[]"|escapejs }}');
 
@@ -833,6 +798,7 @@
     const cercleSelect  = document.getElementById('id_cercle');
     const communeSelect = document.getElementById('id_commune');
     const statutSelect  = document.getElementById('id_statut');
+    const carburantSelect = document.getElementById('id_carburant');
     const stationCountEl = document.getElementById('stationCount');
     const stationCountTopEl = document.getElementById('stationCountTop');
 
@@ -882,7 +848,6 @@
       });
     }
 
-    // Suivies panel rendering
     const followedListEl = document.getElementById("followedList");
     const refreshFollowedBtn = document.getElementById("refreshFollowedBtn");
     const clearFollowedBtn = document.getElementById("clearFollowedBtn");
@@ -917,6 +882,7 @@
           `);
           return;
         }
+
         const s = m.__station;
         rows.push(`
           <div class="followed-item">
@@ -933,6 +899,7 @@
     }
 
     refreshFollowedBtn.addEventListener("click", () => renderFollowedList());
+
     clearFollowedBtn.addEventListener("click", () => {
       if(!confirm("Supprimer toutes les stations suivies ?")) return;
       clearFollowedLocal();
@@ -946,7 +913,6 @@
       }
     });
 
-    // Delegation pour "Voir" (suivies)
     document.addEventListener("click", (e) => {
       const go = e.target.closest("[data-go-station]");
       if(!go) return;
@@ -961,7 +927,6 @@
       m.openPopup();
     });
 
-    // ✅ click handler (popup) — toggle localStorage
     document.addEventListener("click", function(e){
       const btn = e.target.closest(".follow-btn");
       if(!btn) return;
@@ -971,18 +936,19 @@
       if(miniFollowed.classList.contains("open")) renderFollowedList();
     });
 
-    // Fetch GeoJSON + build markers
     function buildGeoUrl(){
       const params = new URLSearchParams();
       const regionId = regionSelect.value || "";
       const cercleId = cercleSelect.value || "";
       const communeId = communeSelect.value || "";
       const statutVal = statutSelect.value || "";
+      const carburantVal = carburantSelect.value || "";
 
       if(regionId) params.set("region", regionId);
       if(cercleId) params.set("cercle", cercleId);
       if(communeId) params.set("commune", communeId);
       if(statutVal) params.set("statut", statutVal);
+      if(carburantVal) params.set("carburant", carburantVal);
 
       const q = params.toString();
       return "/api/stations.geojson/" + (q ? ("?" + q) : "");
@@ -1012,7 +978,6 @@
 
         let features = (geo.features || []);
 
-        // ✅ fallback filtrage côté client
         features = features.filter((f) => {
           const p = f.properties || {};
 
@@ -1024,6 +989,7 @@
             const gs = getGlobalStatus(p.essence, p.gasoil);
             if (gs !== selectedStatut) return false;
           }
+
           return true;
         });
 
@@ -1065,9 +1031,7 @@
 
           const lastUpdateText = formatDateFR(s.last_update);
           const followed = isFollowedLocal(s.id);
-
           const dirUrl = googleDirectionsUrl(lat, lng, s.nom);
-          const openUrl = googleOpenUrl(lat, lng, s.nom);
 
           marker.bindPopup(`
             <div style="font-weight:900;font-size:15px;margin-bottom:6px">${s.nom}</div>
@@ -1077,16 +1041,14 @@
               <div><b>Commune:</b> ${s.commune || "-"}</div>
 
               <div style="margin-top:8px"><b>Essence:</b> ${s.essence_statut || "-"}</div>
-              <div><b>Gasoil:</b> ${s.gasoil_statut || "-"}</div>
+              <div><b>Gasoil / Diesel:</b> ${s.gasoil_statut || "-"}</div>
 
               <div style="margin-top:8px"><b>Mise à jour:</b> ${lastUpdateText}</div>
 
-              <!-- ✅ Google Maps -->
               <div class="gmaps-row">
                 <a class="gmaps-btn dir" href="${dirUrl}" target="_blank" rel="noopener">
                   🧭 Itinéraire
                 </a>
-              
               </div>
 
               <button
@@ -1115,10 +1077,12 @@
         if(fitBounds && boundsAll.length > 0){
           map.fitBounds(boundsAll, { padding:[40,40] });
         }
+
         setTimeout(() => map.invalidateSize(), 250);
 
         if(miniFollowed.classList.contains("open")) renderFollowedList();
         if(miniSearch.classList.contains("open")) renderSearchResults();
+
       }catch(err){
         console.error(err);
         stationCountEl.textContent = "0";
@@ -1127,7 +1091,6 @@
       }
     }
 
-    // Dropdown dependencies
     regionSelect.addEventListener('change', function() {
       const regionId = this.value || "";
       populateCercles(regionId, false);
@@ -1140,11 +1103,13 @@
         populateCommunes(regionSelect.value || "", "", false);
         return;
       }
+
       const cercle = cerclesData.find(ce => String(ce.id) === String(cercleId));
       if(cercle && String(regionSelect.value || "") !== String(cercle.region_id)){
         regionSelect.value = String(cercle.region_id);
         populateCercles(regionSelect.value, true);
       }
+
       populateCommunes(regionSelect.value || "", cercleId, false);
     });
 
@@ -1169,7 +1134,6 @@
       populateCommunes(regionSelect.value || "", cercleId, true);
     });
 
-    // ✅ Apply / Reset (panel filtres)
     document.getElementById('filtersForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       miniFilters.classList.remove('open');
@@ -1181,6 +1145,7 @@
       cercleSelect.value = "";
       communeSelect.value = "";
       statutSelect.value = "";
+      carburantSelect.value = "";
 
       populateCercles("", false);
       populateCommunes("", "", false);
@@ -1188,21 +1153,16 @@
       await reloadStationsFromApi({fitBounds: true});
     });
 
-    // ✅ Bouton "★ Suivies" depuis le panneau Filtres
     document.getElementById("openFollowedFromFilters").addEventListener("click", () => {
       miniFilters.classList.remove("open");
       openPanel(miniFollowed);
       renderFollowedList();
     });
 
-    // ✅ MENU TOPBAR wiring (compact)
     document.getElementById("filtersBtn").addEventListener("click", () => openPanel(miniFilters));
     document.getElementById("followedBtn").addEventListener("click", () => { openPanel(miniFollowed); renderFollowedList(); });
     document.getElementById("resetTopBtn").addEventListener("click", () => document.getElementById("resetBtn").click());
 
-    // ============================
-    // ✅ Recherche (mini panneau)
-    // ============================
     const searchInput = document.getElementById("searchInput");
     const searchResults = document.getElementById("searchResults");
     const searchCount = document.getElementById("searchCount");
@@ -1259,6 +1219,7 @@
     document.getElementById("searchBtn").addEventListener("click", openSearch);
 
     searchGoBtn.addEventListener("click", renderSearchResults);
+
     searchClearBtn.addEventListener("click", () => {
       searchInput.value = "";
       renderSearchResults();
@@ -1281,9 +1242,9 @@
       m.openPopup();
     });
 
-    // ✅ Bouton "centrer carte"
     const DEFAULT_CENTER = [12.65, -8.0];
     const DEFAULT_ZOOM = 6;
+
     document.getElementById("centerMapBtn").addEventListener("click", () => {
       if(boundsAll.length > 0){
         map.fitBounds(boundsAll, { padding:[40,40] });
@@ -1292,12 +1253,13 @@
       }
     });
 
-    // ✅ Initial load
     document.addEventListener('DOMContentLoaded', async function() {
       if(selectedRegion) regionSelect.value = selectedRegion;
       populateCercles(selectedRegion, true);
+
       if(selectedCercle) cercleSelect.value = selectedCercle;
       populateCommunes(selectedRegion, selectedCercle, true);
+
       if(selectedCommune) communeSelect.value = selectedCommune;
 
       await reloadStationsFromApi({fitBounds: true});

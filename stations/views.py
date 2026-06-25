@@ -215,55 +215,93 @@ def manager_logout(request):
 # -----------------------------
 @login_required
 def manager_dashboard(request):
-    """
-    Source unique:
-    - POST /manager/ -> maj Stock
-    - Règle push: notifier uniquement quand le niveau devient Plein (old != Plein)
-    - Anti-spam: bloque répétition (station + produit + niveau) dans les 10 minutes
-    """
     user = request.user
     is_super = user.is_superuser
-
-    # -------- station resolution --------
-    station_id = request.GET.get("station") or request.POST.get("station")
-
-    if is_super:
-        if station_id:
-            station = get_object_or_404(Station, id=station_id)
-        else:
-            station = Station.objects.order_by("id").first()
-            if not station:
-                return render(
-                    request,
-                    "stations/manager_dashboard.html",
-                    {
-                        "message": "Aucune station dans la base.",
-                        "message_error": True,
-                        "is_super": is_super,
-                    },
-                )
-    else:
-        station = Station.objects.filter(gerant=user).order_by("id").first()
-        if not station:
-            return render(
-                request,
-                "stations/manager_dashboard.html",
-                {
-                    "message": "Aucune station assignée à ce compte gérant.",
-                    "message_error": True,
-                    "is_super": is_super,
-                },
-            )
 
     message = None
     message_error = False
     push_info = None
 
+    search = request.GET.get("search", "").strip()
+    station_id = request.GET.get("station") or request.POST.get("station")
+
+    stations_queryset = Station.objects.select_related(
+        "commune",
+        "commune__cercle",
+        "commune__cercle__region",
+    ).all()
+
+    if search:
+        stations_queryset = stations_queryset.filter(
+            Q(nom__icontains=search) |
+            Q(adresse__icontains=search) |
+            Q(commune__nom__icontains=search) |
+            Q(commune__cercle__nom__icontains=search) |
+            Q(commune__cercle__region__nom__icontains=search)
+        )
+
+    stations_queryset = stations_queryset.order_by("nom")
+
+    if is_super:
+        if station_id:
+            station = get_object_or_404(
+                Station.objects.select_related(
+                    "commune",
+                    "commune__cercle",
+                    "commune__cercle__region",
+                ),
+                id=station_id
+            )
+        else:
+            station = stations_queryset.first()
+
+        if not station:
+            return render(request, "stations/manager_dashboard.html", {
+                "message": "Aucune station dans la base.",
+                "message_error": True,
+                "is_super": is_super,
+                "search": search,
+                "stations_list": stations_queryset,
+            })
+    else:
+        station = Station.objects.select_related(
+            "commune",
+            "commune__cercle",
+            "commune__cercle__region",
+        ).filter(gerant=user).order_by("id").first()
+
+        if not station:
+            return render(request, "stations/manager_dashboard.html", {
+                "message": "Aucune station assignée à ce compte gérant.",
+                "message_error": True,
+                "is_super": is_super,
+            })
+
+    if request.method == "POST" and request.POST.get("action") == "update_station":
+        station.nom = (request.POST.get("nom") or "").strip()
+        station.adresse = (request.POST.get("adresse") or "").strip()
+
+        latitude = (request.POST.get("latitude") or "").strip().replace(",", ".")
+        longitude = (request.POST.get("longitude") or "").strip().replace(",", ".")
+        commune_id = (request.POST.get("commune") or "").strip()
+
+        station.latitude = float(latitude) if latitude else None
+        station.longitude = float(longitude) if longitude else None
+
+        if commune_id:
+            station.commune = get_object_or_404(Commune, id=commune_id)
+
+        station.save()
+        print("STATION MODIFIÉE :", station.id, station.nom, station.latitude, station.longitude, station.commune)
+
+        return redirect(f"{request.path}?station={station.id}")
+
     if request.method == "POST":
         form = StockForm(request.POST)
+
         if form.is_valid():
-            produit_raw = form.cleaned_data["produit"]  # 'essence'/'gasoil'
-            niveau_new = form.cleaned_data["niveau"]  # 'Bas'/'Faible'/'Plein'/'Rupture'
+            produit_raw = form.cleaned_data["produit"]
+            niveau_new = form.cleaned_data["niveau"]
             produit_norm = _norm_produit(produit_raw)
 
             with transaction.atomic():
@@ -272,14 +310,13 @@ def manager_dashboard(request):
                     produit=produit_raw,
                     defaults={"niveau": niveau_new},
                 )
+
                 old_niveau = None if created else stock_obj.niveau
 
-                # Update stock
                 stock_obj.niveau = niveau_new
                 stock_obj.date_maj = timezone.now()
                 stock_obj.save()
 
-                # History (avec ancien/nouveau)
                 StockHistory.objects.create(
                     station=station,
                     produit=produit_raw,
@@ -287,12 +324,11 @@ def manager_dashboard(request):
                     nouveau_niveau=niveau_new,
                 )
 
-                # Règle notif
                 should_notify = _is_plein(niveau_new) and not _is_plein(old_niveau)
 
                 if should_notify:
-                    # -------- Anti-spam 10 min (station + produit + niveau) --------
                     ten_min_ago = timezone.now() - timedelta(minutes=10)
+
                     spam_guard = InAppNotification.objects.filter(
                         station=station,
                         produit=produit_raw,
@@ -301,13 +337,13 @@ def manager_dashboard(request):
                     ).exists()
 
                     if not spam_guard:
-                        # ---- InApp (web comptes) ----
                         user_follows = (
                             StationFollow.objects.filter(station=station, is_active=True)
                             .filter(Q(produit__isnull=True) | Q(produit__iexact=produit_norm))
                             .select_related("user")
                             .distinct()
                         )
+
                         for follow in user_follows:
                             create_in_app_notification(
                                 user=follow.user,
@@ -316,7 +352,6 @@ def manager_dashboard(request):
                                 niveau=niveau_new,
                             )
 
-                        # ---- Push FCM (mobile) ----
                         device_follows = (
                             DeviceFollow.objects.filter(station=station, is_active=True)
                             .filter(Q(produit__isnull=True) | Q(produit__iexact=produit_norm))
@@ -334,15 +369,14 @@ def manager_dashboard(request):
                                     "niveau": str(niveau_new),
                                 },
                             )
+
                             push_info = {
                                 "sent": result.get("sent", 0),
                                 "fail": result.get("fail", 0),
                                 "token_count": result.get("token_count", 0),
                             }
 
-                    message = f"✅ Stock enregistré : {produit_raw} → {niveau_new} (notif si abonnés)"
-                else:
-                    message = f"✅ Stock enregistré : {produit_raw} → {niveau_new} (pas de push)"
+                message = f"✅ Stock enregistré : {produit_raw} → {niveau_new}"
 
             return redirect(f"{request.path}?station={station.id}")
 
@@ -352,19 +386,18 @@ def manager_dashboard(request):
         form = StockForm()
 
     stocks = Stock.objects.filter(station=station).order_by("produit")
-    stations_list = Station.objects.order_by("nom") if is_super else None
 
-    return render(
-        request,
-        "stations/manager_dashboard.html",
-        {
-            "station": station,
-            "stations_list": stations_list,
-            "is_super": is_super,
-            "form": form,
-            "stocks": stocks,
-            "message": message,
-            "message_error": message_error,
-            "push_info": push_info,
-        },
-    )
+    return render(request, "stations/manager_dashboard.html", {
+        "station": station,
+        "stations_list": stations_queryset if is_super else None,
+        "is_super": is_super,
+        "form": form,
+        "stocks": stocks,
+        "message": message,
+        "message_error": message_error,
+        "push_info": push_info,
+        "search": search,
+        "regions": Region.objects.order_by("nom"),
+        "cercles": Cercle.objects.select_related("region").order_by("nom"),
+        "communes": Commune.objects.select_related("cercle", "cercle__region").order_by("nom"),
+    })

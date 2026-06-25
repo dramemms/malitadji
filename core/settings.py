@@ -21,8 +21,7 @@ if not FIREBASE_SERVICE_ACCOUNT_FILE.exists() and _local.exists():
 # SECURITY
 # =========================
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-default-key-change-me")
-DEBUG = os.environ.get("DEBUG", "0") == "1"
-
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "malitadji.onrender.com",
@@ -32,8 +31,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "192.168.88.197",
     "10.95.122.247",
-    "192.168.88.195"   # ✅ IP PC sur hotspot
-    "0.0.0.0",         # ✅ utile en dev
+    "192.168.88.195",
+    "0.0.0.0",
 ]
 
 # =========================

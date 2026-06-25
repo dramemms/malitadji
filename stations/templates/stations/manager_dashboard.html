@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <title>Dashboard gérant – Malitadji</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root{
       --bg:#0b1220;
@@ -13,13 +14,14 @@
       --line: rgba(148,163,184,.22);
       --text:#e5e7eb;
       --muted:#9ca3af;
-
       --ok:#16a34a;
       --warn:#f59e0b;
       --bad:#dc2626;
       --info:#2563eb;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -27,23 +29,41 @@
       color:var(--text);
       padding:18px;
     }
+
     .container{max-width:980px;margin:0 auto}
     a{color:inherit}
 
     .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;margin-bottom:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
     }
+
     h1{margin:0;font-size:20px}
+    h2{margin:0 0 10px 0;font-size:16px}
     .sub{color:var(--muted);font-size:13px;margin-top:2px}
 
     .btn{
-      padding:10px 14px;border-radius:999px;border:1px solid var(--line);
-      background:#0b1b3a;color:#fff;font-weight:700;cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#0b1b3a;
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
     }
+
     .btn:hover{filter:brightness(1.06)}
     .btn-danger{background:#3a0b0b}
     .btn-primary{background:#1e3a8a;border-color:rgba(255,255,255,.12)}
+    .btn-secondary{background:#172554}
 
     .card{
       background:rgba(17,28,51,.85);
@@ -54,11 +74,26 @@
       margin-bottom:14px;
     }
 
-    .row{display:grid;grid-template-columns: 1fr 1fr; gap:12px}
-    @media(max-width:720px){ .row{grid-template-columns:1fr} }
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
 
-    label{display:block;font-weight:800;margin-bottom:6px;font-size:13px;color:#dbeafe}
-    select{
+    @media(max-width:720px){
+      .row{grid-template-columns:1fr}
+      .topbar{align-items:flex-start}
+    }
+
+    label{
+      display:block;
+      font-weight:800;
+      margin-bottom:6px;
+      font-size:13px;
+      color:#dbeafe;
+    }
+
+    input, select{
       width:100%;
       padding:10px 12px;
       border-radius:10px;
@@ -68,6 +103,8 @@
       outline:none;
     }
 
+    input::placeholder{color:#64748b}
+
     .message{
       padding:10px 12px;
       border-radius:12px;
@@ -75,10 +112,12 @@
       background:rgba(22,163,74,.15);
       margin-bottom:10px;
     }
+
     .message.error{
-      border-color: rgba(220,38,38,.35);
-      background: rgba(220,38,38,.14);
+      border-color:rgba(220,38,38,.35);
+      background:rgba(220,38,38,.14);
     }
+
     .message .small{color:var(--muted);font-size:12px;margin-top:4px}
 
     table{width:100%;border-collapse:collapse;margin-top:10px}
@@ -104,21 +143,31 @@
     .b-inc .dot{background:var(--info)}
 
     .muted{color:var(--muted)}
-    .footer{
-      margin-top:14px;
-      color:var(--muted);
-      font-size:13px;
+    .footer{margin-top:14px;color:var(--muted);font-size:13px}
+
+    .actions{
+      display:flex;gap:10px;margin-top:12px;
+      align-items:center;flex-wrap:wrap;
     }
+
+    .search-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:end;
+    }
+
+    @media(max-width:720px){.search-row{grid-template-columns:1fr}}
   </style>
 </head>
+
 <body>
   <div class="container">
 
-    <!-- TOPBAR -->
     <div class="topbar">
       <div>
         <h1>Dashboard gérant</h1>
-        <div class="sub">Mise à jour des stocks & notifications push</div>
+        <div class="sub">Mise à jour des stocks, informations station & notifications push</div>
       </div>
 
       <form method="post" action="{% url 'manager_logout' %}">
@@ -138,16 +187,41 @@
       </div>
     {% endif %}
 
-    <!-- Station selector (superuser) -->
+    {% if is_super %}
+      <div class="card">
+        <h2>Rechercher une station</h2>
+        <form method="get">
+          <div class="search-row">
+            <div>
+              <label for="id_search">Nom, adresse, commune, cercle ou région</label>
+              <input
+                type="text"
+                id="id_search"
+                name="search"
+                value="{{ search }}"
+                placeholder="Exemple : Total, Bacodjicoroni, ACI, Bamako..."
+              />
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+
     <div class="card">
       {% if is_super %}
         <form method="get">
+          {% if search %}<input type="hidden" name="search" value="{{ search }}">{% endif %}
           <label for="id_station_select">Station</label>
           <select id="id_station_select" name="station" onchange="this.form.submit()">
             {% for s in stations_list %}
               <option value="{{ s.id }}" {% if s.id == station.id %}selected{% endif %}>
                 {{ s.nom }} – {{ s.commune }}
               </option>
+            {% empty %}
+              <option>Aucune station trouvée</option>
             {% endfor %}
           </select>
         </form>
@@ -160,13 +234,109 @@
       {% endif %}
     </div>
 
-    <!-- Form update -->
     <div class="card">
-      <h2 style="margin:0 0 10px 0;font-size:16px">Mettre à jour le stock</h2>
+      <h2>Modifier les informations de la station</h2>
 
+      <form method="post" action="?station={{ station.id }}{% if search %}&search={{ search }}{% endif %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="update_station">
+        <input type="hidden" name="station" value="{{ station.id }}">
+
+        <div class="row">
+          <div>
+            <label for="id_station_nom">Nom de la station</label>
+            <input type="text" id="id_station_nom" name="nom" value="{{ station.nom }}" required />
+          </div>
+
+          <div>
+            <label for="id_region">Région</label>
+            <select id="id_region" name="region">
+              <option value="">-- Région --</option>
+              {% for region in regions %}
+                <option value="{{ region.id }}"
+                  {% if station.commune and station.commune.cercle and station.commune.cercle.region and station.commune.cercle.region.id == region.id %}selected{% endif %}>
+                  {{ region.nom }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div>
+            <label for="id_cercle">Cercle</label>
+            <select id="id_cercle" name="cercle">
+              <option value="">-- Cercle --</option>
+              {% for cercle in cercles %}
+                <option value="{{ cercle.id }}"
+                  data-region="{{ cercle.region.id }}"
+                  {% if station.commune and station.commune.cercle and station.commune.cercle.id == cercle.id %}selected{% endif %}>
+                  {{ cercle.nom }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div>
+            <label for="id_commune">Commune</label>
+            <select id="id_commune" name="commune">
+              <option value="">-- Commune --</option>
+              {% for commune in communes %}
+                <option value="{{ commune.id }}"
+                  data-cercle="{{ commune.cercle.id }}"
+                  {% if station.commune and station.commune.id == commune.id %}selected{% endif %}>
+                  {{ commune.nom }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div>
+            <label for="id_adresse">Adresse / Quartier</label>
+            <input
+              type="text"
+              id="id_adresse"
+              name="adresse"
+              value="{{ station.adresse|default_if_none:'' }}"
+              placeholder="Adresse ou repère"
+            />
+          </div>
+
+          <div>
+            <label for="id_latitude">Latitude</label>
+            <input
+              type="text"
+              id="id_latitude"
+              name="latitude"
+              value="{{ station.latitude|default_if_none:'' }}"
+              placeholder="Exemple : 12.6392"
+            />
+          </div>
+
+          <div>
+            <label for="id_longitude">Longitude</label>
+            <input
+              type="text"
+              id="id_longitude"
+              name="longitude"
+              value="{{ station.longitude|default_if_none:'' }}"
+              placeholder="Exemple : -8.0029"
+            />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" onclick="getCurrentLocation()">
+            📍 Utiliser ma position actuelle
+          </button>
+          <button type="submit" class="btn btn-primary">Enregistrer les informations</button>
+          <span id="gps_status" class="muted" style="font-size:12px"></span>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Mettre à jour le stock</h2>
       <form method="post" action="?station={{ station.id }}">
         {% csrf_token %}
-
         <div class="row">
           <div>
             <label for="id_produit">Produit</label>
@@ -177,8 +347,7 @@
             {{ form.niveau }}
           </div>
         </div>
-
-        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+        <div class="actions">
           <button type="submit" class="btn btn-primary">Enregistrer</button>
           <span class="muted" style="font-size:12px">
             ℹ️ La notification push est déclenchée quand le niveau devient <strong>Plein</strong>.
@@ -187,11 +356,9 @@
       </form>
     </div>
 
-    <!-- Current stocks -->
     <div class="card">
-      <h2 style="margin:0 0 6px 0;font-size:16px">Stocks actuels</h2>
+      <h2>Stocks actuels</h2>
       <div class="muted" style="font-size:12px">Dernières mises à jour pour la station</div>
-
       <table>
         <thead>
           <tr>
@@ -229,11 +396,70 @@
         </tbody>
       </table>
 
-      <div class="footer">
-        🔁 <a href="/carte/">Retour à la carte</a>
-      </div>
+      <div class="footer">🔁 <a href="/carte/">Retour à la carte</a></div>
     </div>
-
   </div>
+
+  <script>
+    function getCurrentLocation(){
+      const status = document.getElementById("gps_status");
+      if (!navigator.geolocation) {
+        status.textContent = "GPS non supporté par ce navigateur.";
+        return;
+      }
+      status.textContent = "Récupération de la position...";
+      navigator.geolocation.getCurrentPosition(
+        function(position){
+          document.getElementById("id_latitude").value = position.coords.latitude.toFixed(7);
+          document.getElementById("id_longitude").value = position.coords.longitude.toFixed(7);
+          status.textContent = "Position récupérée avec succès.";
+        },
+        function(error){
+          status.textContent = "Impossible de récupérer la position GPS.";
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    }
+
+    function filterCerclesCommunes(){
+      const regionSelect = document.getElementById("id_region");
+      const cercleSelect = document.getElementById("id_cercle");
+      const communeSelect = document.getElementById("id_commune");
+      if (!regionSelect || !cercleSelect || !communeSelect) return;
+
+      const regionId = regionSelect.value;
+      const cercleId = cercleSelect.value;
+
+      Array.from(cercleSelect.options).forEach(function(option){
+        if (!option.value) return;
+        option.hidden = !!(regionId && option.dataset.region !== regionId);
+      });
+
+      Array.from(communeSelect.options).forEach(function(option){
+        if (!option.value) return;
+        option.hidden = !!(cercleId && option.dataset.cercle !== cercleId);
+      });
+    }
+
+    const regionSelect = document.getElementById("id_region");
+    const cercleSelect = document.getElementById("id_cercle");
+
+    if (regionSelect) {
+      regionSelect.addEventListener("change", function(){
+        document.getElementById("id_cercle").value = "";
+        document.getElementById("id_commune").value = "";
+        filterCerclesCommunes();
+      });
+    }
+
+    if (cercleSelect) {
+      cercleSelect.addEventListener("change", function(){
+        document.getElementById("id_commune").value = "";
+        filterCerclesCommunes();
+      });
+    }
+
+    filterCerclesCommunes();
+  </script>
 </body>
 </html>
