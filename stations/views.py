@@ -9,7 +9,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
-from stations.notifications import _station_notification_location
+
 
 import json
 from django.shortcuts import render
@@ -48,12 +48,21 @@ def _norm_produit(p) -> str | None:
 def _is_plein(niveau: str | None) -> bool:
     return str(niveau or "").strip().lower() == "plein"
 
+def station_location_label(station) -> str:
+    location = station.nom
+
+    if station.commune:
+        location += f", {station.commune.nom}"
+
+        if station.commune.cercle and station.commune.cercle.region:
+            location += f" ({station.commune.cercle.region.nom})"
+
+    return location
+
 
 def create_in_app_notification(*, user, station, produit: str, niveau: str) -> InAppNotification:
     title = "Carburant disponible" if _is_plein(niveau) else "Stock mis à jour"
-    from stations.notifications import _station_notification_location
-
-    location = _station_notification_location(type("Obj", (), {"station": station, "station_id": station.id})())
+    location = station_location_label(station)
     message = f"{location} : {str(produit).capitalize()} → {niveau}"
 
     # Clé anti-doublon "soft" (1 notif max / minute / user / station / produit / niveau)
@@ -366,7 +375,7 @@ def manager_dashboard(request):
                             result = send_push_to_device_follows(
                                 device_follows=device_follows,
                                 title="Carburant disponible",
-                                body=f"{_station_notification_location(type('Obj', (), {'station': station, 'station_id': station.id})())} : {str(produit_raw).capitalize()} → {niveau_new}",
+                                body=f"{station_location_label(station)} : {str(produit_raw).capitalize()} → {niveau_new}",
                                 data={
                                     "station_id": str(station.id),
                                     "produit": str(produit_norm or produit_raw),
