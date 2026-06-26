@@ -7,37 +7,48 @@ from .models import Stock, DeviceFollow
 from notifications.utils import send_push_to_device_follows
 
 
+def _station_notification_location(stock: Stock) -> str:
+    station = stock.station
+
+    station_name = getattr(station, "nom", None) or f"Station #{stock.station_id}"
+
+    commune = getattr(station, "commune", None)
+
+    if not commune:
+        return station_name
+
+    commune_name = commune.nom
+
+    region_name = ""
+    if commune.cercle and commune.cercle.region:
+        region_name = commune.cercle.region.nom
+
+    if region_name:
+        return f"{station_name}, {commune_name} ({region_name})"
+
+    return f"{station_name}, {commune_name}"
+
+
 def notify_station_available(stock: Stock, old_niveau: str | None = None) -> dict:
-    """
-    Règle (Option B / ton objectif final):
-    - On notifie UNIQUEMENT quand le gérant met le niveau à "Plein"
-    - et uniquement si l'ancien niveau n'était pas déjà "Plein"
-
-    Ciblage:
-    - DeviceFollow actifs de la station:
-        * produit = stock.produit
-        * OU produit IS NULL (abonnement "tous")
-    """
-
     if not stock:
         return {"ok": False, "error": "stock missing"}
 
-    # Sécurité: normaliser old_niveau
     old_niveau_norm = (old_niveau or "").strip()
 
-    # ✅ règle: uniquement quand ça devient Plein
     if stock.niveau != "Plein":
         return {"ok": True, "skipped": True, "reason": "niveau_not_plein"}
 
-    # ✅ pas de push si c'était déjà Plein
     if old_niveau_norm == "Plein":
         return {"ok": True, "skipped": True, "reason": "already_plein"}
 
     station_id = stock.station_id
-    produit = (stock.produit or "").strip().lower()  # "essence" / "gasoil"
+    produit = (stock.produit or "").strip().lower()
 
-    # si produit vide (ne devrait pas arriver avec tes choices), on traite comme "tous"
-    produit_filter = Q(produit__isnull=True) if not produit else (Q(produit__isnull=True) | Q(produit=produit))
+    produit_filter = (
+        Q(produit__isnull=True)
+        if not produit
+        else Q(produit__isnull=True) | Q(produit=produit)
+    )
 
     follows_qs = (
         DeviceFollow.objects.filter(
@@ -45,19 +56,18 @@ def notify_station_available(stock: Stock, old_niveau: str | None = None) -> dic
             is_active=True,
         )
         .filter(produit_filter)
-        .select_related("device")
+        .select_related(
+            "device",
+            "station__commune__cercle__region",
+        )
     )
 
-    # Message
-    station_name = getattr(stock.station, "nom", None) or f"Station #{station_id}"
-    if produit:
-        body = f"{station_name} : {produit} est maintenant disponible (Plein)."
-    else:
-        body = f"{station_name} : carburant disponible (Plein)."
+    location = _station_notification_location(stock)
+    produit_label = produit.capitalize() if produit else "Carburant"
 
-    title = "✅ Carburant disponible"
+    body = f"{location} : {produit_label} → Plein"
+    title = "Carburant disponible"
 
-    # Envoi push (ta fonction doit récupérer les tokens via device.fcm_token ou DeviceToken)
     return send_push_to_device_follows(
         device_follows=follows_qs,
         title=title,
