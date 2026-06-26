@@ -9,6 +9,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from stations.notifications import _station_notification_location
 
 import json
 from django.shortcuts import render
@@ -50,7 +51,10 @@ def _is_plein(niveau: str | None) -> bool:
 
 def create_in_app_notification(*, user, station, produit: str, niveau: str) -> InAppNotification:
     title = "Carburant disponible" if _is_plein(niveau) else "Stock mis à jour"
-    message = f"{station.nom} : {produit} → {niveau}"
+    from stations.notifications import _station_notification_location
+
+    location = _station_notification_location(type("Obj", (), {"station": station, "station_id": station.id})())
+    message = f"{location} : {str(produit).capitalize()} → {niveau}"
 
     # Clé anti-doublon "soft" (1 notif max / minute / user / station / produit / niveau)
     minute_key = timezone.now().strftime("%Y%m%d%H%M")
@@ -362,7 +366,7 @@ def manager_dashboard(request):
                             result = send_push_to_device_follows(
                                 device_follows=device_follows,
                                 title="Carburant disponible",
-                                body=f"{station.nom} : {produit_raw} → {niveau_new}",
+                                body=f"{_station_notification_location(type('Obj', (), {'station': station, 'station_id': station.id})())} : {str(produit_raw).capitalize()} → {niveau_new}",
                                 data={
                                     "station_id": str(station.id),
                                     "produit": str(produit_norm or produit_raw),
