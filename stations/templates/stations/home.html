@@ -24,6 +24,9 @@
 
     * { box-sizing: border-box; }
 
+
+
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -741,6 +744,39 @@
     </div>
   </div>
 </section>
+
+<footer style="
+    background:#020617;
+    border-top:1px solid rgba(148,163,184,.2);
+    padding:25px 20px;
+    text-align:center;
+">
+
+    <p style="margin:0;color:#9ca3af;font-size:13px;">
+        © 2026 <strong style="color:#22c55e;">Malitadji</strong> — Tous droits réservés.
+    </p>
+
+    <p style="margin-top:12px;">
+        <a href="{% url 'politique_confidentialite' %}"
+           style="
+              color:#38bdf8;
+              text-decoration:none;
+              font-weight:600;
+           ">
+            Politique de confidentialité
+        </a>
+        &nbsp;|&nbsp;
+        <a href="mailto:contact@malitadji.com"
+           style="
+              color:#38bdf8;
+              text-decoration:none;
+              font-weight:600;
+           ">
+            Contact
+        </a>
+    </p>
+
+</footer>
 
 </body>
 </html>

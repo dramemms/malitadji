@@ -165,6 +165,83 @@
             <td colspan="2">Aucune donnée</td>
           </tr>
         {% endfor %}
+
+        <!-- POP-UP CONSENTEMENT COOKIES -->
+<div id="cookieBanner" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #0b1220;
+    color: #e5e7eb;
+    border: 1px solid rgba(148,163,184,.35);
+    border-radius: 16px;
+    padding: 18px;
+    z-index: 9999;
+    box-shadow: 0 20px 50px rgba(0,0,0,.45);
+    display: none;
+">
+    <h3 style="margin:0 0 8px;color:#22c55e;font-size:18px;">
+        🍪 Gestion des cookies
+    </h3>
+
+    <p style="margin:0 0 14px;line-height:1.5;font-size:14px;color:#d1d5db;">
+        Malitadji utilise des cookies nécessaires au bon fonctionnement du site
+        et, le cas échéant, des cookies de mesure d’audience afin d’améliorer
+        l’expérience utilisateur.
+        <a href="{% url 'politique_confidentialite' %}" style="color:#38bdf8;font-weight:600;">
+            Lire la politique de confidentialité
+        </a>
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+        <button onclick="refuseCookies()" style="
+            background:transparent;
+            color:#e5e7eb;
+            border:1px solid rgba(148,163,184,.45);
+            border-radius:999px;
+            padding:9px 16px;
+            cursor:pointer;
+            font-weight:600;
+        ">
+            Refuser
+        </button>
+
+        <button onclick="acceptCookies()" style="
+            background:#22c55e;
+            color:#022c22;
+            border:none;
+            border-radius:999px;
+            padding:9px 16px;
+            cursor:pointer;
+            font-weight:700;
+        ">
+            Accepter
+        </button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const consent = localStorage.getItem("malitadji_cookie_consent");
+
+        if (!consent) {
+            document.getElementById("cookieBanner").style.display = "block";
+        }
+    });
+
+    function acceptCookies() {
+        localStorage.setItem("malitadji_cookie_consent", "accepted");
+        document.getElementById("cookieBanner").style.display = "none";
+    }
+
+    function refuseCookies() {
+        localStorage.setItem("malitadji_cookie_consent", "refused");
+        document.getElementById("cookieBanner").style.display = "none";
+    }
+</script>
       </tbody>
     </table>
   </div>

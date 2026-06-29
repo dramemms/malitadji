@@ -73,8 +73,17 @@ def _send_multicast(tokens: list[str], notification: messaging.Notification, dat
         return {"sent": sent, "fail": fail, "invalid": invalid, "invalid_tokens": invalid_tokens}
 
     except AttributeError:
-        # fallback plus bas
-        pass
+      pass
+    except Exception as e:
+      print("❌ ERREUR FCM multicast :", repr(e))
+    fail += len(tokens)
+    return {
+        "sent": sent,
+        "fail": fail,
+        "invalid": invalid,
+        "invalid_tokens": invalid_tokens,
+        "error": str(e),
+    }
 
     # ✅ fallback: 1 par 1
     for t in tokens:
@@ -88,6 +97,7 @@ def _send_multicast(tokens: list[str], notification: messaging.Notification, dat
                 invalid_tokens.append(t)
             else:
                 fail += 1
+        print("❌ ERREUR FCM token :", t[:20], repr(e))
 
     return {"sent": sent, "fail": fail, "invalid": invalid, "invalid_tokens": invalid_tokens}
 

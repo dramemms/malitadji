@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité - Malitadji</title>
+
+    <style>
+        :root {
+            --bg:#020617;
+            --card:#0b1220;
+            --border:rgba(148,163,184,.25);
+            --text:#e5e7eb;
+            --muted:#9ca3af;
+            --accent:#22c55e;
+            --info:#38bdf8;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#020617;
+            color:var(--text);
+            font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .nav{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:12px 18px;
+            background:#020617;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+
+        .nav-left{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .nav-logo{
+            width:30px;
+            height:30px;
+            border-radius:10px;
+            background:linear-gradient(#22c55e,#16a34a);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#022c22;
+            font-weight:bold;
+        }
+
+        .nav-title{
+            font-size:18px;
+            font-weight:700;
+        }
+
+        .nav-sub{
+            font-size:12px;
+            color:var(--muted);
+        }
+
+        .nav-links{
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+
+        .nav-link{
+            padding:6px 14px;
+            border-radius:30px;
+            color:var(--muted);
+        }
+
+        .nav-link:hover{
+            background:#0f172a;
+            color:white;
+        }
+
+        .nav-btn{
+            background:var(--accent);
+            color:#022c22;
+            border:none;
+            border-radius:30px;
+            padding:8px 18px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        /* ================= CONTENU ================= */
+
+        .container{
+
+            max-width:1000px;
+            margin:60px auto;
+            padding:0 20px;
+
+        }
+
+        .content{
+
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:18px;
+            padding:40px;
+            line-height:1.8;
+
+        }
+
+        h1{
+
+            color:white;
+            margin-bottom:30px;
+            font-size:40px;
+
+        }
+
+        h2{
+
+            margin-top:35px;
+            margin-bottom:12px;
+            color:#22c55e;
+
+        }
+
+        p{
+
+            color:#d1d5db;
+            font-size:16px;
+
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer{
+
+            margin-top:60px;
+            padding:25px;
+            border-top:1px solid rgba(255,255,255,.08);
+            text-align:center;
+            background:#020617;
+
+        }
+
+        footer p{
+
+            color:#9ca3af;
+
+        }
+
+        footer a{
+
+            color:#38bdf8;
+            margin:0 12px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="nav">
+
+    <div class="nav-left">
+
+        <div class="nav-logo">M</div>
+
+        <div>
+
+            <div class="nav-title">Malitadji</div>
+
+            <div class="nav-sub">
+                Suivi du carburant · Bamako & régions
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="{% url 'home' %}" class="nav-link">Accueil</a>
+
+        <a href="{% url 'carte' %}" class="nav-link">Carte</a>
+
+        <a href="{% url 'manager_login' %}" class="nav-link">Espace gérant</a>
+
+        <a href="{% url 'manager_login' %}">
+            <button class="nav-btn">Se connecter</button>
+        </a>
+
+    </nav>
+
+</header>
+
+<div class="container">
+
+<div class="content">
+
+<h1>Politique de confidentialité</h1>
+
+<p>
+Malitadji respecte la confidentialité des utilisateurs de son site web et de son application mobile.
+</p>
+
+<h2>Données collectées</h2>
+
+<p>
+Malitadji peut collecter certaines informations nécessaires au fonctionnement du service,
+notamment les informations liées aux stations-service, aux disponibilités de carburant,
+aux appareils utilisés pour accéder au service, ainsi que les données techniques de connexion.
+</p>
+
+<h2>Utilisation des données</h2>
+
+<p>
+Les données sont utilisées uniquement pour afficher les informations de disponibilité
+du carburant, améliorer les performances de la plateforme, envoyer des notifications
+concernant les mises à jour des stations et assurer la sécurité du service.
+</p>
+
+<h2>Partage des données</h2>
+
+<p>
+Malitadji ne vend ni ne loue les données personnelles des utilisateurs.
+Les informations ne sont communiquées à des tiers que lorsque cela est exigé par la loi
+ou nécessaire au fonctionnement du service.
+</p>
+
+<h2>Sécurité</h2>
+
+<p>
+Nous mettons en œuvre des mesures techniques et organisationnelles afin de protéger les
+données contre tout accès non autorisé, toute perte ou toute divulgation.
+</p>
+
+<h2>Vos droits</h2>
+
+<p>
+Vous pouvez demander l'accès, la rectification ou la suppression de vos données
+personnelles en nous contactant.
+</p>
+
+<h2>Contact</h2>
+
+<p>
+
+📧 contact@malitadji.com
+
+<br>
+
+📞 +223 75 99 27 86
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+
+© 2026 <strong style="color:#22c55e;">Malitadji</strong> — Tous droits réservés.
+
+</p>
+
+<p style="margin-top:12px;">
+
+<a href="{% url 'politique_confidentialite' %}">
+Politique de confidentialité
+</a>
+
+|
+
+<a href="mailto:contact@malitadji.com">
+Contact
+</a>
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

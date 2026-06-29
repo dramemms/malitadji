@@ -13,6 +13,7 @@ urlpatterns = [
     path("manager/login/", views.manager_login, name="manager_login"),
     path("manager/", views.manager_dashboard, name="manager_dashboard"),
     path("manager/logout/", views.manager_logout, name="manager_logout"),
+     path("politique-confidentialite/", views.politique_confidentialite, name="politique_confidentialite"),
 
     # API Device (public)
     path("api/device/register/", api.register_device, name="api_register_device"),

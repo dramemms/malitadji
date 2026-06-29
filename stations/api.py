@@ -12,16 +12,17 @@ from .models import Device, DeviceFollow, Station
 def _norm_produit(p) -> str | None:
     if p is None:
         return None
+
     s = str(p).strip().lower()
     if not s:
         return None
+
     if "gaso" in s or "diesel" in s:
         return "gasoil"
-    if "ess" in s or "super":
-        # attention: "or 'super'" serait toujours True, donc on fait bien un test:
-        pass
+
     if "ess" in s or "super" in s:
         return "essence"
+
     return s
 
 

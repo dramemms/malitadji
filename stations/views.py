@@ -441,3 +441,6 @@ def manager_dashboard(request):
             "device_followers_count": device_followers_count,
         },
     )
+
+def politique_confidentialite(request):
+    return render(request, "politique_confidentialite.html")

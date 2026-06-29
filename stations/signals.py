@@ -1,13 +1,7 @@
 # stations/signals.py
 """
-DÉSACTIVÉ (architecture finale Malitadji)
+Signaux désactivés.
 
-Raison:
-- La source de vérité = /manager/ (gérant)
-- Le push FCM + InApp doivent être déclenchés UNIQUEMENT depuis manager_dashboard()
-  pour contrôler old_niveau -> new_niveau et éviter doublons / surprises.
+Les notifications Malitadji sont déclenchées uniquement depuis :
+stations/views.py -> manager_dashboard()
 """
-
-# Tu peux laisser ce fichier vide.
-def ready(self):
-    import stations.signals
