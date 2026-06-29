@@ -223,6 +223,15 @@
     </div>
 </div>
 
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{{ block.super }}
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const consent = localStorage.getItem("malitadji_cookie_consent");
@@ -242,11 +251,4 @@
         document.getElementById("cookieBanner").style.display = "none";
     }
 </script>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-{{ block.super }}
 {% endblock %}

@@ -639,7 +639,7 @@
 
 <footer class="footer">
   <span>Malitadji</span> · Plateforme de suivi du carburant au Mali ·
-  <span>Version bêta</span>
+  <span>Version officielle</span>
 </footer>
 
 <script>
@@ -777,6 +777,104 @@
     </p>
 
 </footer>
+
+<!-- ===========================
+     POPUP CONSENTEMENT COOKIES
+=========================== -->
+
+<div id="cookieBanner" style="
+position:fixed;
+left:20px;
+right:20px;
+bottom:20px;
+max-width:900px;
+margin:auto;
+background:#0b1220;
+color:#e5e7eb;
+padding:18px;
+border-radius:16px;
+border:1px solid rgba(148,163,184,.35);
+box-shadow:0 20px 50px rgba(0,0,0,.45);
+display:none;
+z-index:999999;
+">
+
+<h3 style="margin-top:0;color:#22c55e;">
+🍪 Gestion des cookies
+</h3>
+
+<p style="line-height:1.6;">
+Malitadji utilise des cookies nécessaires au fonctionnement du site afin
+d'améliorer votre expérience.
+
+<a href="{% url 'politique_confidentialite' %}"
+style="color:#38bdf8;">
+Politique de confidentialité
+</a>
+</p>
+
+<div style="margin-top:15px;text-align:right;">
+
+<button onclick="refuseCookies()"
+style="
+padding:9px 18px;
+border-radius:999px;
+background:transparent;
+border:1px solid #888;
+color:white;
+cursor:pointer;
+margin-right:8px;
+">
+Refuser
+</button>
+
+<button onclick="acceptCookies()"
+style="
+padding:9px 18px;
+border-radius:999px;
+background:#22c55e;
+border:none;
+font-weight:bold;
+cursor:pointer;
+">
+Accepter
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const consent = localStorage.getItem("malitadji_cookie_consent");
+
+if(!consent){
+
+document.getElementById("cookieBanner").style.display="block";
+
+}
+
+});
+
+function acceptCookies(){
+
+localStorage.setItem("malitadji_cookie_consent","accepted");
+
+document.getElementById("cookieBanner").style.display="none";
+
+}
+
+function refuseCookies(){
+
+localStorage.setItem("malitadji_cookie_consent","refused");
+
+document.getElementById("cookieBanner").style.display="none";
+
+}
+
+</script>
 
 </body>
 </html>
