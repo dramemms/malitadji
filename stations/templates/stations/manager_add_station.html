@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Ajouter une station – Malitadji</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body class="bg-light">
+<div class="container mt-4 mb-5" style="max-width: 850px;">
+  <h2 class="mb-4">Ajouter une nouvelle station</h2>
+
+  {% if message %}
+    <div class="alert {% if message_error %}alert-danger{% else %}alert-success{% endif %}">
+      {{ message }}
+    </div>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label">Nom de la station *</label>
+      <input type="text" name="nom" class="form-control" required>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Région *</label>
+        <select id="region" class="form-select" required>
+          <option value="">-- Région --</option>
+          {% for region in regions %}
+            <option value="{{ region.id }}">{{ region.nom }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Cercle *</label>
+        <select id="cercle" class="form-select" required>
+          <option value="">-- Cercle --</option>
+          {% for cercle in cercles %}
+            <option value="{{ cercle.id }}" data-region="{{ cercle.region.id }}">
+              {{ cercle.nom }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Commune *</label>
+        <select id="commune" name="commune" class="form-select" required>
+          <option value="">-- Commune --</option>
+          {% for commune in communes %}
+            <option value="{{ commune.id }}" data-cercle="{{ commune.cercle.id }}">
+              {{ commune.nom }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Adresse</label>
+      <input type="text" name="adresse" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Photo optionnelle</label>
+      <input type="file" name="photo" class="form-control" accept="image/*">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Rechercher un lieu sur la carte</label>
+      <div class="input-group">
+        <input type="text" id="search_place" class="form-control" placeholder="Exemple : Station Shell Sénou, Bamako">
+        <button type="button" class="btn btn-outline-primary" onclick="searchPlace()">Rechercher</button>
+      </div>
+      <small class="text-muted">Tu peux aussi cliquer directement sur la carte.</small>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Latitude *</label>
+        <input type="text" name="latitude" id="latitude" class="form-control" required placeholder="Ex: 12.6392">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Longitude *</label>
+        <input type="text" name="longitude" id="longitude" class="form-control" required placeholder="Ex: -8.0029">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <button type="button" class="btn btn-success" onclick="useMyLocation()">
+        📍 Utiliser ma position actuelle
+      </button>
+    </div>
+
+    <div id="map" style="height: 380px; border-radius: 12px; border: 1px solid #ddd;"></div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">
+        Envoyer pour validation
+      </button>
+
+      <a href="{% url 'manager_dashboard' %}" class="btn btn-secondary">
+        Retour
+      </a>
+    </div>
+  </form>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  const defaultLat = 12.6392;
+  const defaultLng = -8.0029;
+
+  const map = L.map('map').setView([defaultLat, defaultLng], 12);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  const marker = L.marker([defaultLat, defaultLng], { draggable: true }).addTo(map);
+
+  function updateInputs(lat, lng) {
+    document.getElementById("latitude").value = Number(lat).toFixed(7);
+    document.getElementById("longitude").value = Number(lng).toFixed(7);
+  }
+
+  updateInputs(defaultLat, defaultLng);
+
+  marker.on("dragend", function () {
+    const pos = marker.getLatLng();
+    updateInputs(pos.lat, pos.lng);
+  });
+
+  map.on("click", function (e) {
+    marker.setLatLng(e.latlng);
+    updateInputs(e.latlng.lat, e.latlng.lng);
+  });
+
+  function useMyLocation() {
+    if (!navigator.geolocation) {
+      alert("La géolocalisation n'est pas supportée par ce navigateur.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        marker.setLatLng([lat, lng]);
+        map.setView([lat, lng], 17);
+        updateInputs(lat, lng);
+      },
+      function () {
+        alert("Impossible de récupérer votre position. Veuillez autoriser la localisation.");
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  }
+
+  function searchPlace() {
+    const query = document.getElementById("search_place").value.trim();
+
+    if (!query) {
+      alert("Veuillez saisir un lieu à rechercher.");
+      return;
+    }
+
+    const url = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + encodeURIComponent(query);
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (!data || data.length === 0) {
+          alert("Aucun résultat trouvé.");
+          return;
+        }
+
+        const lat = parseFloat(data[0].lat);
+        const lng = parseFloat(data[0].lon);
+
+        marker.setLatLng([lat, lng]);
+        map.setView([lat, lng], 17);
+        updateInputs(lat, lng);
+      })
+      .catch(() => {
+        alert("Erreur lors de la recherche du lieu.");
+      });
+  }
+
+  const regionSelect = document.getElementById("region");
+  const cercleSelect = document.getElementById("cercle");
+  const communeSelect = document.getElementById("commune");
+
+  function filterCercles() {
+    const regionId = regionSelect.value;
+
+    Array.from(cercleSelect.options).forEach(option => {
+      if (!option.value) return;
+      option.hidden = regionId && option.dataset.region !== regionId;
+    });
+
+    cercleSelect.value = "";
+    communeSelect.value = "";
+    filterCommunes();
+  }
+
+  function filterCommunes() {
+    const cercleId = cercleSelect.value;
+
+    Array.from(communeSelect.options).forEach(option => {
+      if (!option.value) return;
+      option.hidden = cercleId && option.dataset.cercle !== cercleId;
+    });
+
+    communeSelect.value = "";
+  }
+
+  regionSelect.addEventListener("change", filterCercles);
+  cercleSelect.addEventListener("change", filterCommunes);
+
+  filterCercles();
+</script>
+</body>
+</html>

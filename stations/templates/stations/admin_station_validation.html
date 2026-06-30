@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Validation des stations – Malitadji</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+
+    .station-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-approve {
+      background: #16a34a;
+    }
+
+    .btn-delete {
+      background: #dc2626;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: #1e3a8a;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .empty {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Validation des stations</h1>
+
+  <a href="{% url 'manager_dashboard' %}" class="btn-back">
+    ← Retour dashboard
+  </a>
+
+  {% for station in stations_pending %}
+    <div class="card">
+      <div class="station-title">{{ station.nom }}</div>
+
+      <div class="muted">
+  Région :
+  {% if station.commune and station.commune.cercle and station.commune.cercle.region %}
+    {{ station.commune.cercle.region.nom }}
+  {% else %}
+    Non renseignée
+  {% endif %}
+</div>
+
+<div class="muted">
+  Cercle :
+  {% if station.commune and station.commune.cercle %}
+    {{ station.commune.cercle.nom }}
+  {% else %}
+    Non renseigné
+  {% endif %}
+</div>
+
+<div class="muted">
+  Commune :
+  {% if station.commune %}
+    {{ station.commune.nom }}
+  {% else %}
+    Non renseignée
+  {% endif %}
+</div>
+
+      <div class="muted">Adresse : {{ station.adresse|default:"Non renseignée" }}</div>
+      <div class="muted">Latitude : {{ station.latitude|default:"-" }}</div>
+      <div class="muted">Longitude : {{ station.longitude|default:"-" }}</div>
+      <div class="muted">Gérant : {{ station.gerant|default:"Non renseigné" }}</div>
+
+      {% if station.latitude and station.longitude %}
+        <div class="muted">
+          <a target="_blank" href="https://www.google.com/maps?q={{ station.latitude }},{{ station.longitude }}">
+            Voir sur Google Maps
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="actions">
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="station_id" value="{{ station.id }}">
+          <input type="hidden" name="action" value="approve">
+          <button type="submit" class="btn btn-approve">
+            Approuver
+          </button>
+        </form>
+
+        <form method="post" onsubmit="return confirm('Supprimer cette station ?');">
+          {% csrf_token %}
+          <input type="hidden" name="station_id" value="{{ station.id }}">
+          <input type="hidden" name="action" value="delete">
+          <button type="submit" class="btn btn-delete">
+            Supprimer
+          </button>
+        </form>
+      </div>
+    </div>
+  {% empty %}
+    <div class="empty">
+      Aucune station en attente de validation.
+    </div>
+  {% endfor %}
+</div>
+</body>
+</html>

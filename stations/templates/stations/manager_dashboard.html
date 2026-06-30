@@ -170,10 +170,24 @@
         <div class="sub">Mise à jour des stocks, informations station & notifications push</div>
       </div>
 
-      <form method="post" action="{% url 'manager_logout' %}">
+      <div style="display:flex;gap:10px;">
+    <a href="{% url 'manager_add_station' %}" class="btn btn-primary">
+        ➕ Ajouter une station
+    </a>
+
+    {% if is_super %}
+  <a href="{% url 'admin_station_validation' %}" class="btn btn-primary">
+    ✅ Valider les stations
+  </a>
+{% endif %}
+
+    <form method="post" action="{% url 'manager_logout' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Déconnexion</button>
-      </form>
+        <button type="submit" class="btn btn-danger">
+            Déconnexion
+        </button>
+    </form>
+</div>
     </div>
 
     {% if message %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Stock
+from .models import Stock, Station, Commune
 
 
 class StockForm(forms.ModelForm):
@@ -40,3 +40,57 @@ class StockForm(forms.ModelForm):
         # NIVEAU : on garde les mêmes choices que dans le modèle
         niveau_field = Stock._meta.get_field("niveau")
         self.fields["niveau"].choices = list(niveau_field.choices)
+
+class StationCreateForm(forms.ModelForm):
+    """
+    Formulaire permettant à un gérant de proposer une nouvelle station.
+    La station devra ensuite être validée par un administrateur.
+    """
+
+    class Meta:
+        model = Station
+        fields = [
+            "nom",
+            "commune",
+            "adresse",
+            "latitude",
+            "longitude",
+        ]
+
+        widgets = {
+            "nom": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Nom de la station",
+            }),
+            "commune": forms.Select(attrs={
+                "class": "form-control",
+            }),
+            "adresse": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Adresse",
+            }),
+            "latitude": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "any",
+            }),
+            "longitude": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "any",
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["commune"].queryset = Commune.objects.select_related(
+            "cercle",
+            "cercle__region"
+        ).order_by(
+            "cercle__region__nom",
+            "cercle__nom",
+            "nom",
+        )
+
+        self.fields["commune"].label_from_instance = (
+            lambda obj: f"{obj.nom} ({obj.cercle.nom}, {obj.cercle.region.nom})"
+        )

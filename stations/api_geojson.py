@@ -56,11 +56,12 @@ def stations_geojson(request):
     statut = request.GET.get("statut")  # dispo/faible/rupture (optionnel)
 
     qs = (
-        Station.objects
-        .select_related("commune__cercle__region")
-        .exclude(Q(latitude__isnull=True) | Q(longitude__isnull=True))
-        .annotate(derniere_maj=Max("stocks__date_maj"))
-    )
+    Station.objects
+    .filter(is_approved=True)
+    .select_related("commune__cercle__region")
+    .exclude(Q(latitude__isnull=True) | Q(longitude__isnull=True))
+    .annotate(derniere_maj=Max("stocks__date_maj"))
+)
 
     if region_id:
         qs = qs.filter(commune__cercle__region_id=region_id)

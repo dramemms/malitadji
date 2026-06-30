@@ -9,7 +9,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 import json
 from django.shortcuts import render
@@ -222,6 +222,51 @@ def manager_logout(request):
         logout(request)
     return redirect("/manager/")
 
+@login_required
+def manager_add_station(request):
+    context = {
+        "regions": Region.objects.order_by("nom"),
+        "cercles": Cercle.objects.select_related("region").order_by("nom"),
+        "communes": Commune.objects.select_related(
+            "cercle",
+            "cercle__region"
+        ).order_by("nom"),
+    }
+
+    if request.method == "POST":
+        nom = (request.POST.get("nom") or "").strip()
+        adresse = (request.POST.get("adresse") or "").strip()
+        latitude = (request.POST.get("latitude") or "").strip().replace(",", ".")
+        longitude = (request.POST.get("longitude") or "").strip().replace(",", ".")
+        commune_id = (request.POST.get("commune") or "").strip()
+
+        if not nom or not commune_id or not latitude or not longitude:
+            context.update({
+                "message": "Veuillez renseigner le nom, la commune, la latitude et la longitude.",
+                "message_error": True,
+            })
+            return render(request, "stations/manager_add_station.html", context)
+
+        station = Station.objects.create(
+            nom=nom,
+            adresse=adresse,
+            latitude=float(latitude),
+            longitude=float(longitude),
+            commune=get_object_or_404(Commune, id=commune_id),
+            gerant=request.user,
+            is_approved=False,
+        )
+
+        context.update({
+            "message": "Station ajoutée avec succès. Elle sera visible après validation par l’administrateur.",
+            "message_error": False,
+            "station": station,
+        })
+
+        return render(request, "stations/manager_add_station.html", context)
+
+    return render(request, "stations/manager_add_station.html", context)
+
 
 # -----------------------------
 # Manager dashboard
@@ -331,11 +376,12 @@ def manager_dashboard(request):
                 stock_obj.save()
 
                 StockHistory.objects.create(
-                    station=station,
-                    produit=produit_raw,
-                    ancien_niveau=old_niveau,
-                    nouveau_niveau=niveau_new,
-                )
+    station=station,
+    produit=produit_raw,
+    ancien_niveau=old_niveau,
+    nouveau_niveau=niveau_new,
+    updated_by=request.user,
+)
 
                 should_notify = _is_plein(niveau_new) and not _is_plein(old_niveau)
 
@@ -444,3 +490,33 @@ def manager_dashboard(request):
 
 def politique_confidentialite(request):
     return render(request, "politique_confidentialite.html")
+
+@staff_member_required
+def admin_station_validation(request):
+    if request.method == "POST":
+        action = request.POST.get("action")
+        station_id = request.POST.get("station_id")
+
+        station = get_object_or_404(Station, id=station_id)
+
+        if action == "approve":
+            station.is_approved = True
+            station.save()
+            return redirect("admin_station_validation")
+
+        if action == "delete":
+            station.delete()
+            return redirect("admin_station_validation")
+
+    stations_pending = Station.objects.select_related(
+        "commune",
+        "commune__cercle",
+        "commune__cercle__region",
+        "gerant",
+    ).filter(
+        is_approved=False
+    ).order_by("-id")
+
+    return render(request, "stations/admin_station_validation.html", {
+        "stations_pending": stations_pending,
+    })

@@ -12,6 +12,13 @@ from .models import (
     StationFollow, InAppNotification,
 )
 
+from .models import (
+    Region, Cercle, Commune,
+    Station, Stock, StockHistory,
+    Device, DeviceFollow,
+    StationFollow, InAppNotification,
+)
+
 User = get_user_model()
 
 
@@ -44,15 +51,39 @@ class CommuneAdmin(admin.ModelAdmin):
 
 @admin.register(Station, site=admin_site)
 class StationAdmin(admin.ModelAdmin):
-    list_display = ("nom", "commune", "get_cercle", "get_region", "gerant")
-    list_filter = ("commune__cercle__region", "commune", "gerant")
-    search_fields = (
+    list_display = (
         "nom",
-        "adresse",
-        "commune__nom",
-        "commune__cercle__nom",
-        "commune__cercle__region__nom",
+        "commune",
+        "get_cercle",
+        "get_region",
+        "gerant",
+        "is_approved",
     )
+
+    list_filter = (
+        "is_approved",
+        "commune__cercle__region",
+        "commune",
+        "gerant",
+    )
+
+    search_fields = (
+    "nom",
+    "adresse",
+    "commune__nom",
+    "commune__cercle__nom",
+    "commune__cercle__region__nom",
+)
+
+    actions = ["approuver_stations", "mettre_en_attente"]
+
+    @admin.action(description="Approuver les stations sélectionnées")
+    def approuver_stations(self, request, queryset):
+        queryset.update(is_approved=True)
+
+    @admin.action(description="Mettre les stations sélectionnées en attente")
+    def mettre_en_attente(self, request, queryset):
+        queryset.update(is_approved=False)
 
     @admin.display(description="Cercle")
     def get_cercle(self, obj):
@@ -152,3 +183,33 @@ class UserAdmin(DjangoUserAdmin):
 class GroupAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     ordering = ("name",)
+
+@admin.register(StockHistory, site=admin_site)
+class StockHistoryAdmin(admin.ModelAdmin):
+    list_display = (
+        "station",
+        "produit",
+        "ancien_niveau",
+        "nouveau_niveau",
+        "updated_by",
+        "date_maj",
+    )
+    list_filter = (
+        "produit",
+        "nouveau_niveau",
+        "updated_by",
+        "date_maj",
+    )
+    search_fields = (
+        "station__nom",
+        "updated_by__username",
+        "updated_by__email",
+    )
+    readonly_fields = (
+        "station",
+        "produit",
+        "ancien_niveau",
+        "nouveau_niveau",
+        "updated_by",
+        "date_maj",
+    )

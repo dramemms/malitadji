@@ -56,12 +56,12 @@ class Commune(models.Model):
 class Station(models.Model):
     nom = models.CharField(max_length=200)
     commune = models.ForeignKey(
-    Commune,
-    on_delete=models.SET_NULL,
-    null=True,
-    blank=True,
-    related_name="stations",
-)
+        Commune,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="stations",
+    )
     adresse = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
@@ -74,6 +74,9 @@ class Station(models.Model):
         blank=True,
         related_name="stations",
     )
+
+    # Validation admin avant affichage public
+    is_approved = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["commune__cercle__region__nom", "commune__nom", "nom"]
@@ -129,6 +132,15 @@ class StockHistory(models.Model):
     produit = models.CharField(max_length=50)
     ancien_niveau = models.CharField(max_length=20, blank=True, null=True)
     nouveau_niveau = models.CharField(max_length=20)
+
+    updated_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="stock_updates",
+    )
+
     date_maj = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -136,7 +148,6 @@ class StockHistory(models.Model):
 
     def __str__(self):
         return f"{self.station.nom} - {self.produit} : {self.nouveau_niveau}"
-
 
 class StationFollow(models.Model):
     """
