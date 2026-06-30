@@ -1,125 +1,75 @@
-import csv
-from pathlib import Path
+import pandas as pd
 from django.core.management.base import BaseCommand
-from django.db import transaction
-
-from stations.models import Region, Cercle, Commune, Station
+from stations.models import Region, Cercle, Commune, Station, Stock
 
 
 class Command(BaseCommand):
-    help = "Import des stations Shell avec Region / Cercle / Commune"
+    help = "Supprime les anciennes stations Shell et importe le référentiel Shell depuis Excel"
 
     def add_arguments(self, parser):
-        parser.add_argument("csv_path", type=str)
-        parser.add_argument(
-            "--update",
-            action="store_true",
-            help="Mettre à jour latitude/longitude si la station existe"
-        )
+        parser.add_argument("excel_file", type=str)
 
-    @transaction.atomic
     def handle(self, *args, **options):
-        path = Path(options["csv_path"])
-        update = options["update"]
+        excel_file = options["excel_file"]
 
-        created = updated = skipped = 0
+        self.stdout.write("Suppression des anciennes stations Shell...")
+        deleted, _ = Station.objects.filter(nom__icontains="shell").delete()
+        self.stdout.write(self.style.WARNING(f"{deleted} anciennes données supprimées."))
 
-        if not path.exists():
-            self.stderr.write(self.style.ERROR(f"Fichier introuvable : {path}"))
-            return
+        df = pd.read_excel(excel_file)
 
-        with open(path, "r", encoding="utf-8-sig") as f:
-            reader = csv.DictReader(f)
+        created = 0
+        errors = 0
 
-            required_cols = {
-                "nom_station", "region", "cercle",
-                "commune", "latitude", "longitude"
-            }
-            if not required_cols.issubset(reader.fieldnames):
-                self.stderr.write(
-                    self.style.ERROR(
-                        f"Colonnes requises : {', '.join(required_cols)}"
-                    )
-                )
-                return
+        for index, row in df.iterrows():
+            try:
+                region_nom = str(row["Région"]).strip()
+                cercle_nom = str(row["Cercle"]).strip()
+                commune_nom = str(row["Commune"]).strip()
+                station_nom = str(row["Nom de la station"]).strip()
+                latitude = float(row["Latitude"])
+                longitude = float(row["Longitude"])
 
-            for row in reader:
-                nom = row["nom_station"].strip()
-                region_name = row["region"].strip()
-                cercle_name = row["cercle"].strip()
-                commune_name = row["commune"].strip()
-                adresse = row.get("adresse", "").strip()
+                region, _ = Region.objects.get_or_create(nom=region_nom)
 
-                # --- coordonnées
-                try:
-                    latitude = float(row["latitude"])
-                    longitude = float(row["longitude"])
-                except ValueError:
-                    skipped += 1
-                    continue
-
-                # --- Région
-                region = Region.objects.filter(
-                    nom__iexact=region_name
-                ).first()
-                if not region:
-                    self.stderr.write(f"❌ Région introuvable : {region_name}")
-                    skipped += 1
-                    continue
-
-                # --- Cercle
-                cercle = Cercle.objects.filter(
-                    nom__iexact=cercle_name,
-                    region=region
-                ).first()
-                if not cercle:
-                    self.stderr.write(
-                        f"❌ Cercle introuvable : {cercle_name} ({region_name})"
-                    )
-                    skipped += 1
-                    continue
-
-                # --- Commune
-                commune = Commune.objects.filter(
-                    nom__iexact=commune_name,
-                    cercle=cercle
-                ).first()
-                if not commune:
-                    self.stderr.write(
-                        f"❌ Commune introuvable : {commune_name} ({cercle_name})"
-                    )
-                    skipped += 1
-                    continue
-
-                # --- Station
-                qs = Station.objects.filter(
-                    nom__iexact=nom,
-                    commune=commune
+                cercle, _ = Cercle.objects.get_or_create(
+                    region=region,
+                    nom=cercle_nom
                 )
 
-                if qs.exists():
-                    if update:
-                        station = qs.first()
-                        station.latitude = latitude
-                        station.longitude = longitude
-                        station.adresse = adresse
-                        station.save()
-                        updated += 1
-                    else:
-                        skipped += 1
-                else:
-                    Station.objects.create(
-                        nom=nom,
-                        commune=commune,
-                        adresse=adresse,
-                        latitude=latitude,
-                        longitude=longitude,
-                    )
-                    created += 1
+                commune, _ = Commune.objects.get_or_create(
+                    cercle=cercle,
+                    nom=commune_nom
+                )
 
-        self.stdout.write(
-            self.style.SUCCESS(
-                f"✅ Import terminé | Créées={created} | "
-                f"Mises à jour={updated} | Ignorées={skipped}"
-            )
-        )
+                station = Station.objects.create(
+                    nom=station_nom,
+                    commune=commune,
+                    latitude=latitude,
+                    longitude=longitude,
+                    is_approved=True,
+                )
+
+                Stock.objects.create(
+                    station=station,
+                    produit="essence",
+                    niveau="Rupture",
+                )
+
+                Stock.objects.create(
+                    station=station,
+                    produit="gasoil",
+                    niveau="Rupture",
+                )
+
+                created += 1
+
+            except Exception as e:
+                errors += 1
+                self.stdout.write(
+                    self.style.ERROR(f"Ligne {index + 2} erreur : {e}")
+                )
+
+        self.stdout.write(self.style.SUCCESS("Import terminé."))
+        self.stdout.write(self.style.SUCCESS(f"Stations créées : {created}"))
+        self.stdout.write(self.style.WARNING(f"Erreurs : {errors}"))

@@ -21,7 +21,7 @@ if not FIREBASE_SERVICE_ACCOUNT_FILE.exists() and _local.exists():
 # SECURITY
 # =========================
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-default-key-change-me")
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
 ALLOWED_HOSTS = [
     "malitadji.onrender.com",
@@ -196,19 +196,19 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # =========================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-CSRF_COOKIE_SECURE = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
+
 
 # =========================
 # SECURITY PRODUCTION
 # =========================
+IS_RENDER = os.environ.get("RENDER", "").lower() == "true"
+
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = IS_RENDER and not DEBUG
+SESSION_COOKIE_SECURE = IS_RENDER and not DEBUG
+CSRF_COOKIE_SECURE = IS_RENDER and not DEBUG
 
-SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
-SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
-SECURE_HSTS_PRELOAD = not DEBUG
+SECURE_HSTS_SECONDS = 31536000 if IS_RENDER and not DEBUG else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = IS_RENDER and not DEBUG
+SECURE_HSTS_PRELOAD = IS_RENDER and not DEBUG
